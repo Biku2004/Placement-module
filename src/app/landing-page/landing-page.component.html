@@ -1,38 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div class="landing-page">
-  
-    <div class="login-section">
-      <h2>Login</h2>
-      <form>
-        <label for="login-email">Email:</label>
-        <input type="email" id="login-email" placeholder="Enter your email" required>
-        <label for="login-password">Password:</label>
-        <input type="password" id="login-password" placeholder="Enter your password" required>
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  
-    <div class="signup-section">
-      <h2>Sign Up</h2>
-      <form>
-        <label for="signup-name">Name:</label>
-        <input type="text" id="signup-name" placeholder="Enter your name" required>
-        <label for="signup-email">Email:</label>
-        <input type="email" id="signup-email" placeholder="Enter your email" required>
-        <label for="signup-password">Password:</label>
-        <input type="password" id="signup-password" placeholder="Create a password" required>
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
-  </div>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
+  </head>
+  <body class=" p-4 min-h-screen bg-blue-500" >
+
+    <div class="bg-gray-100 font-sans overflow-x-hidden m-10 rounded-lg p-4 ">
+        <header class="container mx-auto py-4 px-6 ">
+            <nav class="flex items-center justify-between">
+              <div class="text-primary text-2xl font-bold">Devkit.</div>
+              <div class="relative" id="nav_menu">
+                <button class="close_btn absolute right-4 top-4">
+                  <i class="ri-close-fill"></i>
+                </button>
+                <ul class="flex space-x-8 hidden md:flex">
+                  <li><button type="submit" routes="/signup" class="text-gray-600 hover:text-blue-600">Signup</button></li>
+                  <li><a href="#" class="text-gray-600 hover:text-blue-600">About</a></li>
+                  <li><a href="#" class="text-gray-600 hover:text-blue-600">Service</a></li>
+                  <li><a href="#" class="text-gray-600 hover:text-blue-600">Contact</a></li>
+                </ul>
+                <button class="toggle_btn text-2xl text-gray-800 md:hidden">
+                  <i class="ri-menu-line"></i>
+                </button>
+              </div>
+            </nav>
+          </header>
+      
+          <main class="container mx-auto px-6">
+            <section class="py-20">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="flex flex-col justify-center">
+                  <h1 class="text-5xl font-light mb-4">
+                    Welcome to <span class="text-blue-600">Devkit.</span>
+                    <br />
+                    Develop anything.
+                  </h1>
+                  <p class="text-lg text-gray-700 mb-6">
+                    Build a beautiful, modern website with flexible components built from scratch.
+                  </p>
+                  <div class="flex space-x-4">
+                    <button class="btn bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500 transition">View All Pages <i class="ri-arrow-right-line ml-2"></i></button>
+                    <button class="btn bg-gray-200 text-blue-800 py-2 px-4 rounded hover:bg-gray-300 transition">Documentation</button>
+                  </div>
+                </div>
+                <div class="flex justify-center">
+                  <img src="assets/team.svg" alt="team-img" class="w-full max-w-md h-auto" />
+                </div>
+              </div>
+            </section>
+      
+            
+              <div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                  <div class="flex flex-col items-center text-center">
+                    <div class="icon mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-blue-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="text-xl font-semibold">Built for developers</span>
+                      <p class="mt-2 text-gray-600">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ratione facilis animi voluptas exercitationem molestiae.
+                      </p>
+                    </div>
+                  </div>
+      
+                  <div class="flex flex-col items-center text-center">
+                    <div class="icon mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-blue-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="text-xl font-semibold">Designed to be modern</span>
+                      <p class="mt-2 text-gray-600">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut ipsum esse corrupti. Quo, labore debitis!
+                      </p>
+                    </div>
+                  </div>
+      
+                  <div class="flex flex-col items-center text-center">
+                    <div class="icon mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-blue-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="text-xl font-semibold">Documentation for everything</span>
+                      <p class="mt-2 text-gray-600">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non nostrum voluptate totam ipsa corrupti vero!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </main>
+      
+          <footer class="py-6 text-center">
+            <p class="text-gray-500">© 2024 Devkit. All rights reserved.</p>
+          </footer>
+      
+    </div>
+  </body>
+</html>
