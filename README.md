@@ -33,5 +33,5 @@ This project is a web-based application for managing placement activities within
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/placement-cell-angular.git
-   cd placement-cell-angular
+   git clone https://github.com/Biku2004/Placement-module.git
+   
