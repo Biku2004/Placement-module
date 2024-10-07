@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router'; // Import the Router
 
 @Component({
-  selector: 'app-student-login',
+  selector: 'app-student-signup',
   standalone: true,
   imports: [],
-  templateUrl: './student-login.component.html',
-  styleUrl: './student-login.component.css'
+  templateUrl: './student-signup.component.html',
+  styleUrl: './student-signup.component.css'
 })
-export class StudentLoginComponent {
+export class StudentSignupComponent {
   constructor(private router: Router) {} // Inject the Router service
 
   navigateTo(route: string) {

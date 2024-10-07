@@ -7,6 +7,7 @@ import { DataComponent } from './data/data.component';
 import { PlacementPageComponent } from './placement-page/placement-page.component'; 
 import { StudentLoginComponent } from './student-login/student-login.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { StudentSignupComponent } from './student-signup/student-signup.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent }, // Add route for signup
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'placement', component: PlacementPageComponent },
   { path: 'student-login', component: StudentLoginComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },
+  { path: 'student-signup', component: StudentSignupComponent },
 ];
