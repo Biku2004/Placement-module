@@ -24,8 +24,8 @@
                   <i class="ri-close-fill"></i>
                 </button>
                 <ul class="flex space-x-8 hidden md:flex">
-                <button routerLink="/signup" class="text-gray-600 hover:text-blue-600">Signup</button>
-                  <li><a href="#" class="text-gray-600 hover:text-blue-600">About</a></li>
+                <button (click)="navigateTo('/signup')" class="text-gray-600 hover:text-blue-600">Signup</button>
+                  <li><button class="text-gray-600 hover:text-blue-600" (click)="navigateTo('/placement')">Placement</button></li>
                   <li><a href="#" class="text-gray-600 hover:text-blue-600">Service</a></li>
                   <li><a href="#" class="text-gray-600 hover:text-blue-600">Contact</a></li>
                 </ul>

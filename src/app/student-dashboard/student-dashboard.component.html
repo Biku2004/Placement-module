@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centurion University - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <div class="bg-white w-64 p-6 shadow-lg">
+      <div class="flex items-center mb-8">
+        <img src="https://via.placeholder.com/80" alt="University Logo" class="h-16 w-16 rounded-full">
+        <h1 class="ml-4 text-xl font-bold text-gray-800">Centurion University</h1>
+      </div>
+      
+      <nav>
+        <ul>
+          <li class="flex items-center mb-4">
+            <i class="fas fa-home text-blue-500 mr-3"></i>
+            <a href="#" class="text-blue-500 font-semibold">Dashboard</a>
+          </li>
+          <li class="flex items-center mb-4">
+            <i class="fas fa-user text-gray-500 mr-3"></i>
+            <a href="#" class="text-gray-700">Profile</a>
+          </li>
+          <li class="flex items-center mb-4">
+            <i class="fas fa-clipboard-list text-gray-500 mr-3"></i>
+            <a href="#" class="text-gray-700">Registration</a>
+          </li>
+          <li class="flex items-center mb-4">
+            <i class="fas fa-calendar-alt text-gray-500 mr-3"></i>
+            <a href="#" class="text-gray-700">Schedule</a>
+          </li>
+          <li class="flex items-center mb-4">
+            <i class="fas fa-book text-gray-500 mr-3"></i>
+            <a href="#" class="text-gray-700">Academic</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+      <!-- Header Section -->
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
+        <div class="flex items-center space-x-4">
+          <div>
+            <p class="text-gray-700">Sayan Ash</p>
+            <p class="text-gray-500 text-sm">Student</p>
+          </div>
+          <img src="https://via.placeholder.com/50" alt="User" class="h-10 w-10 rounded-full">
+        </div>
+      </div>
+
+      <!-- Date -->
+      <p class="text-gray-500 text-right mt-2">Thursday, May 16, 2024</p>
+
+      <!-- Cards Section -->
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <div class="bg-yellow-500 text-white p-4 rounded-lg">
+          <p class="text-lg font-bold">Total Courses</p>
+          <p class="text-4xl font-semibold mt-2">15</p>
+        </div>
+        <div class="bg-red-100 text-red-600 p-4 rounded-lg">
+          <p class="text-lg font-bold">Interviews Attended</p>
+          <p class="text-4xl font-semibold mt-2">07 <span class="text-lg">46%</span></p>
+        </div>
+        <div class="bg-gray-100 text-gray-800 p-4 rounded-lg">
+          <p class="text-lg font-bold">Offers Received</p>
+          <p class="text-4xl font-semibold mt-2">02 <span class="text-lg text-gray-500">3 Rejected</span></p>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <!-- Interview Schedule -->
+        <div class="col-span-2 bg-white p-6 rounded-lg shadow">
+          <h3 class="text-lg font-bold mb-4">Interview Schedule</h3>
+          <div>
+            <h4 class="text-blue-500 font-semibold">Past</h4>
+            <div class="bg-purple-100 p-4 rounded-lg mb-4">
+              <p class="text-sm font-semibold">SmartTech Ltd</p>
+              <p class="text-sm">Data Scientist</p>
+              <p class="text-xs text-gray-500">Sep 15, 2024 | 11:30 AM | Virtual (Teams)</p>
+              <span class="text-red-500 text-sm">Absent</span>
+            </div>
+            <div class="bg-green-100 p-4 rounded-lg mb-4">
+              <p class="text-sm font-semibold">CyberSolutions</p>
+              <p class="text-sm">DevOps Engineer</p>
+              <p class="text-xs text-gray-500">Sep 15, 2024 | 10:30 AM | Campus Hall 3</p>
+              <span class="text-green-500 text-sm">Attended</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-blue-500 font-semibold">Upcoming</h4>
+            <div class="bg-blue-100 p-4 rounded-lg mb-4">
+              <p class="text-sm font-semibold">Tech Innovators</p>
+              <p class="text-sm">Software Engineer</p>
+              <p class="text-xs text-gray-500">Oct 10, 2024 | 10:00 AM | Virtual (Zoom)</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg">
+              <p class="text-sm font-semibold">CodeNext</p>
+              <p class="text-sm">Backend Developer</p>
+              <p class="text-xs text-gray-500">Oct 12, 2024 | 2:00 PM | Campus Hall 3</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-lg font-bold mb-4">Recent Activity</h3>
+          <div class="bg-blue-500 text-white p-4 rounded-lg mb-4">
+            <p>Application to SmartTech Ltd has been Rejected.</p>
+            <p class="text-xs">Today, 10:30 AM</p>
+          </div>
+          <div class="bg-blue-100 p-4 rounded-lg mb-4">
+            <p>Applied to Tech Innovators for the Software Engineer role.</p>
+            <p class="text-xs">Today, 10:00 AM</p>
+          </div>
+          <div class="bg-blue-100 p-4 rounded-lg">
+            <p>Successfully attended the interview for DevOps Engineer</p>
+            <p class="text-xs">Yesterday, 1:00 PM</p>
+          </div>
+        </div>
+
+        <!-- Tasks -->
+        <div class="bg-white p-6 rounded-lg shadow mt-4">
+          <h3 class="text-lg font-bold mb-4">Tasks</h3>
+          <div class="mb-4">
+            <p class="font-semibold text-red-500">Priority</p>
+            <div class="bg-red-100 p-4 rounded-lg mb-4">
+              <p>Complete your resume</p>
+              <p class="text-xs text-gray-500">May 13, 09:00 AM</p>
+            </div>
+            <div class="bg-yellow-100 p-4 rounded-lg">
+              <p>Track Job Application Deadlines</p>
+              <p class="text-xs text-gray-500">May 13, 09:00 AM</p>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-gray-600">Other</p>
+            <div class="bg-blue-100 p-4 rounded-lg">
+              <p>Prepare for Interview</p>
+              <p class="text-xs text-gray-500">May 16, 08:00 AM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icons (for sidebar) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
