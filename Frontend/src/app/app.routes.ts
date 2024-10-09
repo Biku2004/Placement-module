@@ -10,13 +10,13 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentSignupComponent } from './student-signup/student-signup.component';
 
 export const routes: Routes = [
-  { path: 'signup', component: SignupComponent }, // Add route for signup
+  { path: 'signup-dasboard', component: SignupComponent }, // Add route for signup
   { path: '', component: LandingPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'nav', component: NavbarComponent },
   { path: 'data', component: DataComponent },
   { path: 'placement', component: PlacementPageComponent },
-  { path: 'student-login', component: StudentLoginComponent },
-  { path: 'student-dashboard', component: StudentDashboardComponent },
-  { path: 'student-signup', component: StudentSignupComponent },
+  { path: 'login', component: StudentLoginComponent },
+  { path: 'dashboard', component: StudentDashboardComponent },
+  { path: 'signup', component: StudentSignupComponent },
 ];
