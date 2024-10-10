@@ -1,21 +1,5 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-sidebar',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './sidebar.component.html',
-//   styleUrl: './sidebar.component.css'
-// })
-// export class SidebarComponent {
-
-// }
-
 import { Component, Output, EventEmitter } from '@angular/core';
 import { SidebarService } from './sidebar.service';
-
-// import { BrowserModule } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -23,6 +7,7 @@ import { SidebarService } from './sidebar.service';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
+
 // export class SidebarComponent {
 //   @Output() selectItem = new EventEmitter<string>();
 
@@ -39,6 +24,7 @@ import { SidebarService } from './sidebar.service';
 //     this.sidebarService.setSelectedItem(item);
 //   }
 // }
+
 export class SidebarComponent {
   selectedItems$ = this.sidebarService.selectedItems$;
 

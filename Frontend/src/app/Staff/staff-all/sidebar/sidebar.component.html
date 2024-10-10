@@ -69,14 +69,14 @@
 
 
   <!-- src/app/sidebar/sidebar.component.html -->
-<div class="bg-white w-64 p-6 shadow-lg">
+<div class="bg-white w-64 p-6 shadow-lg min-h-screen">
   <div class="flex items-center mb-8">
     <img src="https://via.placeholder.com/80" alt="University Logo" class="h-16 w-16 rounded-full">
     <h1 class="ml-4 text-xl font-bold text-gray-800">Centurion University</h1>
   </div>
   <nav>
     <ul>
-      <li class="flex items-center mb-4" (click)="onSelectItem('dashboard', $event)" [class.selected]="isSelected('dashboard')">
+      <li class="flex items-center mb-4" (click)="onSelectItem('dashboard', $event)" [class.selected]="isSelected('staff-dashboard')">
         <i class="fas fa-home text-blue-500 mr-3"></i>
         <a href="#" class="text-blue-500 font-semibold">Dashboard</a>
       </li>
