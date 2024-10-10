@@ -53,10 +53,11 @@
   <div class="flex-1 p-6">
     <app-header></app-header>
     <p class="text-gray-500 text-right mt-2">Thursday, May 16, 2024</p>
-    <app-cards></app-cards>
+    <app-cards *ngIf="selectedItems.includes('cards')"></app-cards>
     <div class="grid grid-cols-3 gap-4 mt-6">
       <app-interview-schedule *ngIf="selectedItems.includes('interview-schedule')" class="col-span-2"></app-interview-schedule>
       <app-recent-activity *ngIf="selectedItems.includes('recent-activity')"></app-recent-activity>
+      <app-create-jobs *ngIf="selectedItems.includes('create-jobs')"  class="col-span-2"></app-create-jobs>
       <app-tasks *ngIf="selectedItems.includes('tasks')" class="mt-4"></app-tasks>
     </div>
   </div>

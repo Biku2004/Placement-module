@@ -8,6 +8,7 @@ import { CardsComponent } from './cards/cards.component';
 import { InterviewScheduleComponent } from './interview-schedule/interview-schedule.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { TasksComponent } from './tasks/tasks.component'
+import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { TasksComponent } from './tasks/tasks.component'
     CardsComponent,
     InterviewScheduleComponent,
     RecentActivityComponent,
+    CreateJobsComponent
   ],
   templateUrl: './staff-all.component.html',
   styleUrl: './staff-all.component.css'
