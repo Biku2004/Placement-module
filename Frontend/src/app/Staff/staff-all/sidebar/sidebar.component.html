@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="min-h-screen bg-white w-64 p-6 shadow-lg ">
     <div class="flex items-center mb-8">
       <img src="assets/logo_new1.png" alt="University Logo" class="h-16 w-16 rounded-full">
@@ -28,4 +28,78 @@
         </li>
       </ul>
     </nav>
+  </div> -->
+
+
+
+  <!-- <div class="bg-white w-64 p-6 shadow-lg">
+    <div class="flex items-center mb-8">
+      <img src="https://via.placeholder.com/80" alt="University Logo" class="h-16 w-16 rounded-full">
+      <h1 class="ml-4 text-xl font-bold text-gray-800">Centurion University</h1>
+    </div>
+    <nav>
+      <ul>
+        <li class="flex items-center mb-4" (click)="onSelectItem('dashboard', $event)">
+          <i class="fas fa-home text-blue-500 mr-3"></i>
+          <button href="#" class="text-blue-500 font-semibold">Dashboard</button>
+        </li>
+        <li class="flex items-center mb-4" (click)="onSelectItem('profile', $event)">
+          <i class="fas fa-user text-gray-500 mr-3"></i>
+          <a href="#" class="text-gray-700">Profile</a>
+        </li>
+        <li class="flex items-center mb-4" (click)="onSelectItem('registration', $event)">
+          <i class="fas fa-clipboard-list text-gray-500 mr-3"></i>
+          <a href="#" class="text-gray-700">Registration</a>
+        </li>
+        <li class="flex items-center mb-4" (click)="onSelectItem('interview-schedule', $event)">
+          <i class="fas fa-calendar-alt text-gray-500 mr-3"></i>
+          <button href="#" class="text-gray-700">Interview Schedule</button>
+        </li>
+        <li class="flex items-center mb-4" (click)="onSelectItem('recent-activity' , $event)">
+          <i class="fas fa-book text-gray-500 mr-3"></i>
+          <button href="#" class="text-gray-700">Recent Activity</button>
+        </li>
+        <li class="flex items-center mb-4" (click)="onSelectItem('tasks', $event)">
+          <i class="fas fa-tasks text-gray-500 mr-3"></i>
+          <button href="#" class="text-gray-700">Tasks</button>
+        </li>
+      </ul>
+    </nav>
+  </div> -->
+
+
+  <!-- src/app/sidebar/sidebar.component.html -->
+<div class="bg-white w-64 p-6 shadow-lg">
+  <div class="flex items-center mb-8">
+    <img src="https://via.placeholder.com/80" alt="University Logo" class="h-16 w-16 rounded-full">
+    <h1 class="ml-4 text-xl font-bold text-gray-800">Centurion University</h1>
   </div>
+  <nav>
+    <ul>
+      <li class="flex items-center mb-4" (click)="onSelectItem('dashboard', $event)" [class.selected]="isSelected('dashboard')">
+        <i class="fas fa-home text-blue-500 mr-3"></i>
+        <a href="#" class="text-blue-500 font-semibold">Dashboard</a>
+      </li>
+      <li class="flex items-center mb-4" (click)="onSelectItem('profile', $event)" [class.selected]="isSelected('profile')">
+        <i class="fas fa-user text-gray-500 mr-3"></i>
+        <a href="#" class="text-gray-700">Profile</a>
+      </li>
+      <li class="flex items-center mb-4" (click)="onSelectItem('registration', $event)" [class.selected]="isSelected('registration')">
+        <i class="fas fa-clipboard-list text-gray-500 mr-3"></i>
+        <a href="#" class="text-gray-700">Registration</a>
+      </li>
+      <li class="flex items-center mb-4" (click)="onSelectItem('interview-schedule', $event)" [class.selected]="isSelected('interview-schedule')">
+        <i class="fas fa-calendar-alt text-gray-500 mr-3"></i>
+        <a href="#" class="text-gray-700">Interview Schedule</a>
+      </li>
+      <li class="flex items-center mb-4" (click)="onSelectItem('recent-activity', $event)" [class.selected]="isSelected('recent-activity')">
+        <i class="fas fa-book text-gray-500 mr-3"></i>
+        <a href="#" class="text-gray-700">Recent Activity</a>
+      </li>
+      <li class="flex items-center mb-4" (click)="onSelectItem('tasks', $event)" [class.selected]="isSelected('tasks')">
+        <i class="fas fa-tasks text-gray-500 mr-3"></i>
+        <a href="#" class="text-gray-700">Tasks</a>
+      </li>
+    </ul>
+  </nav>
+</div>

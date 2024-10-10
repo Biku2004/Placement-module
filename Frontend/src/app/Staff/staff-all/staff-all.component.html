@@ -1,4 +1,4 @@
-<div class="flex min-h-screen bg-gray-100">
+<!-- <div class="flex min-h-screen bg-gray-100">
     <app-sidebar></app-sidebar>
 
     <div class="flex-1 p-6">
@@ -15,4 +15,50 @@
 
     </div>
 
+  </div> -->
+
+  <!-- <div class="flex min-h-screen">
+    <app-sidebar (selectItem)="onSelectSidebarItem($event)"></app-sidebar>
+    <div class="flex-1 p-6">
+      <app-header></app-header>
+      <p class="text-gray-500 text-right mt-2">Thursday, May 16, 2024</p>
+      <app-cards></app-cards>
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <app-interview-schedule *ngIf="selectedSidebarItem === 'interview-schedule'" class="col-span-2"></app-interview-schedule>
+        <app-recent-activity *ngIf="selectedSidebarItem === 'recent-activity'"></app-recent-activity>
+        <app-tasks *ngIf="selectedSidebarItem === 'tasks'" class="mt-4"></app-tasks>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+  <!-- <div class="flex min-h-screen">
+    <app-sidebar></app-sidebar>
+    <div class="flex-1 p-6">
+      <app-header></app-header>
+      <p class="text-gray-500 text-right mt-2">Thursday, May 16, 2024</p>
+      <app-cards></app-cards>
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <app-interview-schedule *ngIf="selectedSidebarItem === 'interview-schedule'" class="col-span-2"></app-interview-schedule>
+        <app-recent-activity *ngIf="selectedSidebarItem === 'recent-activity'"></app-recent-activity>
+        <app-tasks *ngIf="selectedSidebarItem === 'tasks'" class="mt-4"></app-tasks>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- src/app/app.component.html -->
+<div class="flex min-h-screen">
+  <app-sidebar></app-sidebar>
+  <div class="flex-1 p-6">
+    <app-header></app-header>
+    <p class="text-gray-500 text-right mt-2">Thursday, May 16, 2024</p>
+    <app-cards></app-cards>
+    <div class="grid grid-cols-3 gap-4 mt-6">
+      <app-interview-schedule *ngIf="selectedItems.includes('interview-schedule')" class="col-span-2"></app-interview-schedule>
+      <app-recent-activity *ngIf="selectedItems.includes('recent-activity')"></app-recent-activity>
+      <app-tasks *ngIf="selectedItems.includes('tasks')" class="mt-4"></app-tasks>
+    </div>
   </div>
+</div>
