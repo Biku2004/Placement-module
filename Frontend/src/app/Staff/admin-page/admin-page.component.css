@@ -1,0 +1,50 @@
+/* .admin-page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+  
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .top-section button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .top-section button:hover {
+    background-color: #218838;
+  }
+  
+  .bottom-section {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+   */

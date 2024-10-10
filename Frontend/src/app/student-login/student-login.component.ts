@@ -82,7 +82,7 @@ export class StudentLoginComponent implements OnInit {
           console.log('Login Response:', response);
           if (response && response.jwtToken) {
             localStorage.setItem('jwt', response.jwtToken);
-            this.router.navigateByUrl('/dashboard').then(() => {
+            this.router.navigateByUrl('/student-dashboard').then(() => {
               this.isLoading = false;
             });
           } else {
