@@ -10,6 +10,8 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentSignupComponent } from './student-signup/student-signup.component';
 // import { StaffDashboardComponent } from './Staff/staff-dashboard/staff-dashboard.component';
 import { StaffAllComponent } from './Staff/staff-all/staff-all.component';
+import { StaffLoginComponent } from './Staff/staff-login/staff-login.component';
+import { StaffSignupComponent } from './Staff/staff-signup/staff-signup.component';
 
 export const routes: Routes = [
   { path: 'signup-dasboard', component: SignupComponent }, // Add route for signup
@@ -21,6 +23,7 @@ export const routes: Routes = [
   { path: 'login', component: StudentLoginComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },
   { path: 'signup', component: StudentSignupComponent },
-  // { path: 'staff-dashboard', component: StaffDashboardComponent },
   { path: 'staff-dashboard', component: StaffAllComponent },
+  { path: 'staff-login', component: StaffLoginComponent },
+  { path: 'staff-signup', component: StaffSignupComponent },
 ];
