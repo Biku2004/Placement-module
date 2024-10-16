@@ -38,7 +38,8 @@ export class StaffSignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role: ['', Validators.required]
     });
   }
 
