@@ -51,6 +51,15 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
+        System.out.println("User roles: " + userDetails.getAuthorities());
+        System.out.println("Requested role: " + loginRequest.getRole());
+
+        // Check if the role matches
+        if (userDetails.getAuthorities().stream().noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equalsIgnoreCase(loginRequest.getRole()))) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new LoginResponse("Role does not match"));
+        }
+
+
         String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
         return ResponseEntity.ok(new LoginResponse(jwt));

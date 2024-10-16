@@ -3,6 +3,7 @@ package com.spring.demo.backendplacementcell.services.jwt;
 import com.spring.demo.backendplacementcell.entities.Student;
 import com.spring.demo.backendplacementcell.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +27,7 @@ public class StudentServiceImpl implements UserDetailsService {
         Student student = studentRepository.findByEmail(name)
                 .orElseThrow(() -> new UsernameNotFoundException("Student with email " + name + " not found"));
 
-        return new User(student.getEmail(), student.getPassword(), Collections.emptyList());
+        return new User(student.getEmail(), student.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority(student.getRole())));
     }
 }
