@@ -1,4 +1,5 @@
-import { Component  , OnInit} from '@angular/core';
+// import { Component  , OnInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JobService } from './job.service';
@@ -33,10 +34,16 @@ export class CreateJobsComponent implements OnInit{
     expectedSkillsTools: ''
   };
   jobPosts: any[] = [];
+  @ViewChild('resizableContainer') resizableContainer!: ElementRef;
+
   constructor(
     private http: HttpClient,
     private jobService: JobService,
   ) {}
+
+  ngAfterViewInit(): void {
+    this.makeResizableDiv(this.resizableContainer.nativeElement);
+  }
 
   // onSubmit() {
   //   this.http.post('http://localhost:8080/api/jobs', this.jobPosts)
@@ -89,5 +96,35 @@ export class CreateJobsComponent implements OnInit{
 
   reloadData(): void {
     this.loadJobPosts();
+  }
+
+
+
+  makeResizableDiv(div: HTMLElement): void {
+    const resizer = div.querySelector('.resizer') as HTMLElement;
+    let originalWidth = 0;
+    let originalHeight = 0;
+    let originalMouseX = 0;
+    let originalMouseY = 0;
+
+    resizer.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      originalWidth = div.offsetWidth;
+      originalHeight = div.offsetHeight;
+      originalMouseX = e.clientX;
+      originalMouseY = e.clientY;
+      window.addEventListener('mousemove', resize);
+      window.addEventListener('mouseup', stopResize);
+    });
+
+    const resize = (e: MouseEvent) => {
+      div.style.width = originalWidth + (e.clientX - originalMouseX) + 'px';
+      div.style.height = originalHeight + (e.clientY - originalMouseY) + 'px';
+    };
+
+    const stopResize = () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResize);
+    };
   }
 }
