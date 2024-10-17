@@ -1,0 +1,23 @@
+/* 
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -16rem;
+    height: 100%;
+    width: 16rem; 
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar.open {
+    left: 0; 
+  }
+  
+  .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .main-content.shifted {
+    margin-left: 16rem;
+  } */

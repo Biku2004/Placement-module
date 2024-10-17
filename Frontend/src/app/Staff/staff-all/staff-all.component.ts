@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { SidebarService } from './sidebar/sidebar.service';
@@ -9,6 +10,8 @@ import { InterviewScheduleComponent } from './interview-schedule/interview-sched
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { TasksComponent } from './tasks/tasks.component'
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+// import { UserDetailsComponent } from '../staff-all/header/user-details.component';
+// import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -22,34 +25,47 @@ import { CreateJobsComponent } from './create-jobs/create-jobs.component';
     CardsComponent,
     InterviewScheduleComponent,
     RecentActivityComponent,
-    CreateJobsComponent
+    CreateJobsComponent,
+    // UserDetailsComponent
   ],
   templateUrl: './staff-all.component.html',
   styleUrl: './staff-all.component.css'
 })
-// export class StaffAllComponent  implements OnInit{
-//   title = 'Centurion University - Dashboard';
-//   // selectedSidebarItem?: string;
-//   selectedSidebarItem?: string;
 
-//   // onSelectSidebarItem(item: string) {
-//   //   this.selectedSidebarItem = item;
-//   // }
-//   constructor(private sidebarService: SidebarService) {}
-
-//   ngOnInit() {
-//     this.sidebarService.selectedItem$.subscribe(item => {
-//       this.selectedSidebarItem = item;
-//     });
-//   }
-export class StaffAllComponent implements OnInit {
+export class StaffAllComponent{
   selectedItems: string[] = [];
+  currentDate: Date = new Date();
+  // isSidebarOpen = false;
+  // private sidebarTimeout: any;
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(
+    private sidebarService: SidebarService,
+    // private authService: AuthService
+  
+  ) {}
 
   ngOnInit() {
     this.sidebarService.selectedItems$.subscribe(items => {
       this.selectedItems = items;
     });
+
+    // this.authService.fetchUserDetails().subscribe(user => {
+    //   this.authService.setUser(user);
+    // });
   }
+
+  // @HostListener('document:mousemove', ['$event'])
+  // onMouseMove(event: MouseEvent): void {
+  //   if (event.clientX <= 10) { // Adjust the threshold as needed
+  //     this.openSidebar();
+  //   }
+  // }
+
+  // openSidebar(): void {
+  //   this.isSidebarOpen = true;
+  //   clearTimeout(this.sidebarTimeout);
+  //   this.sidebarTimeout = setTimeout(() => {
+  //     this.isSidebarOpen = false;
+  //   }, 3000); // Sidebar will close after 3 seconds
+  // }
 }
