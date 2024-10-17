@@ -35,6 +35,8 @@ export class CreateJobsComponent implements OnInit{
   };
   jobPosts: any[] = [];
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
+  private defaultWidth = 800;
+  private defaultHeight = 450;
 
   constructor(
     private http: HttpClient,
@@ -98,33 +100,46 @@ export class CreateJobsComponent implements OnInit{
     this.loadJobPosts();
   }
 
-
+  resetSize(): void {
+    const div = this.resizableContainer.nativeElement;
+    div.style.width = `${this.defaultWidth}px`;
+    div.style.height = `${this.defaultHeight}px`;
+  }
 
   makeResizableDiv(div: HTMLElement): void {
-    const resizer = div.querySelector('.resizer') as HTMLElement;
+    const resizers = div.querySelectorAll('.resizer');
     let originalWidth = 0;
     let originalHeight = 0;
     let originalMouseX = 0;
     let originalMouseY = 0;
 
-    resizer.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      originalWidth = div.offsetWidth;
-      originalHeight = div.offsetHeight;
-      originalMouseX = e.clientX;
-      originalMouseY = e.clientY;
-      window.addEventListener('mousemove', resize);
-      window.addEventListener('mouseup', stopResize);
+    resizers.forEach(resizer => {
+      resizer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        originalWidth = div.offsetWidth;
+        originalHeight = div.offsetHeight;
+        originalMouseX = (e as MouseEvent).clientX;
+        originalMouseY = (e as MouseEvent).clientY;
+        window.addEventListener('mousemove', resize);
+        window.addEventListener('mouseup', stopResize);
+
+        function resize(e: MouseEvent) {
+          if (resizer.classList.contains('bottom-right')) {
+            div.style.width = originalWidth + (e.clientX - originalMouseX) + 'px';
+            div.style.height = originalHeight + (e.clientY - originalMouseY) + 'px';
+          }
+           else if (resizer.classList.contains('right')) {
+            div.style.width = originalWidth + (e.clientX - originalMouseX) + 'px';
+          } else if (resizer.classList.contains('bottom')) {
+            div.style.height = originalHeight + (e.clientY - originalMouseY) + 'px';
+          }
+        }
+
+        function stopResize() {
+          window.removeEventListener('mousemove', resize);
+          window.removeEventListener('mouseup', stopResize);
+        }
+      });
     });
-
-    const resize = (e: MouseEvent) => {
-      div.style.width = originalWidth + (e.clientX - originalMouseX) + 'px';
-      div.style.height = originalHeight + (e.clientY - originalMouseY) + 'px';
-    };
-
-    const stopResize = () => {
-      window.removeEventListener('mousemove', resize);
-      window.removeEventListener('mouseup', stopResize);
-    };
   }
 }
