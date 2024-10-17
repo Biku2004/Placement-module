@@ -70,3 +70,57 @@
       <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Create Job</button>
     </form>
   </div>
+
+  <br/>
+<div class="container mx-auto p-4 bg-white p-6 rounded-lg shadow">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">Job Posts</h2>
+    <button (click)="reloadData()" class="text-blue-500">
+      <i class="fas fa-sync-alt">Reload</i> <!-- Font Awesome icon for reload -->
+    </button>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">Company Name</th>
+          <th class="py-2 px-4 border-b">Website</th>
+          <th class="py-2 px-4 border-b">Company Profile</th>
+          <th class="py-2 px-4 border-b">Eligible Courses/Streams</th>
+          <th class="py-2 px-4 border-b">Batch Year</th>
+          <th class="py-2 px-4 border-b">Job Role</th>
+          <th class="py-2 px-4 border-b">Job Location</th>
+          <th class="py-2 px-4 border-b">Annual CTC</th>
+          <th class="py-2 px-4 border-b">Roles & Responsibilities</th>
+          <th class="py-2 px-4 border-b">Skills and Qualifications</th>
+          <th class="py-2 px-4 border-b">Selection Process</th>
+          <th class="py-2 px-4 border-b">Registration Process and Link</th>
+          <th class="py-2 px-4 border-b">Last Date to Register</th>
+          <th class="py-2 px-4 border-b">Benefits and Incentives</th>
+          <th class="py-2 px-4 border-b">Role Details</th>
+          <th class="py-2 px-4 border-b">Expected Skills and Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobPosts">
+          <td class="py-2 px-4 border-b">{{ job.companyName }}</td>
+          <td class="py-2 px-4 border-b">{{ job.website }}</td>
+          <td class="py-2 px-4 border-b">{{ job.companyProfile }}</td>
+          <td class="py-2 px-4 border-b">{{ job.eligibleCourses }}</td>
+          <td class="py-2 px-4 border-b">{{ job.batchYear }}</td>
+          <td class="py-2 px-4 border-b">{{ job.jobRole }}</td>
+          <td class="py-2 px-4 border-b">{{ job.jobLocation }}</td>
+          <td class="py-2 px-4 border-b">{{ job.annualCTC }}</td>
+          <td class="py-2 px-4 border-b">{{ job.rolesResponsibilities }}</td>
+          <td class="py-2 px-4 border-b">{{ job.skillsQualifications }}</td>
+          <td class="py-2 px-4 border-b">{{ job.selectionProcess }}</td>
+          <td class="py-2 px-4 border-b">{{ job.registrationProcess }}</td>
+          <td class="py-2 px-4 border-b">{{ job.lastDateToRegister }}</td>
+          <td class="py-2 px-4 border-b">{{ job.benefitsIncentives }}</td>
+          <td class="py-2 px-4 border-b">{{ job.roleDetails }}</td>
+          <td class="py-2 px-4 border-b">{{ job.expectedSkillsTools }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

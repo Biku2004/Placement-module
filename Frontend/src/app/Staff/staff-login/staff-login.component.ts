@@ -42,8 +42,8 @@ export class StaffLoginComponent implements OnInit {
       this.service.login(loginData).subscribe(
         (response: any) => {
           console.log('Login Response:', response);
-          if (response && response.jwt) {
-            localStorage.setItem('jwt', response.jwt);
+          if (response && response.jwtToken) {
+            localStorage.setItem('jwt', response.jwtToken);
             // localStorage.setItem('name', response.name);
             // localStorage.setItem('role', response.role);
             this.router.navigateByUrl('/staff-dashboard').then(() => {
