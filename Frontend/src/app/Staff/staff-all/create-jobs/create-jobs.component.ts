@@ -4,12 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JobService } from './job.service';
 import { CommonModule } from '@angular/common';
+import { JobModalComponent } from './job-modal/job-modal.component';
+
 @Component({
   selector: 'app-create-jobs',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    JobModalComponent
   ],
   templateUrl: './create-jobs.component.html',
   styleUrl: './create-jobs.component.css'
@@ -34,9 +37,10 @@ export class CreateJobsComponent implements OnInit{
     expectedSkillsTools: ''
   };
   jobPosts: any[] = [];
+  selectedJob: any = null;
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
   private defaultWidth = 800;
-  private defaultHeight = 450;
+  private defaultHeight = 400;
 
   constructor(
     private http: HttpClient,
@@ -169,4 +173,15 @@ export class CreateJobsComponent implements OnInit{
       });
     });
   }
+
+  openModal(job: any): void {
+    this.selectedJob = { ...job };
+  }
+
+  closeModal(): void {
+    this.selectedJob = null;
+    this.loadJobPosts(); // Reload job posts to reflect any changes
+  }
+
+
 }

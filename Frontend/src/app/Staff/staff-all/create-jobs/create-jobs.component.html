@@ -115,9 +115,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let job of jobPosts; let i = index">
+        <tr *ngFor="let job of jobPosts; let i = index" (click)="openModal(job)">
           <td class="py-2 px-4 border-b">
-            <input type="checkbox" [(ngModel)]="job.selected">
+            <input type="checkbox" [(ngModel)]="job.selected" (click)="$event.stopPropagation()">
           </td>
           <td class="py-2 px-4 border-b">{{ job.companyName }}</td>
           <td class="py-2 px-4 border-b">{{ job.website }}</td>
@@ -138,6 +138,7 @@
         </tr>
       </tbody>
     </table>
+    <br/>
   </div>
 
   <div class="resizer right"></div>
@@ -145,3 +146,5 @@
   <div class="resizer bottom-right"></div>
 </div>
 <br/>
+
+<app-job-modal *ngIf="selectedJob" [jobPost]="selectedJob" (close)="closeModal()"></app-job-modal>

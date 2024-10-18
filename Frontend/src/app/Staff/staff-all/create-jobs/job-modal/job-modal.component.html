@@ -1,0 +1,76 @@
+<!-- src/app/Staff/staff-all/jobPost-modal/jobPost-modal.component.html -->
+<div class="modal" *ngIf="jobPost">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Edit job Post</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-700">Company Name</label>
+            <input type="text" [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Website</label>
+            <input type="url" [(ngModel)]="jobPost.website" name="website" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Company Profile</label>
+            <textarea [(ngModel)]="jobPost.companyProfile" name="companyProfile" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Eligible Courses/Streams</label>
+            <input type="text" [(ngModel)]="jobPost.eligibleCourses" name="eligibleCourses" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Batch Year</label>
+            <input type="text" [(ngModel)]="jobPost.batchYear" name="batchYear" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">jobPost Role</label>
+            <input type="text" [(ngModel)]="jobPost.jobRole" name="jobPostRole" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">jobPost Location</label>
+            <input type="text" [(ngModel)]="jobPost.jobLocation" name="jobPostLocation" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Annual CTC</label>
+            <input type="text" [(ngModel)]="jobPost.annualCTC" name="annualCTC" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Roles & Responsibilities</label>
+            <textarea [(ngModel)]="jobPost.rolesResponsibilities" name="rolesResponsibilities" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Skills and Qualifications</label>
+            <textarea [(ngModel)]="jobPost.skillsQualifications" name="skillsQualifications" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Selection Process</label>
+            <textarea [(ngModel)]="jobPost.selectionProcess" name="selectionProcess" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Registration Process and Link</label>
+            <input type="url" [(ngModel)]="jobPost.registrationProcess" name="registrationProcess" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Last Date to Register</label>
+            <input type="date" [(ngModel)]="jobPost.lastDateToRegister" name="lastDateToRegister" class="w-full p-2 border border-gray-300 rounded" required />
+          </div>
+          <div>
+            <label class="block text-gray-700">Benefits and Incentives</label>
+            <textarea [(ngModel)]="jobPost.benefitsIncentives" name="benefitsIncentives" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Role Details</label>
+            <textarea [(ngModel)]="jobPost.roleDetails" name="roleDetails" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-700">Expected Skills and Tools</label>
+            <textarea [(ngModel)]="jobPost.expectedSkillsTools" name="expectedSkillsTools" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Save Changes</button>
+      </form>
+    </div>
+  </div>

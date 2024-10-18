@@ -49,6 +49,14 @@ export class JobService {
     return this.http.post<any>(this.apiUrl, jobPost, { headers });
   }
 
+  updateJobPost(jobPost: any): Observable<any> {
+    const token = localStorage.getItem('jwt'); // Ensure the token key matches the one used in login
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put<any>(`${this.apiUrl}/${jobPost.id}`, jobPost, { headers });
+  }
+
   deleteJobPost(id: number): Observable<any> {
     const token = localStorage.getItem('jwt'); // Ensure the token key matches the one used in login
     const headers = new HttpHeaders({
