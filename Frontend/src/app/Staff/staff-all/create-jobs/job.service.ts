@@ -48,4 +48,20 @@ export class JobService {
     });
     return this.http.post<any>(this.apiUrl, jobPost, { headers });
   }
+
+  deleteJobPost(id: number): Observable<any> {
+    const token = localStorage.getItem('jwt'); // Ensure the token key matches the one used in login
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  sendJobPostToStudents(id: number): Observable<any> {
+    const token = localStorage.getItem('jwt'); // Ensure the token key matches the one used in login
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<any>(`${this.apiUrl}/${id}/send`, {}, { headers });
+  }
 }

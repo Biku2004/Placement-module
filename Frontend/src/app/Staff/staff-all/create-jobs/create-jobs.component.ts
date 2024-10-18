@@ -142,4 +142,31 @@ export class CreateJobsComponent implements OnInit{
       });
     });
   }
+
+  toggleSelectAll(event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    this.jobPosts.forEach(job => job.selected = isChecked);
+  }
+
+  deleteSelected(): void {
+    const selectedJobs = this.jobPosts.filter(job => job.selected);
+    selectedJobs.forEach(job => {
+      this.jobService.deleteJobPost(job.id).subscribe(() => {
+        this.loadJobPosts();
+      }, error => {
+        console.error('Error deleting job post:', error);
+      });
+    });
+  }
+
+  sendToStudents(): void {
+    const selectedJobs = this.jobPosts.filter(job => job.selected);
+    selectedJobs.forEach(job => {
+      this.jobService.sendJobPostToStudents(job.id).subscribe(() => {
+        console.log('Job post sent to students:', job.id);
+      }, error => {
+        console.error('Error sending job post to students:', error);
+      });
+    });
+  }
 }
