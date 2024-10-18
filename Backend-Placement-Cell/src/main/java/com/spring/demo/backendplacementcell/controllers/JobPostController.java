@@ -29,6 +29,11 @@ public class JobPostController {
         jobPostService.deleteJobPost(id);
     }
 
+    @PutMapping("/{id}")
+    public JobPost updateJobPost(@PathVariable Long id, @RequestBody JobPost jobPost) {
+        return jobPostService.updateJobPost(id, jobPost);
+    }
+
     @PostMapping("/{id}/send")
     public void sendJobPostToStudents(@PathVariable Long id) {
         jobPostService.sendJobPostToStudents(id);
