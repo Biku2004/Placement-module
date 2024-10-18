@@ -23,4 +23,14 @@ public class JobPostController {
     public JobPost createJobPost(@RequestBody JobPost jobPost) {
         return jobPostService.createJobPost(jobPost);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteJobPost(@PathVariable Long id) {
+        jobPostService.deleteJobPost(id);
+    }
+
+    @PostMapping("/{id}/send")
+    public void sendJobPostToStudents(@PathVariable Long id) {
+        jobPostService.sendJobPostToStudents(id);
+    }
 }

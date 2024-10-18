@@ -20,4 +20,12 @@ public class JobPostService {
     public JobPost createJobPost(JobPost jobPost) {
         return jobPostRepository.save(jobPost);
     }
+
+    public void deleteJobPost(Long id) {
+        jobPostRepository.deleteById(id);
+    }
+
+    public void sendJobPostToStudents(Long id) {
+        // Implement logic to send job post to students
+    }
 }
