@@ -68,6 +68,19 @@
           <textarea [(ngModel)]="jobPost.expectedSkillsTools" name="expectedSkillsTools" class="w-full p-2 border border-gray-300 rounded" required></textarea>
         </div>
       </div>
+      <!-- <div *ngFor="let section of jobPost.additionalSections; let i = index">
+        <label class="block text-gray-700">Section Label</label>
+        <input type="text" [(ngModel)]="section['label']" name="sectionLabel{{i}}" class="w-full p-2 border border-gray-300 rounded" required />
+        <label class="block text-gray-700">Section Value</label>
+        <textarea [(ngModel)]="section['value']" name="sectionValue{{i}}" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+      </div> -->
+      <div *ngFor="let section of jobPost.additionalSections; let i = index">
+        <label class="block text-gray-700">Section Label</label>
+        <input type="text" [(ngModel)]="section.label" name="sectionLabel{{i}}" class="w-full p-2 border border-gray-300 rounded" required />
+        <label class="block text-gray-700">Section Value</label>
+        <textarea [(ngModel)]="section.value" name="sectionValue{{i}}" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+      </div>
+      <button type="button" (click)="addSection()" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">Add Section</button>
       <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Create Job</button>
     </form>
   </div>
@@ -135,7 +148,15 @@
           <td class="py-2 px-4 border-b">{{ job.benefitsIncentives }}</td>
           <td class="py-2 px-4 border-b">{{ job.roleDetails }}</td>
           <td class="py-2 px-4 border-b">{{ job.expectedSkillsTools }}</td>
-        </tr>
+        <td class="py-2 px-4 border-b">
+          <div *ngFor="let section of job.additionalSections">
+            <strong>{{ section.label }}:</strong> {{ section.value }}
+          </div>
+        </td>
+  <!-- <ng-container *ngFor="let section of additionalSectionHeaders">
+    <td class="py-2 px-4 border-b">{{ job.additionalSections[section] }}</td>
+  </ng-container> -->
+</tr>
       </tbody>
     </table>
     <br/>

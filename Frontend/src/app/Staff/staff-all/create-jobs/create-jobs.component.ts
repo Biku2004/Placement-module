@@ -5,7 +5,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { JobService } from './job.service';
 import { CommonModule } from '@angular/common';
 import { JobModalComponent } from './job-modal/job-modal.component';
-
+interface AdditionalSection {
+  label: string;
+  value: string;
+}
 @Component({
   selector: 'app-create-jobs',
   standalone: true,
@@ -34,10 +37,14 @@ export class CreateJobsComponent implements OnInit{
     lastDateToRegister: '',
     benefitsIncentives: '',
     roleDetails: '',
-    expectedSkillsTools: ''
+    expectedSkillsTools: '',
+    additionalSections: [] as AdditionalSection[]
+    // additionalSections: {} as { [key: string]: string }
+    // additionalSections:[] as [] as AdditionalSection[]
   };
   jobPosts: any[] = [];
   selectedJob: any = null;
+  additionalSectionHeaders: string[] = [];
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
   private defaultWidth = 800;
   private defaultHeight = 400;
@@ -46,6 +53,9 @@ export class CreateJobsComponent implements OnInit{
     private http: HttpClient,
     private jobService: JobService,
   ) {}
+
+  
+
 
   ngAfterViewInit(): void {
     this.makeResizableDiv(this.resizableContainer.nativeElement);
@@ -81,13 +91,29 @@ export class CreateJobsComponent implements OnInit{
           lastDateToRegister: '',
           benefitsIncentives: '',
           roleDetails: '',
-          expectedSkillsTools: ''
+          expectedSkillsTools: '',
+          // additionalSections: {} as { [key: string]: string }
+          additionalSections: [] as AdditionalSection[]
+          // additionalSections: [] as AdditionalSection[]
         }; // Reset the form
       },
       error => {
         console.error('Error creating job post:', error);
       }
     );
+  }
+
+  addSection(): void {
+    this.jobPost.additionalSections.push({ label: 'New Section', value: '' });
+  }
+  // addSection(): void {
+  //   const newSectionLabel = `New Section ${Object.keys(this.jobPost.additionalSections).length + 1}`;
+  //   this.jobPost.additionalSections[newSectionLabel] = '';
+  //   this.updateAdditionalSectionHeaders();
+  // }
+
+  updateAdditionalSectionHeaders(): void {
+    this.additionalSectionHeaders = Object.keys(this.jobPost.additionalSections);
   }
 
   ngOnInit(): void {

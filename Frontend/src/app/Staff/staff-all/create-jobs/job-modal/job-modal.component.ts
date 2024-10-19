@@ -3,6 +3,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JobService } from '../job.service';
 import { FormsModule } from '@angular/forms';
+interface AdditionalSection {
+  label: string;
+  value: string;
+}
+
 @Component({
   standalone: true,
   selector: 'app-job-modal',
@@ -10,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./job-modal.component.css'],
   imports: [ CommonModule,FormsModule ]
 })
+
 export class JobModalComponent {
   @Input() jobPost = {
     companyName: '',
@@ -27,13 +33,17 @@ export class JobModalComponent {
     lastDateToRegister: '',
     benefitsIncentives: '',
     roleDetails: '',
-    expectedSkillsTools: ''
+    expectedSkillsTools: '',
+    additionalSections: [] as AdditionalSection[]
   };
   // @Input() jobPost: any;
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
+  additionalSectionHeaders: string[] = [];
 
   constructor(private jobService: JobService) {}
+
+
 
   closeModal(): void {
     this.close.emit();
@@ -62,11 +72,21 @@ export class JobModalComponent {
         lastDateToRegister: '',
         benefitsIncentives: '',
         roleDetails: '',
-        expectedSkillsTools: ''
+        expectedSkillsTools: '',
+        additionalSections: [] as AdditionalSection[]
       };
       this.closeModal();
     }, error => {
       console.error('Error updating job post:', error);
     });
+  }
+
+  addSection(): void {
+    this.jobPost.additionalSections.push({ label: 'New Section', value: '' });
+  }
+
+  
+  updateAdditionalSectionHeaders(): void {
+    this.additionalSectionHeaders = Object.keys(this.jobPost.additionalSections);
   }
 }

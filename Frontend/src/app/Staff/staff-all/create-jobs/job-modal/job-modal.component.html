@@ -70,6 +70,13 @@
             <textarea [(ngModel)]="jobPost.expectedSkillsTools" name="expectedSkillsTools" class="w-full p-2 border border-gray-300 rounded" required></textarea>
           </div>
         </div>
+        <div *ngFor="let section of jobPost.additionalSections; let i = index">
+          <label class="block text-gray-700">Section Label</label>
+          <input type="text" [(ngModel)]="section.label" name="sectionLabel{{i}}" class="w-full p-2 border border-gray-300 rounded" required />
+          <label class="block text-gray-700">Section Value</label>
+          <textarea [(ngModel)]="section.value" name="sectionValue{{i}}" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+        </div>
+        <button type="button" (click)="addSection()" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">Add Section</button>
         <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Save Changes</button>
       </form>
     </div>
