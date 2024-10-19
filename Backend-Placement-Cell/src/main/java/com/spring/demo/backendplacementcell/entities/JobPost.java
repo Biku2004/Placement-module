@@ -1,10 +1,10 @@
 package com.spring.demo.backendplacementcell.entities;
 
 // JobPost.java
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Entity
 public class JobPost {
@@ -27,6 +27,43 @@ public class JobPost {
     private String benefitsIncentives;
     private String roleDetails;
     private String expectedSkillsTools;
+
+    @ElementCollection
+    private List<AdditionalSection> additionalSections;
+
+//    @Embeddable
+//    public static class AdditionalSection {
+//        private String label;
+//        private String value;
+//
+//        // Getters and setters
+//
+//        public String getValue() {
+//            return value;
+//        }
+//
+//        public void setValue(String value) {
+//            this.value = value;
+//        }
+//
+//        public String getLabel() {
+//            return label;
+//        }
+//
+//        public void setLabel(String label) {
+//            this.label = label;
+//        }
+//    }
+
+//    @ElementCollection
+//    @CollectionTable(name = "job_post_additional_sections", joinColumns = @JoinColumn(name = "job_post_id"))
+//    @MapKeyColumn(name = "section_label")
+//    @Column(name = "section_value")
+//    private Map<String, String> additionalSections;
+
+//    public void setAdditionalSections(Map<String, String> additionalSections) {
+//        this.additionalSections = (List<AdditionalSection>) additionalSections;
+//    }
 
     public Long getId() {
         return id;
@@ -163,4 +200,16 @@ public class JobPost {
     public void setExpectedSkillsTools(String expectedSkillsTools) {
         this.expectedSkillsTools = expectedSkillsTools;
     }
+
+    public List<AdditionalSection> getAdditionalSections() {
+        return additionalSections;
+    }
+
+    public void setAdditionalSections(List<AdditionalSection> additionalSections) {
+        this.additionalSections = additionalSections;
+    }
+
+
+
+
 }

@@ -44,6 +44,7 @@ public class JobPostService {
         existingJobPost.setBenefitsIncentives(jobPost.getBenefitsIncentives());
         existingJobPost.setRoleDetails(jobPost.getRoleDetails());
         existingJobPost.setExpectedSkillsTools(jobPost.getExpectedSkillsTools());
+        existingJobPost.setAdditionalSections(jobPost.getAdditionalSections());
         return jobPostRepository.save(existingJobPost);
     }
 
