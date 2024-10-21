@@ -22,6 +22,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { Router } from '@angular/router';
 import { JwtService } from '../service/jwt.service';
 import { CommonModule } from '@angular/common';
+// import { Role } from 'discord.js';
 
 @Component({
   selector: 'app-student-login',
@@ -49,6 +50,7 @@ export class StudentLoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
 
