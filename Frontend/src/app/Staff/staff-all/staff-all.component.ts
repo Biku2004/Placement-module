@@ -10,6 +10,8 @@ import { InterviewScheduleComponent } from './interview-schedule/interview-sched
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { TasksComponent } from './tasks/tasks.component'
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+import { CreateCompanyComponent } from "./create-company/create-company.component";
+import { RecruiterComponent } from "../../recruiter/recruiter.component";
 // import { UserDetailsComponent } from '../staff-all/header/user-details.component';
 // import { AuthService } from '../../service/auth.service';
 
@@ -26,8 +28,9 @@ import { CreateJobsComponent } from './create-jobs/create-jobs.component';
     InterviewScheduleComponent,
     RecentActivityComponent,
     CreateJobsComponent,
-    // UserDetailsComponent
-  ],
+    CreateCompanyComponent,
+    RecruiterComponent
+],
   templateUrl: './staff-all.component.html',
   styleUrl: './staff-all.component.css'
 })

@@ -12,6 +12,7 @@ import { StudentSignupComponent } from './student-signup/student-signup.componen
 import { StaffAllComponent } from './Staff/staff-all/staff-all.component';
 import { StaffLoginComponent } from './Staff/staff-login/staff-login.component';
 import { StaffSignupComponent } from './Staff/staff-signup/staff-signup.component';
+import { CreateJobsComponent } from './Staff/staff-all/create-jobs/create-jobs.component';
 
 export const routes: Routes = [
   { path: 'signup-dasboard', component: SignupComponent }, // Add route for signup
@@ -26,4 +27,5 @@ export const routes: Routes = [
   { path: 'staff-dashboard', component: StaffAllComponent },
   { path: 'staff-login', component: StaffLoginComponent },
   { path: 'staff-signup', component: StaffSignupComponent },
+  { path: 'create-job', component: CreateJobsComponent },
 ];
