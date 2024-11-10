@@ -13,6 +13,9 @@ import { StaffAllComponent } from './Staff/staff-all/staff-all.component';
 import { StaffLoginComponent } from './Staff/staff-login/staff-login.component';
 import { StaffSignupComponent } from './Staff/staff-signup/staff-signup.component';
 import { CreateJobsComponent } from './Staff/staff-all/create-jobs/create-jobs.component';
+import { AboutComponent } from './about/about.component';
+import { LearningComponent } from './learning/learning.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 export const routes: Routes = [
   { path: 'signup-dasboard', component: SignupComponent }, // Add route for signup
@@ -28,4 +31,7 @@ export const routes: Routes = [
   { path: 'staff-login', component: StaffLoginComponent },
   { path: 'staff-signup', component: StaffSignupComponent },
   { path: 'create-job', component: CreateJobsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'learning', component: LearningComponent },
+  { path: 'contact', component: ContactusComponent },
 ];
