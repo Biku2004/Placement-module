@@ -1,6 +1,6 @@
 /* Home Container Styles */
 .home-container {
-    /*background-image: url("home-bg.jpg");  Replace with your image path */
+    background-image: url("/assets/home-bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,20 +14,20 @@
     color: white;
     text-align: center;
   }
-  
-  
+
+
   .current {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .currentstatus {
     display: flex;
     justify-content: space-around; /* Distributes space evenly between items */
     align-items: center; /* Aligns items vertically in the center */
     gap: 20px; /* Adds space between items */
   }
-  
+
   /* General styles for the current batch section */
   .current-batch {
     background-color: #f4f4f4; /* Light background for contrast */
@@ -38,7 +38,7 @@
     margin: 25px auto; /* Center the section */
     /* margin-bottom: 25px; */
   }
-  
+
   /* Styles for the title */
   .current h3 {
     font-size: 24px;
@@ -48,14 +48,14 @@
     text-transform: uppercase;
     letter-spacing: 1px; /* Add some letter spacing for style */
   }
-  
+
   /* Flex container for the status cards */
   .currentstatus {
     display: flex;
     justify-content: space-between; /* Evenly distribute space */
     flex-wrap: wrap; /* Wrap cards on smaller screens */
   }
-  
+
   /* Styles for individual status cards */
   .status-card {
     background-color: #fff; /* White background for cards */
@@ -68,25 +68,25 @@
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Light shadow for cards */
     transition: transform 0.2s; /* Smooth transition on hover */
   }
-  
+
   /* Change card appearance on hover */
   .status-card:hover {
     transform: translateY(-5px); /* Lift effect */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
   }
-  
+
   /* Styles for headers inside status cards */
   .status-card h4 {
     font-size: 18px;
     color: #555; /* Medium gray for subheadings */
   }
-  
+
   .status-card h5 {
     font-size: 24px;
     color: #007BFF; /* Primary color for emphasis */
     margin-top: 10px; /* Space above the value */
   }
-  
+
   .timeline-container {
     max-width: 1400px; /* Adjust the width for a better vertical view */
     margin: 25px auto;
@@ -97,7 +97,7 @@
     padding: 40px 20px; /* Increased padding for better spacing */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow around the container */
   }
-  
+
   h2 {
     font-size: 2.5rem;
     margin-bottom: 30px;
@@ -105,7 +105,7 @@
     text-transform: uppercase;
     letter-spacing: 1px; /* Add some letter spacing for style */
   }
-  
+
   .timeline {
     display: flex;
     flex-direction: row;
@@ -113,7 +113,7 @@
     flex-wrap: wrap; /* Allow items to wrap to the next line */
     position: relative;
   }
-  
+
   .timeline-item {
     position: relative;
     background: #f4f4f4; /* Light background */
@@ -125,12 +125,12 @@
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
   }
-  
+
   .timeline-item:hover {
     transform: translateY(-10px); /* Lift effect on hover */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
-  
+
   .year {
     font-size: 2rem; /* Larger font for prominence */
     font-weight: bold;
@@ -138,7 +138,7 @@
     color: #1c87c9; /* Primary color for the year */
     position: relative;
   }
-  
+
   .year::after {
     content: ''; /* Decorative element */
     display: block;
@@ -148,13 +148,13 @@
     margin: 10px auto; /* Center the line */
     border-radius: 2px; /* Slightly rounded edges */
   }
-  
+
   .details {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center details */
   }
-  
+
   .detail-item {
     display: flex;
     align-items: center; /* Align icon and text */
@@ -162,19 +162,19 @@
     font-size: 1rem;
     color: #555;
   }
-  
+
   @media (max-width: 768px) {
     .timeline {
         flex-direction: column; /* Stack items vertically on small screens */
         padding: 10px; /* Adjust padding for smaller screens */
     }
-  
+
     .timeline-item {
         width: 90%; /* Make items wider on small screens */
         margin: 0 auto 20px; /* Center items with auto margins */
     }
   }
-  
+
   .placement-section {
     max-width: 1400px;
     margin: 25px auto;
@@ -183,20 +183,20 @@
     background-color: #f5f5f5;
     text-align: center;
   }
-  
+
   .placement-section h2 {
     font-size: 2rem;
     color: #333;
     margin-bottom: 20px;
   }
-  
+
   .placement-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     justify-content: center;
   }
-  
+
   .placement-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -205,28 +205,27 @@
     overflow: hidden;
     transition: transform 0.3s ease;
   }
-  
+
   .placement-card:hover {
     transform: translateY(-10px);
   }
-  
+
   .placement-card img {
     width: 100px;
     height: 100px;
     border-bottom: 1px solid #ddd;
   }
-  
+
   .placement-card p {
     margin: 15px 0;
   }
-  
+
   .placement-card a {
     text-decoration: none;
     color: #0066cc;
     font-weight: bold;
   }
-  
+
   .placement-card a:hover {
     color: #004999;
   }
-  
