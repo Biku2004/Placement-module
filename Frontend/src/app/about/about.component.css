@@ -1,4 +1,5 @@
 .about-us-container {
+<<<<<<< HEAD
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -33,3 +34,46 @@
   li {
     margin-bottom: 10px;
   }
+=======
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  color: #003366;
+}
+
+.mission, .statistics, .team, .contact {
+  margin-bottom: 30px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-item {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #003366;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+>>>>>>> 2d457bf33c19a4003371f9a0a58cf0aecbf1409f
