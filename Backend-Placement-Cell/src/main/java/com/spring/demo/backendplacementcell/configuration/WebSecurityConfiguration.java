@@ -47,7 +47,6 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/signup", "/login").permitAll()  // Allow signup and login without auth
                         .requestMatchers("/api/**").authenticated()  // Secure other API endpoints
-                        .requestMatchers("/api/companies/**").authenticated()  // Secure other API endpoints
 //                        .requestMatchers("/jobs/approve/**", "/jobs/reject/**").hasAuthority("ROLE_STAFF")
                 )
                 .sessionManagement(session -> session

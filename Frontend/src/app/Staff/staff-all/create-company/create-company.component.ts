@@ -1,12 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import { CompanyService } from './company.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-company',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule],
   templateUrl: './create-company.component.html',
   styleUrl: './create-company.component.css'
 })
@@ -21,7 +20,7 @@ export class CreateCompanyComponent implements OnInit {
     description: '',
     companyType: '',
     companySize: '',
-    establishedYear: '',
+    establishedYear: null,
     primaryContactName: '',
     primaryContactEmail: '',
     primaryContactPhone: '',
