@@ -1,12 +1,20 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <title>Centurion University - Login</title> -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+<!-- </head> -->
 <body class="bg-gray-100">
   <div class="flex justify-center items-center min-h-screen">
     <div class="bg-white shadow-lg rounded-lg flex max-w-4xl w-full">
-
+      
       <!-- Left Side (Image) -->
       <div class="hidden md:block md:w-1/2">
         <img src="assets/signup_side.jpg" alt="Background Image" class="object-cover h-full w-full rounded-l-lg" />
       </div>
-
+      
       <!-- Right Side (Login Form) -->
       <div class="flex flex-col justify-center md:w-1/2 w-full p-8">
         <div class="flex justify-center">
@@ -35,19 +43,19 @@
               <option value="Student">Student</option>
             </select>
           </div>
-
+          
           <div>
-              <a href=""><button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700"
+              <a href=""><button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700" 
               [disabled]="loginForm.invalid! || isLoading">Sign in</button></a>
           </div>
 
         </form>
-
+        
         <div class="mt-4 text-center">
-          <p class="text-sm text-gray-600">Don't have an account? <button href="#" class="text-blue-500 hover:underline" (click)="navigateTo('/signup-dasboard')">Sign up</button></p>
+          <p class="text-sm text-gray-600">Don't have an account? <button href="#" class="text-blue-500 hover:underline" (click)="navigateTo('/signup')">Sign up</button></p>
         </div>
       </div>
     </div>
   </div>
 </body>
-
+<!-- </html> -->
