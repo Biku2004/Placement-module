@@ -1,31 +1,166 @@
-<app-navbar></app-navbar>
-<div class="about-us-container">
-    <h1>About Our Placement Cell</h1>
-    <section class="mission">
-      <h2>Our Mission</h2>
-      <p>{{ missionStatement }}</p>
-    </section>
-    <section class="statistics">
-      <h2>Our Achievements</h2>
-      <div class="stat-grid">
-        <div class="stat-item" *ngFor="let stat of statistics">
-          <h3>{{ stat.value }}</h3>
-          <p>{{ stat.label }}</p>
+<div class="about-us">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">Placement Cell</a>
+        <ul class="nav-links">
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Scholarships</a></li>
+          <li><a href="#">Alumni</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="cta">Call Toll-Free: 8260077222</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to Our Placement Cell</h1>
+      <p>
+        A pioneer in skill-integrated higher education, transforming lives through sustainable development and innovation.
+      </p>
+      <button class="cta">Enquire Now</button>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Section -->
+  <section class="vision-mission">
+    <div class="container">
+      <h2>Our Vision & Mission</h2>
+      <div class="content">
+        <p>
+          <strong>Vision:</strong> To be a world-class human resource development hub that builds employable, enterprising, and community-centric youth.
+        </p>
+        <p>
+          <strong>Mission:</strong> To ensure a tailored learning and employability path for youth through industry-relevant education, skill development, and innovation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Section -->
+  <section class="leadership">
+    <div class="container">
+      <h2>Leadership & Highlights</h2>
+      <div class="grid">
+        <div class="leader">
+          <img src="assets/images1.jpeg" alt="Leader 1">
+          <h3>Prof. John Doe</h3>
+          <p>Dean of Placements</p>
+        </div>
+        <div class="leader">
+          <img src="assets/download.jpeg" alt="Leader 2">
+          <h3>Dr. Jane Smith</h3>
+          <p>Head of Corporate Relations</p>
+        </div>
+        <div class="leader">
+          <img src="assets/Our-Placements.png" alt="Leader 3">
+          <h3>Mr. Rahul Verma</h3>
+          <p>Training & Skill Development Head</p>
         </div>
       </div>
-    </section>
-    <section class="team">
-      <h2>Our Team</h2>
-      <ul>
-        <li *ngFor="let member of teamMembers">
-          <strong>{{ member.name }}</strong> - {{ member.position }}
-        </li>
-      </ul>
-    </section>
-    <section class="contact">
-      <h2>Contact Us</h2>
-      <p>For any queries regarding placements, please contact us at:</p>
-      <p>Email: placements{{ collegeName.toLowerCase().replace(' ', '') }}.edu</p>
-      <p>Phone: +91 1234567890</p>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Students Say</h2>
+      <div class="carousel">
+        <div class="testimonial">
+          <p>
+            "The placement cell provided exceptional guidance and support. I secured my dream job at a top tech company!"
+          </p>
+          <h3>- Neha Sharma</h3>
+        </div>
+        <div class="testimonial">
+          <p>
+            "Thanks to the skill-development programs, I now feel industry-ready. Kudos to the team!"
+          </p>
+          <h3>- Arjun Mehta</h3>
+        </div>
+        <div class="testimonial">
+          <p>
+            "The outreach and network of the placement team are incredible. I am forever grateful for their efforts."
+          </p>
+          <h3>- Priya Kumar</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SDG Commitment Section -->
+  <section class="sdg-commitment">
+    <div class="container">
+      <h2>Our Commitment to Sustainable Development Goals</h2>
+      <p>
+        We have embedded 9 key SDGs into our education model, ensuring inclusivity, integrity, and sustainability in all our initiatives.
+      </p>
+      <div class="sdg-icons">
+        <img src="assets/accessture.png" alt="SDG 1">
+        <img src="assets/infosys.jpeg" alt="SDG 2">
+        <img src="assets/tcs.png" alt="SDG 3">
+        <img src="assets/techMahindra.jpeg" alt="SDG 4">
+        <img src="assets/wipro.png" alt="SDG 5">
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container grid">
+      <div class="stat-item">
+        <h2>6</h2>
+        <p>Campuses in Odisha</p>
+      </div>
+      <div class="stat-item">
+        <h2>40</h2>
+        <p>Outreach Centers</p>
+      </div>
+      <div class="stat-item">
+        <h2>50+</h2>
+        <p>Patents</p>
+      </div>
+      <div class="stat-item">
+        <h2>2,000</h2>
+        <p>Teaching & Non-Teaching Staff</p>
+      </div>
+      <div class="stat-item">
+        <h2>7</h2>
+        <p>Industry Sponsored Labs</p>
+      </div>
+      <div class="stat-item">
+        <h2>10L+</h2>
+        <p>Highest Pay Package</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Placement Cell. All Rights Reserved.</p>
+      <div class="dropdowns">
+        <select>
+          <option>Select Level</option>
+          <option>Undergraduate</option>
+          <option>Postgraduate</option>
+        </select>
+        <select>
+          <option>Select Campus</option>
+          <option>Campus A</option>
+          <option>Campus B</option>
+        </select>
+        <select>
+          <option>Select School</option>
+          <option>School of Engineering</option>
+          <option>School of Business</option>
+        </select>
+      </div>
+    </div>
+  </footer>
+</div>
