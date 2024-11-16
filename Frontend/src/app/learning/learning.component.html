@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+
+<div class="learning-intro">
+  <h1>Welcome to Our Learning Hub</h1>
+  <p>Our Learning page offers a curated collection of valuable resources to help you enhance your skills in web development and programming. From PDFs and PowerPoint presentations to YouTube tutorials, you’ll find a range of materials to guide you through different technologies such as Angular, JavaScript, CSS, and more. Whether you're just starting out or looking to deepen your expertise, we have something for everyone.</p>
+
+</div>
+<div class="materials-container">
+  <!-- PDF Section -->
+  <div class="material-section">
+    <h2>PDF Materials</h2>
+    <div class="material-grid">
+      <div *ngFor="let pdf of pdfMaterials.slice(0, showMore.pdf ? pdfMaterials.length : 2)" class="material-card">
+        <h3>{{ pdf.title }}</h3>
+        <p>{{ pdf.description }}</p>
+        <a [href]="pdf.link" target="_blank">Download PDF</a>
+      </div>
+    </div>
+    <button *ngIf="pdfMaterials.length > 2" (click)="toggleShowMore('pdf')">
+      {{ showMore.pdf ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+
+  <!-- PPT Section -->
+  <div class="material-section">
+    <h2>PPT Materials</h2>
+    <div class="material-grid">
+      <div *ngFor="let ppt of pptMaterials.slice(0, showMore.ppt ? pptMaterials.length : 2)" class="material-card">
+        <h3>{{ ppt.title }}</h3>
+        <p>{{ ppt.description }}</p>
+        <a [href]="ppt.link" target="_blank">Download PPT</a>
+      </div>
+    </div>
+    <button *ngIf="pptMaterials.length > 2" (click)="toggleShowMore('ppt')">
+      {{ showMore.ppt ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+
+  <!-- YouTube Section -->
+  <div class="material-section">
+    <h2>YouTube Videos</h2>
+    <div class="material-grid">
+      <div *ngFor="let video of youtubeMaterials.slice(0, showMore.youtube ? youtubeMaterials.length : 2)" class="material-card">
+        <h3>{{ video.title }}</h3>
+        <p>{{ video.description }}</p>
+        <a [href]="video.link" target="_blank">Watch Video</a>
+      </div>
+    </div>
+    <button *ngIf="youtubeMaterials.length > 2" (click)="toggleShowMore('youtube')">
+      {{ showMore.youtube ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+</div>
