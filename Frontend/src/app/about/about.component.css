@@ -166,6 +166,20 @@ body {
   text-align: center;
 }
 
+.sdg-commitment .sdg-icons {
+  display: flex; /* Use flexbox for horizontal alignment */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Wrap icons to the next row if necessary */
+  gap: 1rem; /* Add spacing between icons */
+}
+
+.sdg-commitment .sdg-icons img {
+  width: 3rem; /* Set a fixed width for the icons */
+  height: 3rem; /* Set a fixed height for the icons */
+  object-fit: cover;/* Ensure the icons cover the area without distorting */
+}
+
 .sdg-commitment .sdg-icons img {
   width: 60px;
   margin: 0.5rem;
