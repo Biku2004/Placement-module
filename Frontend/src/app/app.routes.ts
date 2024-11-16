@@ -33,5 +33,6 @@ export const routes: Routes = [
   {path: 'create-job', component: CreateJobsComponent},
   {path: 'contactus', component: ContactusComponent},
   {path: 'learning', component: LearningComponent},
-  {path: 'about', component: AboutComponent}
+  { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: 'about', pathMatch: 'full' }
 ];
