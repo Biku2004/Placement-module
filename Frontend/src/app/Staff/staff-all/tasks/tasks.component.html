@@ -1,21 +1,27 @@
 <div class="bg-white p-6 rounded-lg shadow">
-    <h3 class="text-lg font-bold mb-4">Tasks</h3>
-    <div class="mb-4">
-      <p class="font-semibold text-red-500">Priority</p>
-      <div class="bg-red-100 p-4 rounded-lg mb-4">
-        <p>Complete your resume</p>
-        <p class="text-xs text-gray-500">May 13, 09:00 AM</p>
-      </div>
-      <div class="bg-yellow-100 p-4 rounded-lg">
-        <p>Track Job Application Deadlines</p>
-        <p class="text-xs text-gray-500">May 13, 09:00 AM</p>
-      </div>
-    </div>
-    <div>
-      <p class="font-semibold text-gray-600">Other</p>
-      <div class="bg-blue-100 p-4 rounded-lg">
-        <p>Prepare for Interview</p>
-        <p class="text-xs text-gray-500">May 16, 08:00 AM</p>
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-lg font-bold">Tasks</h3>
+    <button (click)="reloadTasks()" class="bg-blue-500 text-white py-2 px-4 rounded">Reload</button>
+  </div>
+  <h3 class="text-lg font-bold mb-4">Tasks</h3>
+  <div *ngIf="tasks.length > 0">
+    <div class="mb-4" *ngFor="let task of tasks">
+      <p class="font-semibold" [ngClass]="{
+        'text-red-500': task.priority === 'High',
+        'text-yellow-500': task.priority === 'Medium',
+        'text-green-500': task.priority === 'Low'
+      }">{{ task.priority }}</p>
+      <div [ngClass]="{
+        'bg-red-100': task.priority === 'High',
+        'bg-yellow-100': task.priority === 'Medium',
+        'bg-green-100': task.priority === 'Low'
+      }" class="p-4 rounded-lg mb-4">
+        <p>{{ task.name }}</p>
+        <p class="text-xs text-gray-500">{{ task.dueDate | date }} {{ task.dueTime }}</p>
       </div>
     </div>
   </div>
+  <div *ngIf="tasks.length === 0">
+    <p>No tasks available.</p>
+  </div>
+</div>

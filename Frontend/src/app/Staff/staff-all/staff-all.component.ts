@@ -8,13 +8,13 @@ import { HeaderComponent } from './header/header.component';
 import { CardsComponent } from './cards/cards.component';
 import { InterviewScheduleComponent } from './interview-schedule/interview-schedule.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
-import { TasksComponent } from './tasks/tasks.component'
+import { TasksComponent } from './tasks/tasks.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
-import { CreateCompanyComponent } from "./create-company/create-company.component";
-import { RecruiterComponent } from "../../recruiter/recruiter.component";
+import { CreateCompanyComponent } from './create-company/create-company.component';
+import { RecruiterComponent } from '../../recruiter/recruiter.component';
+import { TaskCreatorComponent } from '../staff-all/tasks/task-creator/task-creator.component';
 // import { UserDetailsComponent } from '../staff-all/header/user-details.component';
 // import { AuthService } from '../../service/auth.service';
-
 
 @Component({
   selector: 'app-staff-all',
@@ -29,26 +29,26 @@ import { RecruiterComponent } from "../../recruiter/recruiter.component";
     RecentActivityComponent,
     CreateJobsComponent,
     CreateCompanyComponent,
-    RecruiterComponent
-],
+    RecruiterComponent,
+    TaskCreatorComponent,
+  ],
   templateUrl: './staff-all.component.html',
-  styleUrl: './staff-all.component.css'
+  styleUrl: './staff-all.component.css',
 })
-
-export class StaffAllComponent{
+export class StaffAllComponent {
   selectedItems: string[] = [];
   currentDate: Date = new Date();
   // isSidebarOpen = false;
   // private sidebarTimeout: any;
 
   constructor(
-    private sidebarService: SidebarService,
-    // private authService: AuthService
-  
-  ) {}
+    private sidebarService: SidebarService
+  ) // private authService: AuthService
+
+  {}
 
   ngOnInit() {
-    this.sidebarService.selectedItems$.subscribe(items => {
+    this.sidebarService.selectedItems$.subscribe((items) => {
       this.selectedItems = items;
     });
 
