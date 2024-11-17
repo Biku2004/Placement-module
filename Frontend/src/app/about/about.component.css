@@ -17,31 +17,81 @@
 }
 
 /* Leadership Section */
+/* General container styling */
 .leadership {
-  padding: 2rem 1rem;
+  background-color: #f9f9f9; /* Light background color for contrast */
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .leadership h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-transform: uppercase;
 }
 
+/* Grid styling */
 .leadership .grid {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.leader {
-  text-align: center;
-  max-width: 200px;
+/* Individual leader card styling */
+.leadership .leader {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.leader img {
+.leadership .leader:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leadership .leader img {
   width: 100%;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
+  max-width: 120px;
+  margin: 0 auto 15px;
 }
+
+.leadership .leader h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.leadership .leader p {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .leadership {
+    padding: 30px 10px;
+  }
+
+  .leadership h2 {
+    font-size: 1.8rem;
+  }
+
+  .leadership .leader h3 {
+    font-size: 1rem;
+  }
+
+  .leadership .leader p {
+    font-size: 0.9rem;
+  }
+}
+
 
 /* Testimonial Section */
 .testimonials {
@@ -75,33 +125,92 @@
 }
 
 /* SDG Commitment Section */
-.sdg-commitment {
-  background: #0073e6;
-  color: white;
-  padding: 2rem 1rem;
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.sdg-commitment .sdg-icons {
-  display: flex; /* Use flexbox for horizontal alignment */
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
-  flex-wrap: wrap; /* Wrap icons to the next row if necessary */
+/* SDG Commitment Section */
+.sdg-commitment {
+  background-color: #e1f0ff; /* Light background for contrast */
+  padding: 2rem 0;
+}
+
+.sdg-commitment h2 {
+  font-size: 2rem;
+  color: #004080; /* Complementary dark blue color */
+  margin-bottom: 1rem;
+}
+
+.sdg-commitment p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sdg-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  width: 100%;
-  max-width: 100%; /* Add spacing between icons */
 }
 
-.sdg-commitment .sdg-icons img {
-  width: 6rem; /* Set a fixed width for the icons */
-  height: 6rem; /* Set a fixed height for the icons */
-  object-fit: contain;/* Ensure the icons cover the area without distorting */
+.sdg-icons img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border: 2px solid #ddd; /* Subtle border for emphasis */
+  border-radius: 8px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sdg-commitment .sdg-icons img {
-  width: 60px;
-  margin: 0.5rem;
+.sdg-icons img:hover {
+  transform: scale(1.01); /* Slight zoom effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sdg-commitment h2 {
+    font-size: 1.5rem;
+  }
+
+  .sdg-commitment p {
+    font-size: 1rem;
+  }
+
+  .sdg-icons img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sdg-commitment p {
+    font-size: 0.9rem;
+  }
+
+  .sdg-icons img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
 
 /* Stats Section */
 .stats {
