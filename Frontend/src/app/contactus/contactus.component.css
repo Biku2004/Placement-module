@@ -1,74 +1,96 @@
 .contact-container {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Jost', sans-serif;
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-}
-
-.contact-form {
-  width: 350px;
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-  border-radius: 10px;
-  box-shadow: 5px 20px 50px #000;
+  font-family: Arial, sans-serif;
+  margin: 20px;
   padding: 20px;
-  box-sizing: border-box; /* Include padding in width */
 }
 
-.form-group {
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-sections {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.student-contact,
+.recruiter-contact {
+  width: 48%;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form .form-group {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
   width: 100%;
-}
-
-label {
-  color: #fff;
-  font-size: 2em;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: bold;
-}
-
-input, textarea {
-  width: 100%; /* Full width */
-  max-width: 100%; /* Prevent overflow */
-  height: 40px; /* Set consistent height for input */
-  background: #e0dede;
-  margin: 10px 0;
-  padding: 12px;
-  border: none;
-  outline: none;
+  padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s;
-  box-sizing: border-box; /* Include padding in width */
-}
-
-input:focus, textarea:focus {
-  background: #fff;
-}
-
-textarea {
-  height: auto; /* Auto height for textarea */
+  border: 1px solid #ddd;
 }
 
 .submit-btn {
-  width: 100%;
-  height: 40px;
-  margin: 10px 0;
-  color: #fff;
-  background: #573b8a;
-  font-size: 1em;
-  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  transition: background 0.2s ease-in;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.submit-btn:hover {
-  background: #6d44b8;
+.social-media {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.social-media h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.social-media .logos img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.social-media .icons a {
+  font-size: 20px;
+  margin: 0 10px;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.social-media .icons a:hover {
+  transform: scale(1.2);
+}
+
+.icons {
+  display: flex;
+  justify-content: center; /* Centers the icons horizontally */
+  gap: 20px; /* Adds space between the icons */
+}
+
+.icons a {
+  display: inline-block;
+}
+
+.icons img {
+  width: 40px; /* Adjust the size of the icons */
+  height: 40px; /* Maintain aspect ratio */
 }
