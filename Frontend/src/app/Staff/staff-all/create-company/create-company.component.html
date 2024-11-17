@@ -1,69 +1,113 @@
 <!-- src/app/Staff/manage-companies/manage-companies.component.html -->
 <div class="container mx-auto p-4 bg-white p-6 rounded-lg shadow">
-    <h2 class="text-2xl font-bold mb-4">Manage Companies</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-gray-700">Name</label>
-          <input type="text" [(ngModel)]="company.name" name="name" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Logo URL</label>
-          <input type="url" [(ngModel)]="company.logoUrl" name="logoUrl" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Industry</label>
-          <input type="text" [(ngModel)]="company.industry" name="industry" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Location</label>
-          <input type="text" [(ngModel)]="company.location" name="location" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Website</label>
-          <input type="url" [(ngModel)]="company.website" name="website" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Description</label>
-          <textarea [(ngModel)]="company.description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Company Type</label>
-          <input type="text" [(ngModel)]="company.companyType" name="companyType" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Company Size</label>
-          <input type="text" [(ngModel)]="company.companySize" name="companySize" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Established Year</label>
-          <input type="number" [(ngModel)]="company.establishedYear" name="establishedYear" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Primary Contact Name</label>
-          <input type="text" [(ngModel)]="company.primaryContactName" name="primaryContactName" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Primary Contact Email</label>
-          <input type="email" [(ngModel)]="company.primaryContactEmail" name="primaryContactEmail" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Primary Contact Phone</label>
-          <input type="text" [(ngModel)]="company.primaryContactPhone" name="primaryContactPhone" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Secondary Contact Name</label>
-          <input type="text" [(ngModel)]="company.secondaryContactName" name="secondaryContactName" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Secondary Contact Email</label>
-          <input type="email" [(ngModel)]="company.secondaryContactEmail" name="secondaryContactEmail" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
-        <div>
-          <label class="block text-gray-700">Secondary Contact Phone</label>
-          <input type="text" [(ngModel)]="company.secondaryContactPhone" name="secondaryContactPhone" class="w-full p-2 border border-gray-300 rounded" />
-        </div>
+  <h2 class="text-2xl font-bold mb-4">Manage Companies</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-gray-700">Name</label>
+        <input type="text" [(ngModel)]="company.name" name="name" class="w-full p-2 border border-gray-300 rounded" required />
       </div>
-      <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Save Company</button>
-    </form>
-  </div>
+      <div>
+        <label class="block text-gray-700">Logo URL</label>
+        <input type="url" [(ngModel)]="company.logoUrl" name="logoUrl" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Industry</label>
+        <input type="text" [(ngModel)]="company.industry" name="industry" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div>
+        <label class="block text-gray-700">Location</label>
+        <input type="text" [(ngModel)]="company.location" name="location" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div>
+        <label class="block text-gray-700">Website</label>
+        <input type="url" [(ngModel)]="company.website" name="website" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Description</label>
+        <textarea [(ngModel)]="company.description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700">Company Type</label>
+        <input type="text" [(ngModel)]="company.companyType" name="companyType" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Company Size</label>
+        <input type="text" [(ngModel)]="company.companySize" name="companySize" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Established Year</label>
+        <input type="number" [(ngModel)]="company.establishedYear" name="establishedYear" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Primary Contact Name</label>
+        <input type="text" [(ngModel)]="company.primaryContactName" name="primaryContactName" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Primary Contact Email</label>
+        <input type="email" [(ngModel)]="company.primaryContactEmail" name="primaryContactEmail" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Primary Contact Phone</label>
+        <input type="text" [(ngModel)]="company.primaryContactPhone" name="primaryContactPhone" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Secondary Contact Name</label>
+        <input type="text" [(ngModel)]="company.secondaryContactName" name="secondaryContactName" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Secondary Contact Email</label>
+        <input type="email" [(ngModel)]="company.secondaryContactEmail" name="secondaryContactEmail" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Secondary Contact Phone</label>
+        <input type="text" [(ngModel)]="company.secondaryContactPhone" name="secondaryContactPhone" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+    </div>
+    <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Save Company</button>
+  </form>
+</div>
+
+
+<div class="overflow-x-auto mt-8">
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b">Company Name</th>
+        <th class="py-2 px-4 border-b">Logo URL</th>
+        <th class="py-2 px-4 border-b">Industry</th>
+        <th class="py-2 px-4 border-b">Location</th>
+        <th class="py-2 px-4 border-b">Website</th>
+        <th class="py-2 px-4 border-b">Description</th>
+        <th class="py-2 px-4 border-b">Company Type</th>
+        <th class="py-2 px-4 border-b">Company Size</th>
+        <th class="py-2 px-4 border-b">Established Year</th>
+        <th class="py-2 px-4 border-b">Primary Contact Name</th>
+        <th class="py-2 px-4 border-b">Primary Contact Email</th>
+        <th class="py-2 px-4 border-b">Primary Contact Phone</th>
+        <th class="py-2 px-4 border-b">Secondary Contact Name</th>
+        <th class="py-2 px-4 border-b">Secondary Contact Email</th>
+        <th class="py-2 px-4 border-b">Secondary Contact Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td class="py-2 px-4 border-b">{{ company.name }}</td>
+        <td class="py-2 px-4 border-b">{{ company.logoUrl }}</td>
+        <td class="py-2 px-4 border-b">{{ company.industry }}</td>
+        <td class="py-2 px-4 border-b">{{ company.location }}</td>
+        <td class="py-2 px-4 border-b">{{ company.website }}</td>
+        <td class="py-2 px-4 border-b">{{ company.description }}</td>
+        <td class="py-2 px-4 border-b">{{ company.companyType }}</td>
+        <td class="py-2 px-4 border-b">{{ company.companySize }}</td>
+        <td class="py-2 px-4 border-b">{{ company.establishedYear }}</td>
+        <td class="py-2 px-4 border-b">{{ company.primaryContactName }}</td>
+        <td class="py-2 px-4 border-b">{{ company.primaryContactEmail }}</td>
+        <td class="py-2 px-4 border-b">{{ company.primaryContactPhone }}</td>
+        <td class="py-2 px-4 border-b">{{ company.secondaryContactName }}</td>
+        <td class="py-2 px-4 border-b">{{ company.secondaryContactEmail }}</td>
+        <td class="py-2 px-4 border-b">{{ company.secondaryContactPhone }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
