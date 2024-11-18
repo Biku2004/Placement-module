@@ -1,14 +1,86 @@
 <app-navbar></app-navbar>
+
 <div class="contact-container">
-  <form class="contact-form">
-    <div class="form-group">
-      <label for="chk" aria-hidden="true">Contact Us</label>
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <input type="text" id="subject" placeholder="Subject" required />
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="submit-btn">Send Message</button>
+  <div class="contact-header">
+    <h1>Contact Us</h1>
+    <p>
+      We are here to assist both students and recruiters. Select your category and get in touch with us!
+    </p>
+  </div>
+
+  <!-- Two Sections: Student and Recruiter -->
+  <div class="contact-sections">
+    <!-- Student Section -->
+    <div class="student-contact">
+      <h2>For Students</h2>
+      <p>If you're a student and have questions about your profile, exams, or other concerns, let us know!</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <div class="input-group">
+            <label for="student-name">Your Name</label>
+            <input type="text" id="student-name" placeholder="Enter your name" required />
+          </div>
+          <div class="input-group">
+            <label for="student-email">Your Email</label>
+            <input type="email" id="student-email" placeholder="Enter your email" required />
+          </div>
+          <div class="input-group">
+            <label for="student-message">Your Message</label>
+            <textarea id="student-message" rows="4" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+
+    <!-- Recruiter Section -->
+    <div class="recruiter-contact">
+      <h2>For Recruiters</h2>
+      <p>If you're a recruiter and need assistance with hiring, job postings, or partnerships, reach out to us!</p>
+      <form class="contact-form">
+        <div class="form-group">
+          <div class="input-group">
+            <label for="recruiter-name">Your Name</label>
+            <input type="text" id="recruiter-name" placeholder="Enter your name" required />
+          </div>
+          <div class="input-group">
+            <label for="recruiter-email">Your Email</label>
+            <input type="email" id="recruiter-email" placeholder="Enter your email" required />
+          </div>
+          <div class="input-group">
+            <label for="recruiter-message">Your Message</label>
+            <textarea id="recruiter-message" rows="4" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Social Media Links -->
+  <!-- Social Media Links -->
+<div class="social-media">
+  <h3>Follow Us</h3>
+  <div class="icons">
+    <a href="https://facebook.com" target="_blank" rel="noopener">
+      <img src="assets/facebook-logo.png" alt="Facebook Logo" />
+    </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener">
+      <img src="assets/twitter-logo.png" alt="Twitter Logo" />
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener">
+      <img src="assets/instagram-logo.png" alt="Instagram Logo" />
+    </a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener">
+      <img src="assets/linkedin.png" alt="linkedin Logo" />
+    </a>
+  </div>
 </div>
 
+</div>
