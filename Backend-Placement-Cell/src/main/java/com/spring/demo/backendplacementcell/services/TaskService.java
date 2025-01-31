@@ -17,6 +17,10 @@ public class TaskService {
         return taskRepository.findAll ( );
     }
 
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
+    }
+
     public Task createTask(Task task) {
         return taskRepository.save ( task );
     }
@@ -28,6 +32,7 @@ public class TaskService {
         existingTask.setPriority ( task.getPriority ( ) );
         existingTask.setDueDate ( task.getDueDate ( ) );
         existingTask.setDueTime ( task.getDueTime ( ) );
+        existingTask.setCompleted(task.isCompleted());
         return taskRepository.save ( existingTask );
     }
 

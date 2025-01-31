@@ -16,16 +16,26 @@ public class Task {
     private String priority;
     private LocalDate dueDate;
     private LocalTime dueTime;
+    private boolean completed;
 
     // Constructors, getters, and setters
     public Task() {}
 
-    public Task(String name, String description, String priority, LocalDate dueDate, LocalTime dueTime) {
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public Task(String name, String description, String priority, LocalDate dueDate, LocalTime dueTime, boolean completed) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        this.completed = completed;
     }
 
     public Long getId() {
