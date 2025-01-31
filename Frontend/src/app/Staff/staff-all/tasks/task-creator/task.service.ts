@@ -23,6 +23,10 @@ export class TaskService {
     return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
+  getTaskById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
+
   createTask(task: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, task, { headers: this.getHeaders() });
   }

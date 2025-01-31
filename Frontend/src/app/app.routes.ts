@@ -24,7 +24,7 @@ export const routes: Routes = [
   {path: 'nav', component: NavbarComponent},
   {path: 'data', component: DataComponent},
   {path: 'placement', component: PlacementPageComponent},
-  {path: 'login', component: SignupComponent},
+  {path: 'login', component: StudentLoginComponent},
   {path: 'student-dashboard', component: StudentDashboardComponent},
   {path: 'signup', component: StudentSignupComponent},
   {path: 'staff-dashboard', component: StaffAllComponent},

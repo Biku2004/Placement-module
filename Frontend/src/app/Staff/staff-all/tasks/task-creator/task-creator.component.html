@@ -32,8 +32,8 @@
     </form>
   </div>
   
-  <div class="overflow-x-auto mt-8">
-    <table class="min-w-full bg-white">
+  <!-- <div class="container overflow-x-auto mt-8 ">
+    <table class="min-w-full bg-white p-6 rounded-lg shadow">
       <thead>
         <tr>
           <th class="py-2 px-4 border-b">Task Name</th>
@@ -50,6 +50,46 @@
           <td class="py-2 px-4 border-b">{{ task.priority }}</td>
           <td class="py-2 px-4 border-b">{{ task.dueDate }}</td>
           <td class="py-2 px-4 border-b">{{ task.dueTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+  <div class="container overflow-x-auto mt-8">
+    <table class="min-w-full bg-white p-6 rounded-lg shadow">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">Task Name</th>
+          <th class="py-2 px-4 border-b">Description</th>
+          <th class="py-2 px-4 border-b">Priority</th>
+          <th class="py-2 px-4 border-b">Due Date</th>
+          <th class="py-2 px-4 border-b">Due Time</th>
+          <th class="py-2 px-4 border-b">Assign Task</th>
+          <th class="py-2 px-4 border-b">Task Complete</th>
+          <th class="py-2 px-4 border-b">Time Overview</th>
+          <th class="py-2 px-4 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td class="py-2 px-4 border-b">{{ task.name }}</td>
+          <td class="py-2 px-4 border-b">{{ task.description }}</td>
+          <td class="py-2 px-4 border-b">{{ task.priority }}</td>
+          <td class="py-2 px-4 border-b">{{ task.dueDate }}</td>
+          <td class="py-2 px-4 border-b">{{ task.dueTime }}</td>
+          <td class="py-2 px-4 border-b">
+            <input type="text" [(ngModel)]="task.assignee" placeholder="Assign to" class="w-full p-2 border border-gray-300 rounded" />
+          </td>
+          <td class="py-2 px-4 border-b text-center">
+            <i *ngIf="task.completed" class="fas fa-check text-green-500">Done</i>
+            <i *ngIf="!task.completed" class="fas fa-times text-red-500">Not Done</i>
+          </td>
+          <td class="py-2 px-4 border-b" [ngClass]="{'text-red-500': isOverdue(task)}">
+            {{ getTimeOverview(task) }}
+          </td>
+          <td class="py-2 px-4 border-b">
+            <button (click)="deleteTask(task.id)" class="bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
