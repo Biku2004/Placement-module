@@ -17,25 +17,27 @@ public class Task {
     private LocalDate dueDate;
     private LocalTime dueTime;
     private boolean completed;
+    private String assignee;
 
     // Constructors, getters, and setters
     public Task() {}
 
-    public boolean isCompleted() {
-        return completed;
+    public String getAssignee() {
+        return assignee;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
     }
 
-    public Task(String name, String description, String priority, LocalDate dueDate, LocalTime dueTime, boolean completed) {
+    public Task(String name, String description, String priority, LocalDate dueDate, LocalTime dueTime, boolean completed, String assignee) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.completed = completed;
+        this.assignee = assignee;
     }
 
     public Long getId() {
@@ -84,5 +86,13 @@ public class Task {
 
     public void setDueTime(LocalTime dueTime) {
         this.dueTime = dueTime;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

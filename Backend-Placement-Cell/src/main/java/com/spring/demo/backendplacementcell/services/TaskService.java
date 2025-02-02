@@ -33,6 +33,8 @@ public class TaskService {
         existingTask.setDueDate ( task.getDueDate ( ) );
         existingTask.setDueTime ( task.getDueTime ( ) );
         existingTask.setCompleted(task.isCompleted());
+        existingTask.setAssignee(task.getAssignee());
+        existingTask.setAssignee(task.getAssignee());
         return taskRepository.save ( existingTask );
     }
 
