@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from './task.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
