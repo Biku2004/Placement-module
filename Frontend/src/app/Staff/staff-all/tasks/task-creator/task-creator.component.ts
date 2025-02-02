@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import { TaskService } from './task.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { StaffService } from '../../../../service/staff.service';
 
 @Component({
   selector: 'app-task-creator',
@@ -20,11 +20,16 @@ export class TaskCreatorComponent implements OnInit {
     dueTime: ''
   };
   tasks: any[] = [];
+  staffMembers: any[] = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(
+    private taskService: TaskService,
+    private staffService: StaffService
+  ) { }
 
   ngOnInit(): void {
     this.loadTasks();
+    this.loadStaffMembers();
   }
 
   loadTasks(): void {
@@ -32,6 +37,14 @@ export class TaskCreatorComponent implements OnInit {
       this.tasks = data;
     }, error => {
       console.error('Error loading tasks:', error);
+    });
+  }
+
+  loadStaffMembers(): void {
+    this.staffService.getStaffMembers().subscribe(data => {
+      this.staffMembers = data;
+    }, error => {
+      console.error('Error loading staff members:', error);
     });
   }
 
@@ -67,6 +80,15 @@ export class TaskCreatorComponent implements OnInit {
       task.completed = dbTask.completed; // Update the local task object with the status from the database
     }, error => {
       console.error('Error fetching task:', error);
+    });
+  }
+
+  assignTask(task: any): void {
+    this.taskService.updateTask(task).subscribe(() => {
+      this.loadTasks(); // Reload tasks after updating
+      console.log("Task Assigned to Person");
+    }, error => {
+      console.error('Error updating task:', error);
     });
   }
 

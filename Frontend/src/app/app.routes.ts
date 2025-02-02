@@ -18,8 +18,9 @@ import {LearningComponent} from "./learning/learning.component";
 import {AboutComponent} from "./about/about.component";
 
 export const routes: Routes = [
-  {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
-  {path: '', component: LandingPageComponent},
+  // {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
+  {path: '', component: SignupComponent}, // Add route for signup
+  // {path: '', component: LandingPageComponent},
   {path: 'admin', component: AdminPageComponent},
   {path: 'nav', component: NavbarComponent},
   {path: 'data', component: DataComponent},
