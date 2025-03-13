@@ -19,7 +19,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","https://placement-cell-cutm.netlify.app/"})
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;

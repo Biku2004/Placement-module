@@ -38,7 +38,7 @@ public class WebSecurityConfiguration {
                 .csrf(csrf -> csrf.disable())  // Disable CSRF since we're using JWT
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200"));  // Allowed CORS origin
+                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200","https://placement-cell-cutm.netlify.app"));  // Allowed CORS origin
                     corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     corsConfig.setAllowedHeaders(List.of("Authorization", "Content-Type"));  // Allow headers
                     corsConfig.setAllowCredentials(true);
