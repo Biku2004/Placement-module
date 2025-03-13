@@ -4,6 +4,7 @@ import com.spring.demo.backendplacementcell.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -44,11 +45,23 @@ public class WebSecurityConfiguration {
                     corsConfig.setAllowCredentials(true);
                     return corsConfig;
                 }))
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/signup", "/login").permitAll()  // Allow signup and login without auth
+//                        .requestMatchers("/api/**").authenticated()  // Secure other API endpoints
+//                        .requestMatchers("/api/companies/**").authenticated()  // Secure other API endpoints
+////                        .requestMatchers("/jobs/approve/**", "/jobs/reject/**").hasAuthority("ROLE_STAFF")
+//                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/signup", "/login").permitAll()  // Allow signup and login without auth
-                        .requestMatchers("/api/**").authenticated()  // Secure other API endpoints
-                        .requestMatchers("/api/companies/**").authenticated()  // Secure other API endpoints
-//                        .requestMatchers("/jobs/approve/**", "/jobs/reject/**").hasAuthority("ROLE_STAFF")
+                        .requestMatchers("/signup", "/login").permitAll()
+                        .requestMatchers("/api/staff/**").hasAuthority("Staff")
+                        .requestMatchers("/api/companies/**").hasAnyAuthority("Recruiter", "Staff")
+                        .requestMatchers("/api/tasks/**").hasAnyAuthority("Student", "Staff", "Recruiter")
+                        .requestMatchers("/api/interviews/**").hasAnyAuthority("Student", "Staff", "Recruiter")
+                        .requestMatchers(HttpMethod.GET, "/api/jobs/**").hasAnyAuthority("Student", "Staff", "Recruiter") // Students can only GET
+                        .requestMatchers(HttpMethod.POST, "/api/jobs/*/apply").hasAuthority("Student") // Students can apply
+                        .requestMatchers(HttpMethod.POST, "/api/jobs/*/send").hasAuthority("Staff") // Staff can send
+                        .requestMatchers("/api/jobs/**").hasAnyAuthority("Recruiter", "Staff") // Other actions for Recruiters and Staff
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // Stateless sessions for JWT
