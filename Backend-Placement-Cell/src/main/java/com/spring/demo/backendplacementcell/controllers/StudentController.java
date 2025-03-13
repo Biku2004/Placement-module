@@ -12,11 +12,11 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:4200","https://placement-cell-cutm.netlify.app/"})
 public class StudentController {
 
-    @Autowired
-    private StaffService staffService;
-
-    @GetMapping
-    public List<Student> getAllStaff() {
-        return staffService.getAllStaff();
-    }
+//    @Autowired
+//    private StaffService staffService;
+//
+//    @GetMapping
+//    public List<Student> getAllStaff() {
+//        return staffService.getAllStaff();
+//    }
 }
