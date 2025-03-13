@@ -16,16 +16,19 @@ public class InterviewSchedule {
     private LocalDate interviewDate;
     private LocalTime interviewTime;
     private String status; // e.g., "Scheduled", "Completed", "Cancelled"
+    private String createdBy;
 
     // Constructors, getters, and setters
     public InterviewSchedule() {}
 
-    public InterviewSchedule(String candidateName, String interviewerName, LocalDate interviewDate, LocalTime interviewTime, String status) {
+    public InterviewSchedule(String candidateName, String interviewerName, LocalDate interviewDate,
+                             LocalTime interviewTime, String status, String createdBy) {
         this.candidateName = candidateName;
         this.interviewerName = interviewerName;
         this.interviewDate = interviewDate;
         this.interviewTime = interviewTime;
         this.status = status;
+        this.createdBy = createdBy;
     }
 
     public Long getId() {
@@ -75,4 +78,13 @@ public class InterviewSchedule {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }
+

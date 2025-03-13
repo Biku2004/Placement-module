@@ -27,6 +27,7 @@ public class JobPost {
     private String benefitsIncentives;
     private String roleDetails;
     private String expectedSkillsTools;
+    private String createdBy;
 
     @ElementCollection
     private List<AdditionalSection> additionalSections;
@@ -209,7 +210,11 @@ public class JobPost {
         this.additionalSections = additionalSections;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-
-
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }

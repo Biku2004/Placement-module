@@ -27,6 +27,8 @@ public class Company {
     private String secondaryContactEmail;
     private String secondaryContactPhone;
 
+    private String createdBy;
+
     public Company() {
 
     }
@@ -159,10 +161,19 @@ public class Company {
         this.secondaryContactPhone = secondaryContactPhone;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public Company(Long id, String name, String logoUrl, String industry, String location, String website,
                    String description, String companyType, String companySize, Integer establishedYear,
                    String primaryContactName, String primaryContactEmail, String primaryContactPhone,
-                   String secondaryContactName, String secondaryContactEmail, String secondaryContactPhone) {
+                   String secondaryContactName, String secondaryContactEmail, String secondaryContactPhone,
+                   String createdBy) {
         this.id = id;
         this.name = name;
         this.logoUrl = logoUrl;
@@ -179,5 +190,6 @@ public class Company {
         this.secondaryContactName = secondaryContactName;
         this.secondaryContactEmail = secondaryContactEmail;
         this.secondaryContactPhone = secondaryContactPhone;
+        this.createdBy = createdBy;
     }
 }
