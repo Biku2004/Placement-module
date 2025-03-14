@@ -17,6 +17,7 @@ import {ContactusComponent} from "./contactus/contactus.component";
 import {LearningComponent} from "./learning/learning.component";
 import {AboutComponent} from "./about/about.component";
 import { StaffEditProfileComponent } from './Staff/staff-all/staff-edit-profile/staff-edit-profile.component';
+import { JobPortalComponent } from './job-portal/job-portal.component';
 
 export const routes: Routes = [
   // {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
@@ -37,5 +38,6 @@ export const routes: Routes = [
   {path: 'learning', component: LearningComponent},
   { path: 'about', component: AboutComponent },
   { path: 'staff-edit-profile', component: StaffEditProfileComponent },
+  {path:'job-portal',component:JobPortalComponent},
   { path: '', redirectTo: 'about', pathMatch: 'full' }
 ];
