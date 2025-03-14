@@ -23,6 +23,14 @@ public class JwtUtil {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public String extractFullName(String token) {
+        return extractClaim(token, claims -> claims.get("name", String.class)); // Extract name claim
+    }
+
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class)); // Extract role claim
+    }
+
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
@@ -45,16 +53,24 @@ public class JwtUtil {
         return (name.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    public String generateToken(String name) {
+//    public String generateToken(String name, String role) {
+//        Map<String, Object> claims = new HashMap<>();
+//        claims.put("role", role); // Add role to claims
+//        return createToken(claims, name);
+//    }
+
+    public String generateToken(String email, String name, String role) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, name);
+        claims.put("name", name); // Add name to claims
+        claims.put("role", role); // Add role to claims
+        return createToken(claims, email);
     }
 
-    private String createToken(Map<String, Object> claims, String name) {
+    private String createToken(Map<String, Object> claims, String email) {
         return Jwts
                 .builder()
                 .setClaims(claims)
-                .setSubject(name)
+                .setSubject(email)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();

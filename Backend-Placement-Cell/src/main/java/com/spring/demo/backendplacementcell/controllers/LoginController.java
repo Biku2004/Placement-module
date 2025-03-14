@@ -2,6 +2,8 @@ package com.spring.demo.backendplacementcell.controllers;
 
 import com.spring.demo.backendplacementcell.dto.LoginRequest;
 import com.spring.demo.backendplacementcell.dto.LoginResponse;
+import com.spring.demo.backendplacementcell.entities.Profile;
+import com.spring.demo.backendplacementcell.services.ProfileService;
 import com.spring.demo.backendplacementcell.services.jwt.StudentServiceImpl;
 import com.spring.demo.backendplacementcell.utils.JwtUtil;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,12 +29,15 @@ public class LoginController {
     private final StudentServiceImpl studentService;
 
     private final JwtUtil jwtUtil;
+    private final ProfileService profileService; // Add this
+
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager, StudentServiceImpl studentService, JwtUtil jwtUtil) {
+    public LoginController(AuthenticationManager authenticationManager, StudentServiceImpl studentService, JwtUtil jwtUtil, ProfileService profileService) {
         this.authenticationManager = authenticationManager;
         this.studentService = studentService;
         this.jwtUtil = jwtUtil;
+        this.profileService = profileService;
     }
 
     @PostMapping
@@ -55,12 +60,29 @@ public class LoginController {
         System.out.println("Requested role: " + loginRequest.getRole());
 
         // Check if the role matches
-        if (userDetails.getAuthorities().stream().noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equalsIgnoreCase(loginRequest.getRole()))) {
+//        if (userDetails.getAuthorities().stream().noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equalsIgnoreCase(loginRequest.getRole()))) {
+//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new LoginResponse("Role does not match"));
+//        }
+//
+//
+//        String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+        String requestedRole = loginRequest.getRole();
+        if (requestedRole == null || userDetails.getAuthorities().stream()
+                .noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equalsIgnoreCase(requestedRole))) {
+            System.out.println("Role does not match: " + requestedRole);
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new LoginResponse("Role does not match"));
         }
 
+        // Generate JWT with email and role
+//        String jwt = jwtUtil.generateToken(userDetails.getUsername(), requestedRole);
 
-        String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+        Profile profile = profileService.getProfile(loginRequest.getEmail());
+        String name = profile != null && profile.getFullName() != null ? profile.getFullName() : "Unknown";
+
+        // Generate JWT with email, name, and role
+        String jwt = jwtUtil.generateToken(loginRequest.getEmail(), name, requestedRole);
 
         return ResponseEntity.ok(new LoginResponse(jwt));
     }

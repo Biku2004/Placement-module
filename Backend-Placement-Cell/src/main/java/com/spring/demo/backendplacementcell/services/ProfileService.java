@@ -5,17 +5,32 @@ import com.spring.demo.backendplacementcell.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
+//    public Profile getProfile(String email) {
+//        return profileRepository.findByEmail(email)
+//                .orElseThrow(() -> new RuntimeException("Profile not found for email: " + email));
+//    }
+private static final Logger logger = LoggerFactory.getLogger(ProfileService.class);
     public Profile getProfile(String email) {
-        return profileRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Profile not found for email: " + email));
+
+        logger.info("Searching for profile with email: '{}'", email);
+        Optional<Profile> profileOpt = profileRepository.findByEmail(email);
+        if (profileOpt.isPresent()) {
+            logger.info("Profile found: {}", profileOpt.get());
+            return profileOpt.get();
+        } else {
+            logger.warn("No profile found for email: '{}'", email);
+            return null; // Avoids exception
+        }
     }
 
     public Profile createOrUpdateProfile(String email, String fullName, String phoneNumber, String address,
