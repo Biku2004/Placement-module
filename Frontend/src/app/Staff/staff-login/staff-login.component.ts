@@ -33,22 +33,63 @@ export class StaffLoginComponent implements OnInit {
       role: ['', Validators.required]
     });
   }
+  // submitForm(): void {
+  //   if (this.loginForm.valid) {
+  //     this.isLoading = true;
+  //     const loginData = this.loginForm.value;
+  //     console.log('Form Values:', loginData);
+
+  //     this.service.login(loginData).subscribe(
+  //       (response: any) => {
+  //         console.log('Login Response:', response);
+  //         if (response && response.jwtToken) {
+  //           localStorage.setItem('jwt', response.jwtToken);
+  //           // localStorage.setItem('name', response.name);
+  //           // localStorage.setItem('role', response.role);
+  //           this.router.navigateByUrl('/staff-dashboard').then(() => {
+  //             this.isLoading = false;
+  //           });
+  //         } else {
+  //           console.error('JWT not found in response:', response);
+  //           alert('Login failed: JWT token not found in response.');
+  //           this.isLoading = false;
+  //         }
+  //       },
+  //       (error: any) => {
+  //         console.error('Login failed:', error);
+  //         alert('Login failed: ' + (error.error?.message || 'Unknown error'));
+  //         this.isLoading = false;
+  //       }
+  //     );
+  //   } else {
+  //     console.log('Form is invalid:', this.loginForm.errors);
+  //     alert('Please fill out all required fields correctly.');
+  //   }
+  // }
+  
   submitForm(): void {
     if (this.loginForm.valid) {
       this.isLoading = true;
       const loginData = this.loginForm.value;
-      console.log('Form Values:', loginData);
 
       this.service.login(loginData).subscribe(
         (response: any) => {
           console.log('Login Response:', response);
           if (response && response.jwtToken) {
             localStorage.setItem('jwt', response.jwtToken);
-            // localStorage.setItem('name', response.name);
-            // localStorage.setItem('role', response.role);
-            this.router.navigateByUrl('/staff-dashboard').then(() => {
+            const userDetails = this.service.getUserDetails();
+            if (userDetails) {
+              localStorage.setItem('name', userDetails.name);
+              localStorage.setItem('role', userDetails.role);
+              const redirectRoute = userDetails.role === 'Staff' ? '/staff-dashboard' : '/recruiter-dashboard'; // Adjust as needed
+              this.router.navigateByUrl(redirectRoute).then(() => {
+                this.isLoading = false;
+              });
+            } else {
+              console.error('Could not decode user details from JWT');
+              alert('Login failed: Unable to decode user details.');
               this.isLoading = false;
-            });
+            }
           } else {
             console.error('JWT not found in response:', response);
             alert('Login failed: JWT token not found in response.');

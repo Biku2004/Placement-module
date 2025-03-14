@@ -1,0 +1,14 @@
+.relative {
+    position: relative;
+  }
+  
+  .absolute {
+    top: 100%;
+  }
+  
+  @media (max-width: 640px) {
+    .absolute {
+      width: 100%;
+      right: 0;
+    }
+  }

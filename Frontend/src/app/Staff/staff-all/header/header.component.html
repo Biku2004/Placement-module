@@ -1,22 +1,54 @@
-<div class="flex justify-between items-center">
+<!-- <div class="flex justify-between items-center">
   <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-  <div class="flex items-center space-x-4">
+  <div class="flex items-center space-x-4"> -->
 
 
       <!-- header.component.html -->
-      <div *ngIf="name && role">
+      <!-- <div *ngIf="name && role">
         Welcome, {{ name }}! Your role is {{ role }}.
-      </div>
+      </div> -->
 
 
     <!-- <div *ngIf="user">
       <p class="text-gray-700">{{ user.name }}</p>
       <p class="text-gray-500 text-sm">{{ user.role }}</p>
     </div> -->
-    <img src="https://via.placeholder.com/50" alt="User" class="h-10 w-10 rounded-full">
+    <!-- <img src="https://via.placeholder.com/50" alt="User" class="h-10 w-10 rounded-full">
+  </div>
+</div> -->
+
+<div class="flex justify-between items-center p-4 bg-gray-100">
+  <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
+  <div class="flex items-center space-x-4">
+    <div *ngIf="name && role" class="text-gray-700">
+      Welcome, {{ name }}! Your role is {{ role }}.
+    </div>
+    <div class="relative">
+      <img
+        [src]="profilePhoto"
+        alt="User"
+        class="h-10 w-10 rounded-full cursor-pointer hover:opacity-80"
+        (click)="toggleDropdown()"
+      />
+      <div
+        *ngIf="isDropdownOpen"
+        class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-10"
+      >
+        <button
+          (click)="editProfile()"
+          class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+        >
+          Edit Profile
+        </button>
+        <button
+          (click)="logout()"
+          class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
   </div>
 </div>
-
-
 
 

@@ -46,10 +46,13 @@
               </select>
             </div>
             
-            <div>
+            <!-- <div>
                 <a href=""><button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700" 
                 [disabled]="loginForm.invalid! || isLoading">Sign in</button></a>
-            </div>
+            </div> -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700" [disabled]="loginForm.invalid || isLoading">
+              {{ isLoading ? 'Signing in...' : 'Sign in' }}
+            </button>
   
           </form>
           
