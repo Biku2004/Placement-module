@@ -71,6 +71,7 @@ export class StaffLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.isLoading = true;
       const loginData = this.loginForm.value;
+      console.log('Form Submitted Data:', loginData); // Log form input
 
       this.service.login(loginData).subscribe(
         (response: any) => {
@@ -78,14 +79,37 @@ export class StaffLoginComponent implements OnInit {
           if (response && response.jwtToken) {
             localStorage.setItem('jwt', response.jwtToken);
             const userDetails = this.service.getUserDetails();
+            console.log('User Details from JWT:', userDetails); // Log decoded JWT
+
             if (userDetails) {
               localStorage.setItem('name', userDetails.name);
               localStorage.setItem('role', userDetails.role);
-              const redirectRoute = userDetails.role === 'Staff' ? '/staff-dashboard' : '/recruiter-dashboard'; // Adjust as needed
+
+              console.log('Redirecting based on role:', userDetails.role); // Log role before redirect
+
+              // const redirectRoute = userDetails.role === 'Staff' ? '/staff-dashboard' : '/recruiter-dashboard'; // Adjust as needed
+              let redirectRoute: string;
+              switch (userDetails.role) {
+                case 'Staff':
+                  redirectRoute = '/staff-dashboard';
+                  break;
+                case 'Recruiter':
+                  redirectRoute = '/recruiter-dashboard';
+                  break;
+                default:
+                  console.error('Unknown role:', userDetails.role);
+                  alert('Unsupported role: ' + userDetails.role);
+                  this.isLoading = false;
+                  return;
+              }
+              
               this.router.navigateByUrl(redirectRoute).then(() => {
                 this.isLoading = false;
               });
-            } else {
+            }
+            
+            
+            else {
               console.error('Could not decode user details from JWT');
               alert('Login failed: Unable to decode user details.');
               this.isLoading = false;
