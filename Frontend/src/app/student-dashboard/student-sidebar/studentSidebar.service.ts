@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SidebarService {
+export class StudentSidebarService {
   private selectedItemsSubject = new BehaviorSubject<string[]>(this.loadSelectedItems());
   selectedItems$ = this.selectedItemsSubject.asObservable();
 

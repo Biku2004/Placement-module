@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruiterService } from './recruiter.service';
-import { CompanyService } from '../Staff/staff-all/create-company/company.service';
+import { CompanyService } from '../create-company/company.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

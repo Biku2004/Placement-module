@@ -11,7 +11,7 @@ import { RecentActivityComponent } from './recent-activity/recent-activity.compo
 import { TasksComponent } from './tasks/tasks.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { CreateCompanyComponent } from './create-company/create-company.component';
-import { RecruiterComponent } from '../../recruiter/recruiter.component';
+import { RecruiterComponent } from './recruiter/recruiter.component';
 import { TaskCreatorComponent } from '../staff-all/tasks/task-creator/task-creator.component';
 // import { UserDetailsComponent } from '../staff-all/header/user-details.component';
 // import { AuthService } from '../../service/auth.service';
