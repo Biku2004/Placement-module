@@ -1,1 +1,35 @@
-<app-sidebar />
+<div class="flex min-h-screen bg-gray-100">
+
+    <div class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg">
+      <app-student-sidebar></app-student-sidebar>
+    </div>
+  
+    <div class="flex-1 ml-64 p-6">
+  
+      <app-student-header></app-student-header>
+  
+      <p class="text-gray-500 text-right mt-2">{{ currentDate | date:'fullDate' }} {{ currentDate | date:'shortTime' }}</p>
+    
+    
+      <div class="grid  gap-4 mt-6">
+        <div class="">
+          <app-job-portal class=""></app-job-portal>
+          <!-- <app-progress-dashboard></app-progress-dashboard> -->
+        </div>
+      </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+    <div class="mt-4">
+      <!-- <app-preparation-resources></app-preparation-resources> -->
+      <!-- <app-notifications></app-notifications> -->
+    </div>
+  </div>
+  

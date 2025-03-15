@@ -1,0 +1,14 @@
+<div class="p-4 bg-white rounded-lg shadow mt-2">
+    <h3 class="text-xl font-semibold mb-2">Progress Dashboard</h3>
+    <div class="grid grid-cols-3 gap-4">
+      <div>Applications: {{ progress.applications }}</div>
+      <div>Interviews: {{ progress.interviews }}</div>
+      <div>Offers: {{ progress.offers }}</div>
+    </div>
+    <div class="mt-4">
+      <h4 class="font-semibold">Recruiter Feedback</h4>
+      <div *ngFor="let feedback of progress.feedback" class="p-2 border rounded">
+        {{ feedback }}
+      </div>
+    </div>
+  </div>

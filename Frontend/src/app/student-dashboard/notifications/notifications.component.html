@@ -1,0 +1,6 @@
+<div class="p-4 bg-gray-100 rounded-lg shadow">
+    <h3 class="text-xl font-semibold mb-2">Notifications</h3>
+    <div *ngFor="let notification of notifications" class="p-2 border rounded mb-2">
+      {{ notification.message }} - {{ notification.date | date }}
+    </div>
+  </div>

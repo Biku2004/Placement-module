@@ -18,6 +18,9 @@ import {LearningComponent} from "./learning/learning.component";
 import {AboutComponent} from "./about/about.component";
 import { StaffEditProfileComponent } from './Staff/staff-all/staff-edit-profile/staff-edit-profile.component';
 import { JobPortalComponent } from './job-portal/job-portal.component';
+import { ApplyJobComponent } from './student-dashboard/job-portal/apply-job/apply-job.component';
+import { AppliedJobsComponent } from './student-dashboard/job-portal/applied-jobs/applied-jobs.component';
+
 
 export const routes: Routes = [
   // {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
@@ -36,8 +39,10 @@ export const routes: Routes = [
   {path: 'create-job', component: CreateJobsComponent},
   {path: 'contactus', component: ContactusComponent},
   {path: 'learning', component: LearningComponent},
-  { path: 'about', component: AboutComponent },
-  { path: 'staff-edit-profile', component: StaffEditProfileComponent },
-  {path:'job-portal',component:JobPortalComponent},
-  { path: '', redirectTo: 'about', pathMatch: 'full' }
+  {path: 'about', component: AboutComponent },
+  {path: 'staff-edit-profile', component: StaffEditProfileComponent },
+  {path: 'job-portal',component:JobPortalComponent},
+  {path: 'apply-job',component:ApplyJobComponent},
+  {path: 'applied-jobs',component:AppliedJobsComponent},
+  {path: '', redirectTo: 'about', pathMatch: 'full' }
 ];
