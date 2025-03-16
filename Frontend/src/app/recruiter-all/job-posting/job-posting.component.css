@@ -1,0 +1,33 @@
+/* src/styles.css or src/app/Staff/staff-all/create-jobs.component.css */
+.resizable {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .resizer {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border: 1px solid #333;
+    position: absolute;
+    cursor: pointer;
+  }
+  
+  
+  .resizer.right {
+    right: -5px;
+    top: 50%;
+    cursor: e-resize;
+  }
+  
+  .resizer.bottom {
+    bottom: -5px;
+    left: 50%;
+    cursor: s-resize;
+  }
+  
+  .resizer.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+  }

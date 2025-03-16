@@ -52,7 +52,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { JobService } from '../../Staff/staff-all/create-jobs/job.service';
+import { JobPostingService } from './job-posting.service';
 import { JwtService } from '../../service/jwt.service';
 
 
@@ -64,7 +64,7 @@ import { JwtService } from '../../service/jwt.service';
   styleUrl: './job-posting.component.css'
 })
 export class JobPostingComponent implements AfterViewInit {
-  jobPost: any = {
+  jobPosting: any = {
     companyName: '',
     website: '',
     companyProfile: '',
@@ -83,37 +83,37 @@ export class JobPostingComponent implements AfterViewInit {
     expectedSkillsTools: '',
     additionalSections: [],
   };
-  jobPosts: any[] = [];
+  jobPostings: any[] = [];
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
   private defaultWidth = 800;
   private defaultHeight = 400;
   selectedJob: any = null;
 
-  constructor(private jobService: JobService, private jwtService: JwtService) {
-    this.loadJobPosts();
+  constructor(private jobService: JobPostingService, private jwtService: JwtService) {
+    this.loadJobPostings();
   }
 
-  loadJobPosts() {
-    this.jobService.getJobPosts().subscribe(
-      (data) => (this.jobPosts = data.map((job: any) => ({ ...job, selected: false }))),
-      (error) => console.error('Error loading job posts:', error)
+  loadJobPostings() {
+    this.jobService.getAllJobPostings().subscribe(
+      (data) => (this.jobPostings = data.map((job: any) => ({ ...job, selected: false }))),
+      (error) => console.error('Error loading job postings:', error)
     );
   }
 
   onSubmit() {
     if (this.selectedJob) {
-      this.jobService.updateJobPost(this.jobPost).subscribe(
+      this.jobService.updateJobPosting(this.jobPosting).subscribe(
         () => {
-          this.loadJobPosts();
+          this.loadJobPostings();
           this.resetForm();
           alert('Job updated successfully');
         },
         (error) => console.error('Error updating job:', error)
       );
     } else {
-      this.jobService.createJobPost(this.jobPost).subscribe(
+      this.jobService.createJobPosting(this.jobPosting).subscribe(
         () => {
-          this.loadJobPosts();
+          this.loadJobPostings();
           this.resetForm();
           alert('Job created successfully');
         },
@@ -123,7 +123,7 @@ export class JobPostingComponent implements AfterViewInit {
   }
 
   resetForm() {
-    this.jobPost = {
+    this.jobPosting = {
       companyName: '',
       website: '',
       companyProfile: '',
@@ -146,29 +146,46 @@ export class JobPostingComponent implements AfterViewInit {
   }
 
   addSection() {
-    this.jobPost.additionalSections.push({ label: '', value: '' });
+    this.jobPosting.additionalSections.push({ label: '', value: '' });
   }
 
   editJob(job: any) {
     const userEmail = this.jwtService.getUserDetails()?.email;
     if (job.createdBy === userEmail) {
       this.selectedJob = job;
-      this.jobPost = { ...job };
+      this.jobPosting = { ...job };
     }
   }
 
   deleteSelected() {
-    const selectedJobs = this.jobPosts.filter((job) => job.selected);
+    const selectedJobs = this.jobPostings.filter((job) => job.selected);
     selectedJobs.forEach((job) =>
-      this.jobService.deleteJobPost(job.id).subscribe(
-        () => this.loadJobPosts(),
+      this.jobService.deleteJobPosting(job.id).subscribe(
+        () => this.loadJobPostings(),
         (error) => console.error('Error deleting job:', error)
       )
     );
   }
 
+  sendToStaff() {
+    const selectedJobs = this.jobPostings.filter((job) => job.selected);
+    if (selectedJobs.length === 0) {
+      alert('Please select at least one job posting to send to staff.');
+      return;
+    }
+    selectedJobs.forEach((job) =>
+      this.jobService.sendJobPostingToStaff(job.id).subscribe(
+        () => {
+          alert(`Job posting "${job.jobRole}" sent to staff for approval`);
+          this.loadJobPostings(); // Refresh to show updated status
+        },
+        (error) => console.error('Error sending job to staff:', error)
+      )
+    );
+  }
+
   reloadData() {
-    this.loadJobPosts();
+    this.loadJobPostings();
   }
 
   resetSize() {
@@ -178,7 +195,7 @@ export class JobPostingComponent implements AfterViewInit {
   }
 
   toggleSelectAll(event: any) {
-    this.jobPosts.forEach((job) => (job.selected = event.target.checked));
+    this.jobPostings.forEach((job) => (job.selected = event.target.checked));
   }
 
   ngAfterViewInit() {

@@ -3,9 +3,16 @@
     <h2 class="text-2xl font-bold mb-4">Create Job Post</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="grid grid-cols-2 gap-4">
-        <div>
+        <!-- <div>
           <label class="block text-gray-700">Company Name</label>
           <input type="text" [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required />
+        </div> -->
+        <div>
+          <label class="block text-gray-700">Company Name</label>
+          <select [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required (change)="onCompanySelect($event)">
+            <option value="">Select a Company</option>
+            <option *ngFor="let company of companies" [value]="company.name">{{ company.name }}</option>
+          </select>
         </div>
         <div>
           <label class="block text-gray-700">Website</label>

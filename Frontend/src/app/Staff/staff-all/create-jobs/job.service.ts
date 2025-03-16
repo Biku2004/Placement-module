@@ -24,6 +24,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Company } from './models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -72,4 +73,7 @@ export class JobService {
     });
     return this.http.post<any>(`${this.apiUrl}/${id}/send`, {}, { headers });
   }
+
+
+
 }

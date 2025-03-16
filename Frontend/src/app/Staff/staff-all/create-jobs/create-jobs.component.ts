@@ -5,6 +5,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { JobService } from './job.service';
 import { CommonModule } from '@angular/common';
 import { JobModalComponent } from './job-modal/job-modal.component';
+import { Company } from './models/company';
+import { JobPost } from './models/job-post';
+// import { CompanyService } from '../create-company/company.service';
+import { CompanyDropService } from './companyDrop.service';
+
 interface AdditionalSection {
   label: string;
   value: string;
@@ -42,7 +47,9 @@ export class CreateJobsComponent implements OnInit{
     // additionalSections: {} as { [key: string]: string }
     // additionalSections:[] as [] as AdditionalSection[]
   };
+
   jobPosts: any[] = [];
+  companies: Company[] = [];
   selectedJob: any = null;
   additionalSectionHeaders: string[] = [];
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
@@ -52,9 +59,9 @@ export class CreateJobsComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private jobService: JobService,
+    private companyService: CompanyDropService
   ) {}
 
-  
 
 
   ngAfterViewInit(): void {
@@ -75,6 +82,7 @@ export class CreateJobsComponent implements OnInit{
       response => {
         console.log('Job post created:', response);
         this.loadJobPosts(); // Reload job posts after creating a new one
+        this.resetForm();
         this.jobPost = {
           companyName: '',
           website: '',
@@ -118,6 +126,28 @@ export class CreateJobsComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadJobPosts();
+    this.loadCompanies(); // Fetch companies on init
+  }
+
+  loadCompanies(): void {
+    this.companyService.getCompanies().subscribe(
+      (data) => {
+        this.companies = data;
+      },
+      (error) => {
+        console.error('Error fetching companies:', error);
+      }
+    );
+  }
+
+  onCompanySelect(event: Event): void {
+    const selectedCompanyName = (event.target as HTMLSelectElement).value;
+    const selectedCompany = this.companies.find(company => company.name === selectedCompanyName);
+    if (selectedCompany) {
+      // Optionally prefill related fields
+      this.jobPost.website = selectedCompany.website || '';
+      this.jobPost.companyProfile = selectedCompany.description || '';
+    }
   }
 
   loadJobPosts(): void {
@@ -125,6 +155,7 @@ export class CreateJobsComponent implements OnInit{
       this.jobPosts = data;
     });
   }
+
 
   reloadData(): void {
     this.loadJobPosts();
@@ -207,6 +238,29 @@ export class CreateJobsComponent implements OnInit{
   closeModal(): void {
     this.selectedJob = null;
     this.loadJobPosts(); // Reload job posts to reflect any changes
+  }
+
+
+  resetForm(): void {
+    this.jobPost = {
+      companyName: '',
+      website: '',
+      companyProfile: '',
+      eligibleCourses: '',
+      batchYear: '',
+      jobRole: '',
+      jobLocation: '',
+      annualCTC: '',
+      rolesResponsibilities: '',
+      skillsQualifications: '',
+      selectionProcess: '',
+      registrationProcess: '',
+      lastDateToRegister: '',
+      benefitsIncentives: '',
+      roleDetails: '',
+      expectedSkillsTools: '',
+      additionalSections: []
+    };
   }
 
 

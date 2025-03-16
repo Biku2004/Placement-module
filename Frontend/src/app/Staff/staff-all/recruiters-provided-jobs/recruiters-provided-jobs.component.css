@@ -1,0 +1,19 @@
+.company-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Fixed height for consistency */
+  }
+  
+  .job-card {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .job-card:hover {
+    background-color: #f9fafb;
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+  }

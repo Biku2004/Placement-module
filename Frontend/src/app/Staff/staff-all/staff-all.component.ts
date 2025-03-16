@@ -13,6 +13,8 @@ import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { RecruiterComponent } from './recruiter/recruiter.component';
 import { TaskCreatorComponent } from '../staff-all/tasks/task-creator/task-creator.component';
+import { RecruiterProvidedComponent } from './recruiters-provided-jobs/recruiters-provided-jobs.component';
+
 // import { UserDetailsComponent } from '../staff-all/header/user-details.component';
 // import { AuthService } from '../../service/auth.service';
 
@@ -31,7 +33,8 @@ import { TaskCreatorComponent } from '../staff-all/tasks/task-creator/task-creat
     CreateCompanyComponent,
     RecruiterComponent,
     TaskCreatorComponent,
-  ],
+    RecruiterProvidedComponent
+],
   templateUrl: './staff-all.component.html',
   styleUrl: './staff-all.component.css',
 })
