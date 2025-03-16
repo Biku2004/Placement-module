@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { SidebarService } from '../../Staff/staff-all/sidebar/sidebar.service';
 import { Router } from '@angular/router';
+
+
 @Component({
-  selector: 'app-student-sidebar',
+  selector: 'app-recruiter-sidebar',
   standalone: true,
   imports: [],
-  templateUrl: './student-sidebar.component.html',
-  styleUrls: ['./student-sidebar.component.css']
+  templateUrl: './recruiter-sidebar.component.html',
+  styleUrl: './recruiter-sidebar.component.css'
 })
-export class StudentSidebarComponent {
-  selectedItems$ = this.sidebarService.selectedItems$;
+export class RecruiterSidebarComponent {
+selectedItems$ = this.sidebarService.selectedItems$;
 
   constructor(
     private sidebarService: SidebarService,
@@ -28,5 +30,4 @@ export class StudentSidebarComponent {
     });
     return isSelected;
   }
-  
 }

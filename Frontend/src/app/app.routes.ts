@@ -20,6 +20,14 @@ import { StaffEditProfileComponent } from './Staff/staff-all/staff-edit-profile/
 import { JobPortalComponent } from './job-portal/job-portal.component';
 import { ApplyJobComponent } from './student-dashboard/job-portal/apply-job/apply-job.component';
 import { AppliedJobsComponent } from './student-dashboard/job-portal/applied-jobs/applied-jobs.component';
+import { JobPostingComponent } from './recruiter-all/job-posting/job-posting.component';
+import { JobListComponent } from './recruiter-all/job-listing/job-listing.component';
+import { StudentSearchComponent } from './recruiter-all/student-search/student-search.component';
+import { InterviewSchedulerComponent } from './recruiter-all/interview-scheduler/interview-scheduler.component';
+import { AnalyticsComponent } from './recruiter-all/analytics/analytics.component';
+import { CommunicationComponent } from './recruiter-all/communication/communication.component';
+import { ResourcesComponent } from './recruiter-all/resources/resources.component';
+import { RecruiterAllComponent } from './recruiter-all/recruiter-all.component';
 
 
 export const routes: Routes = [
@@ -44,5 +52,13 @@ export const routes: Routes = [
   {path: 'job-portal',component:JobPortalComponent},
   {path: 'apply-job',component:ApplyJobComponent},
   {path: 'applied-jobs',component:AppliedJobsComponent},
+  {path: 'recruiter/jobs/post', component: JobPostingComponent },
+  {path: 'recruiter/jobs', component: JobListComponent },
+  {path: 'recruiter/students', component: StudentSearchComponent },
+  {path: 'recruiter/interviews', component: InterviewSchedulerComponent },
+  {path: 'recruiter/analytics', component: AnalyticsComponent },
+  {path: 'recruiter/communication', component: CommunicationComponent },
+  {path: 'recruiter/resources', component: ResourcesComponent },
+  {path: 'recruiter-dashboard', component: RecruiterAllComponent},
   {path: '', redirectTo: 'about', pathMatch: 'full' }
 ];
