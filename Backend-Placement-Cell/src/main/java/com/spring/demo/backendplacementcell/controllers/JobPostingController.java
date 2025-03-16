@@ -1,5 +1,5 @@
 package com.spring.demo.backendplacementcell.controllers;
-//recruiter can create, update, delete job postings
+
 import com.spring.demo.backendplacementcell.entities.JobPosting;
 import com.spring.demo.backendplacementcell.services.JobPostingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +17,51 @@ public class JobPostingController {
     private JobPostingService jobPostingService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('Recruiter')")
-    public List<JobPosting> getJobPostings(Principal principal) {
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    public List<JobPosting> getAllJobPostings(Principal principal) {
         return jobPostingService.getJobPostingsForRecruiter(principal.getName());
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('Recruiter')")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
     public JobPosting createJobPosting(@RequestBody JobPosting jobPosting, Principal principal) {
         return jobPostingService.createJobPosting(jobPosting, principal.getName());
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('Recruiter')")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
     public JobPosting updateJobPosting(@PathVariable Long id, @RequestBody JobPosting jobPosting, Principal principal) {
         return jobPostingService.updateJobPosting(id, jobPosting, principal.getName());
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('Recruiter')")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
     public void deleteJobPosting(@PathVariable Long id, Principal principal) {
         jobPostingService.deleteJobPosting(id, principal.getName());
+    }
+
+    @PostMapping("/{id}/send-to-staff")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    public JobPosting sendJobPostingToStaff(@PathVariable Long id, Principal principal) {
+        return jobPostingService.sendJobPostingToStaff(id, principal.getName());
+    }
+
+
+    @PutMapping("/{id}/approve")
+    @PreAuthorize("hasAuthority('Staff')")
+    public JobPosting approveJobPosting(@PathVariable Long id) {
+        return jobPostingService.approveJobPosting(id);
+    }
+
+    @PutMapping("/{id}/reject")
+    @PreAuthorize("hasAuthority('Staff')")
+    public JobPosting rejectJobPosting(@PathVariable Long id) {
+        return jobPostingService.rejectJobPosting(id);
+    }
+
+    @PostMapping("/{id}/send-to-students")
+    @PreAuthorize("hasAuthority('Staff')")
+    public JobPosting sendJobPostingToStudents(@PathVariable Long id) {
+        return jobPostingService.sendJobPostingToStudents(id);
     }
 }

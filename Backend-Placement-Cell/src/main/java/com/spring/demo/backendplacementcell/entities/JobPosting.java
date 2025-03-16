@@ -27,6 +27,9 @@ public class JobPosting {
     private String expectedSkillsTools;
     private String createdBy;
 
+    @Column(nullable = false)
+    private String status = "DRAFT"; // Default to "DRAFT"
+
     @ElementCollection
     private List<AdditionalSection> additionalSections;
 
@@ -202,5 +205,13 @@ public class JobPosting {
 
     public void setAdditionalSections(List<AdditionalSection> additionalSections) {
         this.additionalSections = additionalSections;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

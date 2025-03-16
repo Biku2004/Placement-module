@@ -54,7 +54,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('Recruiter')") // Only Recruiters can create
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
     public Company createCompany(@RequestBody Company company, Principal principal) {
         return companyService.createCompany(company, principal.getName());
     }

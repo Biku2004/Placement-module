@@ -55,7 +55,9 @@ public class WebSecurityConfiguration {
                         .requestMatchers("/signup", "/login").permitAll()
                         .requestMatchers("/api/staff/**").hasAuthority("Staff")
                         .requestMatchers("/api/companies/**").hasAnyAuthority("Recruiter", "Staff")
+                        .requestMatchers("/api/companies").hasAnyAuthority("Recruiter", "Staff")
                         .requestMatchers("/api/tasks/**").hasAnyAuthority("Student", "Staff", "Recruiter")
+                        .requestMatchers("/api/recruiter/**").hasAnyAuthority("Student", "Staff", "Recruiter")
                         .requestMatchers("/api/interviews/**").hasAnyAuthority("Student", "Staff", "Recruiter")
                         .requestMatchers(HttpMethod.GET, "/api/jobs/**").hasAnyAuthority("Student", "Staff", "Recruiter") // Students can only GET
                         .requestMatchers(HttpMethod.POST, "/api/jobs/*/apply").hasAuthority("Student") // Students can apply

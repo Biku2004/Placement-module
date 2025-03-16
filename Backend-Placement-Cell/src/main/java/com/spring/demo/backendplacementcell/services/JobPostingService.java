@@ -19,6 +19,7 @@ public class JobPostingService {
 
     public JobPosting createJobPosting(JobPosting jobPosting, String email) {
         jobPosting.setCreatedBy(email);
+        jobPosting.setStatus("DRAFT"); // Ensure new postings start as DRAFT
         return jobPostingRepository.save(jobPosting);
     }
 
@@ -46,6 +47,7 @@ public class JobPostingService {
         existing.setExpectedSkillsTools(jobPosting.getExpectedSkillsTools());
         existing.setAdditionalSections(jobPosting.getAdditionalSections());
         existing.setCreatedBy(existing.getCreatedBy()); // Preserve creator
+        // Status remains unchanged unless explicitly sent to staff
         return jobPostingRepository.save(existing);
     }
 
@@ -56,5 +58,54 @@ public class JobPostingService {
             throw new RuntimeException("You can only delete your own job postings");
         }
         jobPostingRepository.deleteById(id);
+    }
+
+    public JobPosting sendJobPostingToStaff(Long id, String email) {
+        JobPosting jobPosting = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
+        if (!jobPosting.getCreatedBy().equals(email)) {
+            throw new RuntimeException("You can only send your own job postings to staff");
+        }
+        if (!"DRAFT".equals(jobPosting.getStatus())) {
+            throw new RuntimeException("Only draft job postings can be sent to staff");
+        }
+        jobPosting.setStatus("PENDING");
+        return jobPostingRepository.save(jobPosting);
+    }
+
+    // New Staff Methods
+    public List<JobPosting> getAllJobPostings() {
+        return jobPostingRepository.findAll(); // Staff can see all job postings
+    }
+
+    public JobPosting approveJobPosting(Long id) {
+        JobPosting jobPosting = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
+        if (!"PENDING".equals(jobPosting.getStatus())) {
+            throw new RuntimeException("Only pending job postings can be approved");
+        }
+        jobPosting.setStatus("APPROVED");
+        return jobPostingRepository.save(jobPosting);
+    }
+
+    public JobPosting rejectJobPosting(Long id) {
+        JobPosting jobPosting = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
+        if (!"PENDING".equals(jobPosting.getStatus())) {
+            throw new RuntimeException("Only pending job postings can be rejected");
+        }
+        jobPosting.setStatus("REJECTED");
+        return jobPostingRepository.save(jobPosting);
+    }
+
+    public JobPosting sendJobPostingToStudents(Long id) {
+        JobPosting jobPosting = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
+        if (!"APPROVED".equals(jobPosting.getStatus())) {
+            throw new RuntimeException("Only approved job postings can be sent to students");
+        }
+        jobPosting.setStatus("SENT");
+        return jobPostingRepository.save(jobPosting);
+        // Add logic here to notify students (e.g., email service) if needed
     }
 }
