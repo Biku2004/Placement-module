@@ -1,8 +1,7 @@
 package com.spring.demo.backendplacementcell.entities;
 
-//Done By Recuiter
-
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "job_postings")
@@ -10,21 +9,48 @@ public class JobPosting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String companyName;
+    private String website;
+    private String companyProfile;
+    private String eligibleCourses;
+    private String batchYear;
+    private String jobRole;
+    private String jobLocation;
+    private String annualCTC;
+    private String rolesResponsibilities;
+    private String skillsQualifications;
+    private String selectionProcess;
+    private String registrationProcess;
+    private String lastDateToRegister;
+    private String benefitsIncentives;
+    private String roleDetails;
+    private String expectedSkillsTools;
+    private String createdBy;
 
-    private String title;
-    private String description;
-    private String eligibilityCriteria;
-    private String salary;
-    private String location;
-    private String applicationDeadline;
+    @ElementCollection
+    private List<AdditionalSection> additionalSections;
 
-    @ManyToOne
-    @JoinColumn(name = "recruiter_id")
-    private Recruiter recruiter;
+    @Embeddable
+    public static class AdditionalSection {
+        private String label;
+        private String value;
 
-    private String pdfUrl; // For uploaded job description
+        public String getLabel() {
+            return label;
+        }
 
-    // Getters and Setters
+        public void setLabel(String label) {
+            this.label = label;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -34,67 +60,147 @@ public class JobPosting {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
-    public String getEligibilityCriteria() {
-        return eligibilityCriteria;
+    public String getCompanyProfile() {
+        return companyProfile;
     }
 
-    public void setEligibilityCriteria(String eligibilityCriteria) {
-        this.eligibilityCriteria = eligibilityCriteria;
+    public void setCompanyProfile(String companyProfile) {
+        this.companyProfile = companyProfile;
     }
 
-    public String getSalary() {
-        return salary;
+    public String getEligibleCourses() {
+        return eligibleCourses;
     }
 
-    public void setSalary(String salary) {
-        this.salary = salary;
+    public void setEligibleCourses(String eligibleCourses) {
+        this.eligibleCourses = eligibleCourses;
     }
 
-    public String getLocation() {
-        return location;
+    public String getBatchYear() {
+        return batchYear;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setBatchYear(String batchYear) {
+        this.batchYear = batchYear;
     }
 
-    public String getApplicationDeadline() {
-        return applicationDeadline;
+    public String getJobRole() {
+        return jobRole;
     }
 
-    public void setApplicationDeadline(String applicationDeadline) {
-        this.applicationDeadline = applicationDeadline;
+    public void setJobRole(String jobRole) {
+        this.jobRole = jobRole;
     }
 
-    public Recruiter getRecruiter() {
-        return recruiter;
+    public String getJobLocation() {
+        return jobLocation;
     }
 
-    public void setRecruiter(Recruiter recruiter) {
-        this.recruiter = recruiter;
+    public void setJobLocation(String jobLocation) {
+        this.jobLocation = jobLocation;
     }
 
-    public String getPdfUrl() {
-        return pdfUrl;
+    public String getAnnualCTC() {
+        return annualCTC;
     }
 
-    public void setPdfUrl(String pdfUrl) {
-        this.pdfUrl = pdfUrl;
+    public void setAnnualCTC(String annualCTC) {
+        this.annualCTC = annualCTC;
+    }
+
+    public String getRolesResponsibilities() {
+        return rolesResponsibilities;
+    }
+
+    public void setRolesResponsibilities(String rolesResponsibilities) {
+        this.rolesResponsibilities = rolesResponsibilities;
+    }
+
+    public String getSkillsQualifications() {
+        return skillsQualifications;
+    }
+
+    public void setSkillsQualifications(String skillsQualifications) {
+        this.skillsQualifications = skillsQualifications;
+    }
+
+    public String getSelectionProcess() {
+        return selectionProcess;
+    }
+
+    public void setSelectionProcess(String selectionProcess) {
+        this.selectionProcess = selectionProcess;
+    }
+
+    public String getRegistrationProcess() {
+        return registrationProcess;
+    }
+
+    public void setRegistrationProcess(String registrationProcess) {
+        this.registrationProcess = registrationProcess;
+    }
+
+    public String getLastDateToRegister() {
+        return lastDateToRegister;
+    }
+
+    public void setLastDateToRegister(String lastDateToRegister) {
+        this.lastDateToRegister = lastDateToRegister;
+    }
+
+    public String getBenefitsIncentives() {
+        return benefitsIncentives;
+    }
+
+    public void setBenefitsIncentives(String benefitsIncentives) {
+        this.benefitsIncentives = benefitsIncentives;
+    }
+
+    public String getRoleDetails() {
+        return roleDetails;
+    }
+
+    public void setRoleDetails(String roleDetails) {
+        this.roleDetails = roleDetails;
+    }
+
+    public String getExpectedSkillsTools() {
+        return expectedSkillsTools;
+    }
+
+    public void setExpectedSkillsTools(String expectedSkillsTools) {
+        this.expectedSkillsTools = expectedSkillsTools;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public List<AdditionalSection> getAdditionalSections() {
+        return additionalSections;
+    }
+
+    public void setAdditionalSections(List<AdditionalSection> additionalSections) {
+        this.additionalSections = additionalSections;
     }
 }

@@ -44,7 +44,7 @@ import java.util.List;
 //        jobPostService.sendJobPostToStudents(id);
 //    }
 //}
-
+//For Staff
 @RestController
 @RequestMapping("/api/jobs")
 @CrossOrigin(origins = {"http://localhost:4200","https://placement-cell-cutm.netlify.app/"})
