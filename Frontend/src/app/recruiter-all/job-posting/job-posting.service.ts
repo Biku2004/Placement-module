@@ -39,7 +39,7 @@ export class JobPostingService {
 
     // Staff Methods
     getAllJobPostings(): Observable<any[]> {
-      return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
+      return this.http.get<any[]>(`${this.apiUrl}/staff`, { headers: this.getHeaders() });
     }
   
     approveJobPosting(id: number): Observable<any> {

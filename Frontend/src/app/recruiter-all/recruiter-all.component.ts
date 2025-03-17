@@ -6,7 +6,7 @@ import { CommunicationComponent } from './communication/communication.component'
 import { ResourcesComponent } from './resources/resources.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
 import { JobPostingComponent } from './job-posting/job-posting.component';
-
+import { HeaderComponent } from '../Staff/staff-all/header/header.component';
 import { RecruiterSidebarComponent } from './recruiter-sidebar/recruiter-sidebar.component';
 
 
@@ -19,7 +19,8 @@ import { RecruiterSidebarComponent } from './recruiter-sidebar/recruiter-sidebar
     ResourcesComponent,
     StudentSearchComponent,
     JobPostingComponent,
-    RecruiterSidebarComponent
+    RecruiterSidebarComponent,
+    HeaderComponent
   ],
   templateUrl: './recruiter-all.component.html',
   styleUrl: './recruiter-all.component.css'
