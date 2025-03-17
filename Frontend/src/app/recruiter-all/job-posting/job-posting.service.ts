@@ -37,21 +37,36 @@ export class JobPostingService {
 
 
 
-    // Staff Methods
-    getAllJobPostings(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.apiUrl}/staff`, { headers: this.getHeaders() });
+  // Staff Methods
+  getAllJobPostings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/staff`, { headers: this.getHeaders() });
+  }
+
+  approveJobPosting(id: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}/approve`, {}, { headers: this.getHeaders() });
+  }
+
+  rejectJobPosting(id: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}/reject`, {}, { headers: this.getHeaders() });
+  }
+
+  sendJobPostingToStudents(id: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${id}/send-to-students`, {}, { headers: this.getHeaders() });
+  }
+
+    // New methods for student applications
+    applyToJobPosting(id: number): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/${id}/apply`, {}, { headers: this.getHeaders() });
     }
   
-    approveJobPosting(id: number): Observable<any> {
-      return this.http.put<any>(`${this.apiUrl}/${id}/approve`, {}, { headers: this.getHeaders() });
+    getMyApplications(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/my-applications`, { headers: this.getHeaders() });
     }
   
-    rejectJobPosting(id: number): Observable<any> {
-      return this.http.put<any>(`${this.apiUrl}/${id}/reject`, {}, { headers: this.getHeaders() });
+    getJobPostingApplications(id: number): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/${id}/applications`, { headers: this.getHeaders() });
     }
-  
-    sendJobPostingToStudents(id: number): Observable<any> {
-      return this.http.post<any>(`${this.apiUrl}/${id}/send-to-students`, {}, { headers: this.getHeaders() });
-    }
+
+
 
 }

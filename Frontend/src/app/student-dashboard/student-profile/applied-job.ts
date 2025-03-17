@@ -1,15 +1,13 @@
 export interface AppliedJob {
-    jobId: number;
-    companyName: string;
-    jobRole: string;
-    logo: string;
-    applicationDate: string; // Date when applied
-    status: string;          // e.g., "Submitted", "Viva Round", "Assessment Round", "Rejected", "Offer Received"
-    rounds: Round[];         // List of rounds with their status
-  }
-  
-  export interface Round {
-    name: string;            // e.g., "Viva Round", "Assessment Round"
-    status: string;          // e.g., "Pending", "Opened", "Completed", "Failed"
-    date?: string;           // Optional date of the round
-  }
+  jobPostId: number;         // Updated from jobId, maps to JobApplication.jobPostId
+  companyName: string;       // Maps to JobApplication.companyName
+  jobRole: string;           // Maps to JobApplication.jobRole
+  logo: string;              // Placeholder (not in JobApplication, set in frontend)
+  applicationDate: string;   // Maps to JobApplication.applicationDate (converted to string)
+  status: string;            // Maps to JobApplication.status
+  rounds: {
+    name: string;            // Maps to JobApplication.Round.name
+    status: string;          // Maps to JobApplication.Round.status
+    date?: string;           // Maps to JobApplication.Round.date (optional)
+  }[];
+}

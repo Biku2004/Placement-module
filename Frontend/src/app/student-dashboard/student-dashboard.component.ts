@@ -6,6 +6,8 @@ import { SidebarService } from '../Staff/staff-all/sidebar/sidebar.service';
 import { JobPortalComponent } from './job-portal/job-portal.component';
 import { ProgressDashboardComponent } from './progress-dashboard/progress-dashboard.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AppliedJobsComponent } from "./job-portal/applied-jobs/applied-jobs.component";
+import { ApplyJobComponent } from "./job-portal/apply-job/apply-job.component";
 
 @Component({
   selector: 'app-student-dashboard',
@@ -15,8 +17,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     CommonModule,
     JobPortalComponent,
     ProgressDashboardComponent,
-    NotificationsComponent
-  ],
+    NotificationsComponent, AppliedJobsComponent, ApplyJobComponent],
   templateUrl: './student-dashboard.component.html',
   styleUrl: './student-dashboard.component.css'
 })

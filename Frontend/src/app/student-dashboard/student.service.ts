@@ -1,69 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { StudentProfile } from './student-profile/student-profile';
 import { Job } from './student-profile/job';
 import { Application } from './student-profile/application';
 import { AppliedJob } from './student-profile/applied-job';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  private apiUrl = 'http://your-api-url'; // Replace with your backend API
+  private apiUrl = 'http://localhost:8080/api/recruiter/jobs'; // Updated to match JobPostingController
 
   constructor(private http: HttpClient) {}
 
-  saveProfile(profile: StudentProfile): Observable<any> {
-    return this.http.post(`${this.apiUrl}/profile`, profile);
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwt');
+    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
 
+  // // Fetch all SENT job postings for students
   // getJobs(): Observable<Job[]> {
-  //   return this.http.get<Job[]>(`${this.apiUrl}/jobs`);
+  //   return this.http.get<Job[]>(this.apiUrl, { headers: this.getHeaders() });
   // }
 
-  getJobs(): Observable<Job[]> {
-    // Mock data for demonstration (replace with actual API call)
-    const mockJobs: Job[] = [
-      {
-        id: 1,
-        companyName: 'TechCorp',
-        jobRole: 'Software Engineer',
-        eligibleCourses: 'CSE, ECE',
-        lastDateToRegister: '2025-04-01',
-        salary: 800000,
-        branch: 'CSE',
-        location: 'Bangalore',
-        description: 'Develop scalable web applications.',
-        logo: 'https://via.placeholder.com/50',
-        type: 'Full-time'
-      },
-      {
-        id: 2,
-        companyName: 'InnoSoft',
-        jobRole: 'Data Analyst Intern',
-        eligibleCourses: 'CSE, ME',
-        lastDateToRegister: '2025-03-20',
-        salary: 300000,
-        branch: 'CSE',
-        location: 'Pune',
-        description: 'Analyze data and generate insights.',
-        logo: 'https://via.placeholder.com/50',
-        type: 'Internship'
-      }
-    ];
-    return of(mockJobs); // Replace with: this.http.get<Job[]>(`${this.apiUrl}/jobs`);
-  }
-
+  // Fetch a specific job by ID (if needed)
   getJobById(id: number): Observable<Job> {
-    return this.http.get<Job>(`${this.apiUrl}/jobs/${id}`);
-    // For mock: return of(mockJobs.find(job => job.id === id)!);
+    return this.http.get<Job>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 
+  // Submit an application to a job posting
   submitApplication(application: Application): Observable<any> {
     const formData = new FormData();
-    formData.append('jobId', application.jobId.toString());
+    formData.append('jobId', application.jobPostId.toString()); // Changed from jobId to jobPostId
     formData.append('name', application.name);
     formData.append('address', application.address);
     formData.append('college', application.college);
@@ -77,12 +46,20 @@ export class StudentService {
     formData.append('email', application.email);
     formData.append('achievements', application.achievements);
 
-    return this.http.post(`${this.apiUrl}/apply`, formData);
+    return this.http.post(`${this.apiUrl}/${application.jobPostId}/apply`, formData, { headers: this.getHeaders() });
+  }
+  // Simple apply action (if detailed form isn’t needed)
+  applyToJob(jobId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${jobId}/apply`, {}, { headers: this.getHeaders() });
   }
 
+  // Fetch applied jobs for the student
+  getAppliedJobs(): Observable<AppliedJob[]> {
+    return this.http.get<AppliedJob[]>(`${this.apiUrl}/my-applications`, { headers: this.getHeaders() });
+  }
 
-  applyToJob(job: Job): Observable<any> {
-    return this.http.post(`${this.apiUrl}/apply`, job);
+  getProgress(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/progress`);
   }
 
   getEvents(): Observable<any[]> {
@@ -93,52 +70,7 @@ export class StudentService {
     return this.http.get<any[]>(`${this.apiUrl}/notifications`);
   }
 
-  getProgress(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/progress`);
-  }
-
-  getAppliedJobs(): Observable<AppliedJob[]> {
-    // Mock data for demonstration
-    const mockAppliedJobs: AppliedJob[] = [
-      {
-        jobId: 1,
-        companyName: 'TechCorp',
-        jobRole: 'Software Engineer',
-        logo: 'https://via.placeholder.com/50',
-        applicationDate: '2025-03-10',
-        status: 'Viva Round',
-        rounds: [
-          { name: 'Application Review', status: 'Completed', date: '2025-03-12' },
-          { name: 'Assessment Round', status: 'Completed', date: '2025-03-15' },
-          { name: 'Viva Round', status: 'Opened', date: '2025-03-18' }
-        ]
-      },
-      {
-        jobId: 2,
-        companyName: 'InnoSoft',
-        jobRole: 'Data Analyst Intern',
-        logo: 'https://via.placeholder.com/50',
-        applicationDate: '2025-03-05',
-        status: 'Rejected',
-        rounds: [
-          { name: 'Application Review', status: 'Completed', date: '2025-03-07' },
-          { name: 'Assessment Round', status: 'Failed', date: '2025-03-10' }
-        ]
-      },
-      {
-        jobId: 3,
-        companyName: 'DataWorks',
-        jobRole: 'Data Scientist',
-        logo: 'https://via.placeholder.com/50',
-        applicationDate: '2025-03-01',
-        status: 'Offer Received',
-        rounds: [
-          { name: 'Application Review', status: 'Completed', date: '2025-03-03' },
-          { name: 'Assessment Round', status: 'Completed', date: '2025-03-06' },
-          { name: 'Viva Round', status: 'Completed', date: '2025-03-09' }
-        ]
-      }
-    ];
-    return of(mockAppliedJobs); // Replace with: this.http.get<AppliedJob[]>(`${this.apiUrl}/applied-jobs`);
+  getJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.apiUrl}/student/jobs`, { headers: this.getHeaders() });
   }
 }

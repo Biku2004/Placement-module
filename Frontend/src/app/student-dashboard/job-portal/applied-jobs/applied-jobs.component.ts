@@ -17,18 +17,30 @@ export class AppliedJobsComponent implements OnInit {
   constructor(private studentService: StudentService) {}
 
   ngOnInit() {
-    this.studentService.getAppliedJobs().subscribe(jobs => {
-      this.appliedJobs = jobs;
-    });
+    this.loadAppliedJobs();
   }
 
-  // Dynamic class for overall job status
+  loadAppliedJobs() {
+    this.studentService.getAppliedJobs().subscribe(
+      (applications) => {
+        this.appliedJobs = applications.map(app => ({
+          jobPostId: app.jobPostId, // Changed from jobId to jobPostId
+          companyName: app.companyName || 'Unknown Company',
+          jobRole: app.jobRole || 'Unknown Role',
+          logo: 'https://via.placeholder.com/50',
+          applicationDate: app.applicationDate || new Date().toISOString().split('T')[0],
+          status: app.status,
+          rounds: app.rounds || []
+        }));
+      },
+      (error) => console.error('Error loading applied jobs:', error)
+    );
+  }
   getStatusClass(status: string): string {
     switch (status) {
-      case 'Submitted':
+      case 'Applied':
         return 'bg-yellow-100 text-yellow-700';
-      case 'Viva Round':
-      case 'Assessment Round':
+      case 'Under Review':
         return 'bg-blue-100 text-blue-700';
       case 'Offer Received':
         return 'bg-green-100 text-green-700';
@@ -39,7 +51,6 @@ export class AppliedJobsComponent implements OnInit {
     }
   }
 
-  // Dynamic class for round status
   getRoundStatusClass(status: string): string {
     switch (status) {
       case 'Pending':

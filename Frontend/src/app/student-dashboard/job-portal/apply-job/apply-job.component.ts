@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class ApplyJobComponent implements OnInit {
   job: Job | null = null;
   application: Application = {
-    jobId: 0,
+    jobPostId: 0,
     name: '',
     address: '',
     college: '',
@@ -49,7 +49,7 @@ export class ApplyJobComponent implements OnInit {
     if (jobId) {
       this.studentService.getJobById(+jobId).subscribe(job => {
         this.job = job;
-        this.application.jobId = job.id;
+        this.application.jobPostId = job.id;
       });
     }
   }
