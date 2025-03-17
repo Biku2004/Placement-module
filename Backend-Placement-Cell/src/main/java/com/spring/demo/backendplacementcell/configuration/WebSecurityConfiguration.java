@@ -56,6 +56,7 @@ public class WebSecurityConfiguration {
                         .requestMatchers("/api/staff/**").hasAuthority("Staff")
                         .requestMatchers("/api/companies/**").hasAnyAuthority("Recruiter", "Staff")
                         .requestMatchers("/api/companies").hasAnyAuthority("Recruiter", "Staff")
+                        .requestMatchers("/api/recruiter/jobs/student/jobs").hasAnyAuthority("Student", "Staff","Recruiter")
                         .requestMatchers("/api/tasks/**").hasAnyAuthority("Student", "Staff", "Recruiter")
                         .requestMatchers("/api/recruiter/**").hasAnyAuthority("Student", "Staff", "Recruiter")
                         .requestMatchers("/api/interviews/**").hasAnyAuthority("Student", "Staff", "Recruiter")

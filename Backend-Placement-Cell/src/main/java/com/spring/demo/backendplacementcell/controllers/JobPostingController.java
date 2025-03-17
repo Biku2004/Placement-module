@@ -1,8 +1,10 @@
 package com.spring.demo.backendplacementcell.controllers;
 
+import com.spring.demo.backendplacementcell.entities.JobApplication;
 import com.spring.demo.backendplacementcell.entities.JobPosting;
 import com.spring.demo.backendplacementcell.services.JobPostingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
@@ -17,13 +19,13 @@ public class JobPostingController {
     private JobPostingService jobPostingService;
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff','Student')")
     public List<JobPosting> getJobPostings(Principal principal) {
         return jobPostingService.getJobPostingsForRecruiter(principal.getName());
     }
 
     @GetMapping("/staff")
-    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff','Student')")
     public List<JobPosting> getAllJobPostings(Principal principal) {
         return jobPostingService.getAllJobPostings(principal.getName());
     }
@@ -69,5 +71,37 @@ public class JobPostingController {
     @PreAuthorize("hasAuthority('Staff')")
     public JobPosting sendJobPostingToStudents(@PathVariable Long id) {
         return jobPostingService.sendJobPostingToStudents(id);
+    }
+
+
+    // New endpoints for student applications
+    @PostMapping("/{id}/apply")
+    @PreAuthorize("hasAuthority('Student')")
+    public void applyToJobPosting(@PathVariable Long id, Principal principal) {
+        jobPostingService.applyToJobPosting(id, principal.getName());
+    }
+
+    @GetMapping("/my-applications")
+    @PreAuthorize("hasAuthority('Student')")
+    public List<JobApplication> getMyApplications(Principal principal) {
+        return jobPostingService.getApplicationsForStudent(principal.getName());
+    }
+
+    @GetMapping("/{id}/applications")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    public List<JobApplication> getJobPostingApplications(@PathVariable Long id, Principal principal) {
+        JobPosting jobPosting = jobPostingService.getJobPostingsForRecruiter(principal.getName()).stream()
+                .filter(jp -> jp.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Job posting not found or you don’t have permission"));
+        return jobPostingService.getApplicationsForJobPosting(id);
+    }
+
+
+    @GetMapping("/student/jobs")
+    @PreAuthorize("hasRole('Student')") // Restrict to students only
+    public ResponseEntity<List<JobPosting>> getApprovedJobPostings() {
+        List<JobPosting> approvedJobs = jobPostingService.getApprovedJobPostings();
+        return ResponseEntity.ok(approvedJobs);
     }
 }

@@ -1,8 +1,11 @@
 package com.spring.demo.backendplacementcell.services;
 
+import com.spring.demo.backendplacementcell.entities.JobApplication;
 import com.spring.demo.backendplacementcell.entities.JobPosting;
+import com.spring.demo.backendplacementcell.repository.JobApplicationRepository;
 import com.spring.demo.backendplacementcell.repository.JobPostingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +15,11 @@ public class JobPostingService {
 
     @Autowired
     private JobPostingRepository jobPostingRepository;
+
+    @Autowired
+    private JobApplicationRepository jobApplicationRepository;
+
+
 
     public List<JobPosting> getJobPostingsForRecruiter(String email) {
         return jobPostingRepository.findByCreatedBy(email);
@@ -108,4 +116,35 @@ public class JobPostingService {
         return jobPostingRepository.save(jobPosting);
         // Add logic here to notify students (e.g., email service) if needed
     }
+
+    // New methods for student applications
+    public void applyToJobPosting(Long id, String studentEmail) {
+        JobPosting jobPosting = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
+        if (!"SENT".equals(jobPosting.getStatus())) {
+            throw new RuntimeException("You can only apply to job postings that have been sent to students");
+        }
+        if (jobApplicationRepository.existsByStudentEmailAndJobPostId(studentEmail, id)) {
+            throw new RuntimeException("You have already applied to this job posting");
+        }
+        JobApplication application = new JobApplication(studentEmail, id, "Applied");
+        jobApplicationRepository.save(application);
+        System.out.println("Student " + studentEmail + " applied to job posting " + jobPosting.getJobRole());
+    }
+
+    public List<JobApplication> getApplicationsForStudent(String studentEmail) {
+        return jobApplicationRepository.findByStudentEmail(studentEmail);
+    }
+
+    public List<JobApplication> getApplicationsForJobPosting(Long jobPostingId) {
+        return jobApplicationRepository.findByJobPostId(jobPostingId);
+    }
+
+    // New method for students to view approved (SENT) job postings
+    public List<JobPosting> getApprovedJobPostings() {
+        return jobPostingRepository.findByStatus("SENT");
+    }
+
+
+
 }
