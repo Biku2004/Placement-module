@@ -99,7 +99,7 @@ public class JobPostingController {
 
 
     @GetMapping("/student/jobs")
-    @PreAuthorize("hasRole('Student')") // Restrict to students only
+    @PreAuthorize("hasAnyAuthority('Student')")
     public ResponseEntity<List<JobPosting>> getApprovedJobPostings() {
         List<JobPosting> approvedJobs = jobPostingService.getApprovedJobPostings();
         return ResponseEntity.ok(approvedJobs);
