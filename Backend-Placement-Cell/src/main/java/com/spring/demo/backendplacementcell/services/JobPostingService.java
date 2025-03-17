@@ -19,7 +19,7 @@ public class JobPostingService {
 
     public JobPosting createJobPosting(JobPosting jobPosting, String email) {
         jobPosting.setCreatedBy(email);
-        jobPosting.setStatus("PENDING"); // Ensure new postings start as DRAFT
+        jobPosting.setStatus("DRAFT"); // Ensure new postings start as DRAFT
         return jobPostingRepository.save(jobPosting);
     }
 
@@ -74,7 +74,7 @@ public class JobPostingService {
     }
 
     // New Staff Methods
-    public List<JobPosting> getAllJobPostings() {
+    public List<JobPosting> getAllJobPostings(String name) {
         return jobPostingRepository.findAll(); // Staff can see all job postings
     }
 

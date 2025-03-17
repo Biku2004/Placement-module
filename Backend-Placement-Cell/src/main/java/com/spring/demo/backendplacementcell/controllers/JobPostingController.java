@@ -18,8 +18,14 @@ public class JobPostingController {
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
-    public List<JobPosting> getAllJobPostings(Principal principal) {
+    public List<JobPosting> getJobPostings(Principal principal) {
         return jobPostingService.getJobPostingsForRecruiter(principal.getName());
+    }
+
+    @GetMapping("/staff")
+    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+    public List<JobPosting> getAllJobPostings(Principal principal) {
+        return jobPostingService.getAllJobPostings(principal.getName());
     }
 
     @PostMapping
