@@ -90,7 +90,7 @@ export class JobPortalComponent implements OnInit {
   }
 
   loadJobs() {
-    this.studentService.getApprovedJobPostings().subscribe(
+    this.studentService.getJobs().subscribe(
       (jobs) => {
         console.log('Raw jobs from API:', jobs);
         this.jobs = jobs.map(job => {
