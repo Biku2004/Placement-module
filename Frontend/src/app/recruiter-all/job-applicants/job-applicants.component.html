@@ -1,0 +1,43 @@
+<div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Applicants for Job Posting</h2>
+  
+    <!-- Error Message -->
+    <div *ngIf="error" class="text-red-500 mb-4">{{ error }}</div>
+  
+    <!-- Applicants Table -->
+    <div *ngIf="applications.length > 0; else noApplicants" class="overflow-x-auto">
+      <table class="min-w-full bg-white border">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="py-2 px-4 border-b text-left">Student Email</th>
+            <th class="py-2 px-4 border-b text-left">Company Name</th>
+            <th class="py-2 px-4 border-b text-left">Job Role</th>
+            <th class="py-2 px-4 border-b text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let application of applications" class="hover:bg-gray-50">
+            <td class="py-2 px-4 border-b">{{ application.studentEmail }}</td>
+            <td class="py-2 px-4 border-b">{{ application.companyName }}</td>
+            <td class="py-2 px-4 border-b">{{ application.jobRole }}</td>
+            <td class="py-2 px-4 border-b">
+              <span [ngClass]="{
+                'text-green-600': application.status === 'Applied',
+                'text-red-600': application.status === 'Rejected',
+                'text-blue-600': application.status === 'Shortlisted'
+              }">
+                {{ application.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- No Applicants Message -->
+    <ng-template #noApplicants>
+      <div class="text-center text-gray-500 mt-4">
+        No applicants found for this job posting.
+      </div>
+    </ng-template>
+  </div>
