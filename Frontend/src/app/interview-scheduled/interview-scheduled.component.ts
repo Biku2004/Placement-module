@@ -7,9 +7,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 @Component({
   standalone: true,
   selector: 'app-interview-scheduled',
-  imports: [CommonModule, FullCalendarModule], // ✅ Import FullCalendarModule here
+  imports: [CommonModule, FullCalendarModule],
   templateUrl: './interview-scheduled.component.html',
-  styleUrls: ['./interview-scheduled.component.css']
+  styleUrls: ['./interview-scheduled.component.css'],
 })
 export class InterviewScheduledComponent {
   calendarPlugins = [dayGridPlugin, interactionPlugin];
@@ -17,8 +17,6 @@ export class InterviewScheduledComponent {
   calendarOptions: any = {
     plugins: this.calendarPlugins,
     initialView: 'dayGridMonth',
-    events: [
-      { title: 'Interview at XYZ Ltd', date: '2025-03-22' }
-    ]
+    events: [{ title: 'Interview at XYZ Ltd', date: '2025-03-22' }],
   };
 }

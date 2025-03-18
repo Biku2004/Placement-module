@@ -62,7 +62,7 @@ export const routes: Routes = [
   {path: 'recruiter/resources', component: ResourcesComponent },
   {path: 'recruiter-dashboard', component: RecruiterAllComponent},
 
-  { path: 'InterviewScheduled', component: InterviewScheduledComponent },
+  { path: 'interviewCalander', component: InterviewScheduledComponent },
 
   {path: '', redirectTo: 'about', pathMatch: 'full' }
 ];

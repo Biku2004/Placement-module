@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobPostingService {
@@ -145,6 +146,8 @@ public class JobPostingService {
         return jobPostingRepository.findByStatus("SENT");
     }
 
-
+    public Optional<JobPosting> getJobPostingById(Long id) {
+        return jobPostingRepository.findById(id);
+    }
 
 }

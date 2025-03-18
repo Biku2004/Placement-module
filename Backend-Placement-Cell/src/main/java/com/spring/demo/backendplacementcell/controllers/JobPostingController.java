@@ -87,13 +87,23 @@ public class JobPostingController {
         return jobPostingService.getApplicationsForStudent(principal.getName());
     }
 
+//    @GetMapping("/{id}/applications")
+//    @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
+//    public List<JobApplication> getJobPostingApplications(@PathVariable Long id, Principal principal) {
+//        JobPosting jobPosting = jobPostingService.getJobPostingsForRecruiter(principal.getName()).stream()
+//                .filter(jp -> jp.getId().equals(id))
+//                .findFirst()
+//                .orElseThrow(() -> new RuntimeException("Job posting not found or you don’t have permission"));
+//        return jobPostingService.getApplicationsForJobPosting(id);
+//    }
+
     @GetMapping("/{id}/applications")
     @PreAuthorize("hasAnyAuthority('Recruiter', 'Staff')")
     public List<JobApplication> getJobPostingApplications(@PathVariable Long id, Principal principal) {
-        JobPosting jobPosting = jobPostingService.getJobPostingsForRecruiter(principal.getName()).stream()
-                .filter(jp -> jp.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Job posting not found or you don’t have permission"));
+        System.out.println("Principal: " + principal.getName()); // Debug
+        // Check if job exists, no creator restriction
+        JobPosting jobPosting = jobPostingService.getJobPostingById(id)
+                .orElseThrow(() -> new RuntimeException("Job posting not found"));
         return jobPostingService.getApplicationsForJobPosting(id);
     }
 
