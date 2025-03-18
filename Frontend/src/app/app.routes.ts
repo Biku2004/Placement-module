@@ -29,6 +29,7 @@ import { ResourcesComponent } from './recruiter-all/resources/resources.componen
 import { RecruiterAllComponent } from './recruiter-all/recruiter-all.component';
 import { RecruiterProvidedComponent } from './Staff/staff-all/recruiters-provided-jobs/recruiters-provided-jobs.component';
 
+import { InterviewScheduledComponent } from './interview-scheduled/interview-scheduled.component';
 
 export const routes: Routes = [
   // {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
@@ -60,5 +61,8 @@ export const routes: Routes = [
   {path: 'recruiter/communication', component: CommunicationComponent },
   {path: 'recruiter/resources', component: ResourcesComponent },
   {path: 'recruiter-dashboard', component: RecruiterAllComponent},
+
+  { path: 'InterviewScheduled', component: InterviewScheduledComponent },
+
   {path: '', redirectTo: 'about', pathMatch: 'full' }
 ];
