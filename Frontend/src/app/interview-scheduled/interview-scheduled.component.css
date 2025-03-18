@@ -1,0 +1,8 @@
+/* Optional if you want to customize calendar events using deep selectors */
+:host ::ng-deep .fc-event {
+    @apply bg-blue-600 text-white font-medium rounded-md px-2 py-1;
+  }
+  
+  :host ::ng-deep .fc-daygrid-day:hover {
+    @apply bg-gray-100 cursor-pointer;
+  }

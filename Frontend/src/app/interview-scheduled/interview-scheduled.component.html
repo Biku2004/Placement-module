@@ -1,1 +1,12 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<div class="min-h-screen bg-gray-100 p-4">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-4">
+      Interview Calendar
+    </h1>
+  
+    <div class="bg-white p-4 rounded-xl shadow-md max-w-6xl mx-auto">
+      <div class="h-[calc(100vh-150px)] overflow-hidden">
+        <full-calendar [options]="calendarOptions" class="h-full w-full"></full-calendar>
+      </div>
+    </div>
+  </div>
+  
