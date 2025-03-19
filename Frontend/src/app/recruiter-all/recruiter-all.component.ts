@@ -8,6 +8,7 @@ import { StudentSearchComponent } from './student-search/student-search.componen
 import { JobPostingComponent } from './job-posting/job-posting.component';
 import { HeaderComponent } from '../Staff/staff-all/header/header.component';
 import { RecruiterSidebarComponent } from './recruiter-sidebar/recruiter-sidebar.component';
+// import { JobApplicantsComponent } from "./job-applicants/job-applicants.component";
 
 
 @Component({
@@ -20,8 +21,7 @@ import { RecruiterSidebarComponent } from './recruiter-sidebar/recruiter-sidebar
     StudentSearchComponent,
     JobPostingComponent,
     RecruiterSidebarComponent,
-    HeaderComponent
-  ],
+    HeaderComponent],
   templateUrl: './recruiter-all.component.html',
   styleUrl: './recruiter-all.component.css'
 })

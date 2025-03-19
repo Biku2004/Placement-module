@@ -28,6 +28,7 @@ import { CommunicationComponent } from './recruiter-all/communication/communicat
 import { ResourcesComponent } from './recruiter-all/resources/resources.component';
 import { RecruiterAllComponent } from './recruiter-all/recruiter-all.component';
 import { RecruiterProvidedComponent } from './Staff/staff-all/recruiters-provided-jobs/recruiters-provided-jobs.component';
+// import { JobApplicantsComponent } from './recruiter-all/job-applicants/job-applicants.component';
 
 import { InterviewScheduledComponent } from './interview-scheduled/interview-scheduled.component';
 
@@ -61,6 +62,7 @@ export const routes: Routes = [
   {path: 'recruiter/communication', component: CommunicationComponent },
   {path: 'recruiter/resources', component: ResourcesComponent },
   {path: 'recruiter-dashboard', component: RecruiterAllComponent},
+  // { path: 'job-applicants/:id', component: JobApplicantsComponent }, // Route with job ID
 
   { path: 'interviewCalander', component: InterviewScheduledComponent },
 

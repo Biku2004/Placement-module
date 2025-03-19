@@ -15,9 +15,9 @@ export class JobPostingService {
     return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
 
-  // getJobPostings(): Observable<any[]> {
-  //   return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
-  // }
+  getJobPostings(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
+  }
 
   sendJobPostingToStaff(id: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${id}/send-to-staff`, {}, { headers: this.getHeaders() });

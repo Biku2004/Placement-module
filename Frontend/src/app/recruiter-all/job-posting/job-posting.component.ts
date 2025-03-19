@@ -54,6 +54,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { JobPostingService } from './job-posting.service';
 import { JwtService } from '../../service/jwt.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -88,9 +89,20 @@ export class JobPostingComponent implements AfterViewInit {
   private defaultWidth = 800;
   private defaultHeight = 400;
   selectedJob: any = null;
+  isRecruiterOrStaff: boolean = false;
 
-  constructor(private jobService: JobPostingService, private jwtService: JwtService) {
+  constructor(
+    private jobService: JobPostingService,
+    private jwtService: JwtService,
+    private router: Router
+  ) {
     this.loadJobPostings();
+
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.isRecruiterOrStaff = payload.roles?.includes('Recruiter') || payload.roles?.includes('Staff');
+    }
   }
 
   loadJobPostings() {
@@ -233,5 +245,10 @@ export class JobPostingComponent implements AfterViewInit {
         }
       });
     });
+  }
+
+  viewApplicants(job: any) {
+    console.log('Navigating to applicants for job ID:', job.id); // Debug
+    this.router.navigate(['/job-applicants', job.id]);
   }
 }
