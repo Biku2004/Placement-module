@@ -53,7 +53,7 @@ public class WebSecurityConfiguration {
 //                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/signup", "/login").permitAll()
-                        .requestMatchers("/api/staff/**").hasAuthority("Staff")
+                        .requestMatchers("/api/staff/**").hasAnyAuthority("Recruiter", "Staff","Student")
                         .requestMatchers("/api/companies/**").hasAnyAuthority("Recruiter", "Staff")
                         .requestMatchers("/api/companies").hasAnyAuthority("Recruiter", "Staff")
                         .requestMatchers("/api/recruiter/jobs/student/jobs").hasAnyAuthority("Student", "Staff","Recruiter")
@@ -63,7 +63,10 @@ public class WebSecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/jobs/**").hasAnyAuthority("Student", "Staff", "Recruiter") // Students can only GET
                         .requestMatchers(HttpMethod.POST, "/api/jobs/*/apply").hasAuthority("Student") // Students can apply
                         .requestMatchers(HttpMethod.POST, "/api/jobs/*/send").hasAuthority("Staff") // Staff can send
-                        .requestMatchers("/api/jobs/**").hasAnyAuthority("Recruiter", "Staff") // Other actions for Recruiters and Staff
+                        .requestMatchers("/api/jobs/**").hasAnyAuthority("Recruiter", "Staff","Student")
+//                        .requestMatchers("/api/jobs/{id}").hasAnyAuthority("Recruiter", "Staff","Student")// Other actions for Recruiters and Staff
+                        .requestMatchers("/api/data/stats").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
