@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { SidebarService } from '../../Staff/staff-all/sidebar/sidebar.service';
 import { Router } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recruiter-sidebar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './recruiter-sidebar.component.html',
   styleUrl: './recruiter-sidebar.component.css'
 })

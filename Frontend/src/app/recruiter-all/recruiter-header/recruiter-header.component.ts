@@ -4,15 +4,14 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-student-header',
+  selector: 'app-recruiter-header',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './student-header.component.html',
-  styleUrl: './student-header.component.css'
+  templateUrl: './recruiter-header.component.html',
+  styleUrl: './recruiter-header.component.css'
 })
-
-export class StudentHeaderComponent implements OnInit {
-  name: string | null = null;
+export class RecruiterHeaderComponent {
+name: string | null = null;
   role: string | null = null;
   profilePhoto: string | null = null;
   isDropdownOpen: boolean = false;
@@ -59,12 +58,12 @@ export class StudentHeaderComponent implements OnInit {
 
   logout(): void {
     this.jwtService.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/staff-login');
     this.isDropdownOpen = false;
   }
 
   editProfile(): void {
-    this.router.navigateByUrl('/student-edit-profile');
+    this.router.navigateByUrl('/recruiter-edit-profile');
     this.isDropdownOpen = false;
   }
 }

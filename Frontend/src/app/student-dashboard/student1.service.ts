@@ -8,11 +8,12 @@ import { AppliedJob } from './student-profile/applied-job';
 // import { Observable,  } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
-  private apiUrl = 'http://localhost:8080/api/recruiter/jobs';
+export class StudentService1 {
+  private apiUrl = 'http://localhost:8080/api/jobs';
   // private recruiterApiUrl = 'http://localhost:8080/api/recruiter/jobs';
   // private staffApiUrl = 'http://localhost:8080/api/jobs';
 
@@ -24,14 +25,8 @@ export class StudentService {
     return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
 
-  // getJobs(): Observable<Job[]> {
-  //   return this.http.get<Job[]>(`${this.apiUrl}/student/jobs`, { headers: this.getHeaders() });
-  // }
-
   getJobs(): Observable<Job[]> {
-    return this.http.get<Job[]>(`${this.apiUrl}/student/jobs`, { headers: this.getHeaders() }).pipe(
-      // map(jobs => jobs.filter(job => job.status === 'SENT')) // Filter only SENT jobs
-    );
+    return this.http.get<Job[]>(`${this.apiUrl}/staff/approved/jobs`, { headers: this.getHeaders() });
   }
 
   getJobById(id: number): Observable<Job> {

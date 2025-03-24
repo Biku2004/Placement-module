@@ -1,23 +1,23 @@
 <!-- <link rel="stylesheet" href="sidebar.component.css"> -->
 <div class="bg-white w-64 p-6 shadow-lg min-h-screen">
     <div class="flex items-center mb-8">
-      <img src="https://via.placeholder.com/80" alt="University Logo" class="h-16 w-16 rounded-full">
+      <img src="assets/cutm_logo.png" alt="University Logo" class="h-16 w-16 rounded-full">
       <h1 class="ml-4 text-xl font-bold text-gray-800">Centurion University</h1>
     </div>
     <nav>
       <ul>
-        <li class="flex items-center mb-4" (click)="onSelectItem('cards', $event)" [class.selected]="isSelected('cards')">
+        <li class="flex items-center mb-4" (click)="onSelectItem('job-posting', $event)" [class.selected]="isSelected('job-posting')">
           <i class="fas fa-user text-gray-500 mr-3"></i>
-          <a href="#" class="text-gray-700">Cards</a>
+          <a href="#" class="text-gray-700">Job Posting</a>
         </li>
-        <li class="flex items-center mb-4" (click)="onSelectItem('registration', $event)" [class.selected]="isSelected('registration')">
+        <!-- <li class="flex items-center mb-4" (click)="onSelectItem('registration', $event)" [class.selected]="isSelected('registration')">
           <i class="fas fa-clipboard-list text-gray-500 mr-3"></i>
           <a href="#" class="text-gray-700">Job Registration</a>
         </li>
         <li class="flex items-center mb-4" (click)="onSelectItem('interview-schedule', $event)" [class.selected]="isSelected('interview-schedule')">
           <i class="fas fa-calendar-alt text-gray-500 mr-3"></i>
-          <a href="#" class="text-gray-700">Interview Schedule</a>
-        </li>
+          <a href="#" class="text-gray-700">Interview Schedule</a> -->
+        <!-- </li> -->
   
       </ul>
     </nav>
