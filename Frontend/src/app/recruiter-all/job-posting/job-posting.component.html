@@ -3,6 +3,14 @@
   <form (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-2 gap-4 ">
       <div>
+        <img
+          [src]="logoPreview || 'https://via.placeholder.com/150'"
+          alt="Logo Preview"
+          class="h-32 w-32 rounded-full object-cover border-4 border-gray-200"
+        />
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" name="logo" />
+      </div>
+      <div>
         <label class="block text-gray-700">Company Name</label>
         <input type="text" [(ngModel)]="jobPosting.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required />
       </div>
@@ -66,6 +74,7 @@
         <label class="block text-gray-700">Expected Skills and Tools</label>
         <textarea [(ngModel)]="jobPosting.expectedSkillsTools" name="expectedSkillsTools" class="w-full p-2 border border-gray-300 rounded" required></textarea>
       </div>
+
     </div>
     <div *ngFor="let section of jobPosting.additionalSections; let i = index">
       <label class="block text-gray-700">Section Label</label>
@@ -73,6 +82,8 @@
       <label class="block text-gray-700">Section Value</label>
       <textarea [(ngModel)]="section.value" [name]="'sectionValue' + i" class="w-full p-2 border border-gray-300 rounded" required></textarea>
     </div>
+
+
     <button type="button" (click)="addSection()" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">Add Section</button>
     <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">{{ selectedJob ? 'Update Job Posting' : 'Create Job Posting' }}</button>
   </form>
@@ -85,6 +96,9 @@
 <div class="container mx-auto p-4 bg-white p-6 rounded-lg shadow resizable" #resizableContainer>
   <div class="flex justify-between items-center mb-4">
     <h2 class="text-2xl font-bold">Job Postings</h2>
+    <!-- <button (click)="viewArchivedJobs()" class="text-purple-500 mr-2">
+      <i class="fas fa-archive"></i> View Archived Jobs
+    </button> -->
     <button (click)="resetSize()" class="text-blue-500 mr-2">
       <i class="fas fa-undo-alt">Reset Size</i>
     </button>
@@ -100,11 +114,21 @@
   </div>
   <div class="overflow-x-auto">
     <table class="min-w-full bg-white">
+
+    <!-- Add batch year filter -->
+    <div class="flex justify-between mb-4">
+      <select [(ngModel)]="selectedBatchYear" (change)="loadJobPostings()" class="border p-2 rounded">
+        <option value="">All Years</option>
+        <option *ngFor="let year of batchYears" [value]="year">{{ year }}</option>
+    </select>
+    </div>
+
       <thead>
         <tr>
           <th class="py-2 px-4 border-b">
             <input type="checkbox" (change)="toggleSelectAll($event)">
           </th>
+          <th class="py-2 px-4 border-b">Logo</th>
           <th class="py-2 px-4 border-b">Company Name</th>
           <th class="py-2 px-4 border-b">Website</th>
           <th class="py-2 px-4 border-b">Company Profile</th>
@@ -128,9 +152,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let job of jobPostings" (click)="editJob(job)">
-          <td class="py-2 px-4 border-b">
-            <input type="checkbox" [(ngModel)]="job.selected" (click)="$event.stopPropagation()">
-          </td>
+            <td class="py-2 px-4 border-b">
+              <input type="checkbox" [(ngModel)]="job.selected" (click)="$event.stopPropagation()">
+            </td>
+            <td class="py-2 px-4 border-b">
+              <img [src]="job.logoUrl" alt="{{ job.companyName }} Logo" class="h-12 w-12 object-contain" />
+            </td>
+          <!-- <td class="py-2 px-4 border-b">{{ job.logo }}</td> -->
           <td class="py-2 px-4 border-b">{{ job.companyName }}</td>
           <td class="py-2 px-4 border-b">{{ job.website }}</td>
           <td class="py-2 px-4 border-b">{{ job.companyProfile }}</td>
@@ -155,6 +183,22 @@
           <td class="py-2 px-4 border-b">{{ job.status }}</td>
           <td class="py-2 px-4 border-b">
             <button (click)="viewApplicants(job); $event.stopPropagation()" class="bg-blue-500 text-white py-1 px-2 rounded">View Applicants</button>
+          
+            <button  (click)="hideJob(job)" 
+            class="bg-gray-500 text-white py-1 px-2 rounded mr-2">
+                Hide
+            </button>
+            <!--  *ngIf="job.isHidden"-->
+              <!-- Show "Unhide" button if the job is hidden -->
+            <button  (click)="unhideJob(job); $event.stopPropagation() " 
+              class="bg-green-500 text-white py-1 px-2 rounded mr-2">
+              Unhide
+            </button>
+            <!-- <button (click)="archiveJob(job); $event.stopPropagation()" 
+                    class="bg-purple-500 text-white py-1 px-2 rounded">
+                Archive
+            </button> -->
+            
           </td>
         </tr>
       </tbody>

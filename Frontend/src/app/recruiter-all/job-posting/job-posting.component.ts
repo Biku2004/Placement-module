@@ -90,6 +90,15 @@ export class JobPostingComponent implements AfterViewInit {
   private defaultHeight = 400;
   selectedJob: any = null;
   isRecruiterOrStaff: boolean = false;
+  logo: string | null = null;
+  logoPreview: string | null = null;
+  selectedFile: File | null = null;
+
+  selectedBatchYear: string = '';
+  batchYears: string[] = [];
+  archiveYearInput: string = '';
+
+
 
   constructor(
     private jobService: JobPostingService,
@@ -101,20 +110,131 @@ export class JobPostingComponent implements AfterViewInit {
     const token = localStorage.getItem('jwt');
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log('JWT Payload:', payload); // Debug roles
       this.isRecruiterOrStaff = payload.roles?.includes('Recruiter') || payload.roles?.includes('Staff');
     }
   }
 
+  // loadJobPostings() {
+  //   this.jobService.getAllJobPostings().subscribe(
+  //     (data) => (this.jobPostings = data.map((job: any) => ({ ...job, selected: false }))),
+  //     (error) => console.error('Error loading job postings:', error)
+  //   );
+  // }
+
+  ngOnInit() {
+    this.loadBatchYears();
+    this.loadJobPostings();
+  }
+
+  loadBatchYears() {
+    this.jobService.getBatchYears().subscribe(
+        years => {
+            console.log('Batch years received:', years);
+            this.batchYears = years;
+        },
+        error => console.error('Error loading batch years:', error)
+    );
+  }
+
+
+  // loadJobPostings() {
+  //   this.jobService.getJobPostings(this.selectedBatchYear).subscribe(
+  //       (data) => {
+  //           this.jobPostings = data.map((job: any) => ({
+  //               ...job,
+  //               selected: false,
+  //               logoUrl: job.logo ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/50'
+  //           })).filter(job => !job.isHidden); // Show only visible jobs by default
+  //       },
+  //       (error) => console.error('Error loading job postings:', error)
+  //   );
+  // } 
+
+  // loadJobPostings() {
+  //   const batchYear = this.selectedBatchYear.trim() || undefined;
+  //   this.jobService.getJobPostings(batchYear).subscribe(
+  //       (data) => {
+  //           this.jobPostings = data.map((job: any) => ({
+  //               ...job,
+  //               selected: false,
+  //               logoUrl: job.logo ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/50'
+  //           })).filter(job => !job.isHidden);
+  //       },
+  //       (error) => console.error('Error loading job postings:', error)
+  //   );
+  // }
+
   loadJobPostings() {
-    this.jobService.getAllJobPostings().subscribe(
-      (data) => (this.jobPostings = data.map((job: any) => ({ ...job, selected: false }))),
+    const batchYear = this.selectedBatchYear.trim() || undefined;
+    this.jobService.getJobPostings(batchYear).subscribe(
+      (data) => {
+        this.jobPostings = data
+          // .filter(job => !job.archiveYear) // Exclude archived jobs from main view
+          .map((job: any) => ({
+            ...job,
+            selected: false,
+            logoUrl: job.logo ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/50'
+          }))
+          .filter(job => !job.isHidden || this.isRecruiterOrStaff); // Show hidden jobs to recruiters/staff
+      },
       (error) => console.error('Error loading job postings:', error)
     );
   }
 
+
+
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoPreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  // onSubmit() {
+  //   const formData = new FormData();
+  //   formData.append('jobPosting', new Blob([JSON.stringify(this.jobPosting)], { type: 'application/json' }));
+  //   if (this.selectedFile) {
+  //     formData.append('logo', this.selectedFile);
+  //   }
+
+  //   if (this.selectedJob) {
+  //     this.jobService.updateJobPosting(this.jobPosting).subscribe(
+  //       () => {
+  //         this.loadJobPostings();
+  //         this.resetForm();
+  //         alert('Job updated successfully');
+  //       },
+  //       (error) => console.error('Error updating job:', error)
+  //     );
+  //   } else {
+  //     this.jobService.createJobPosting(this.jobPosting).subscribe(
+  //       () => {
+  //         this.loadJobPostings();
+  //         this.resetForm();
+  //         alert('Job created successfully');
+  //       },
+  //       (error) => console.error('Error creating job:', error)
+  //     );
+  //   }
+  // }
+
   onSubmit() {
+    const formData = new FormData();
+    formData.append('jobPosting', new Blob([JSON.stringify(this.jobPosting)], { type: 'application/json' }));
+    if (this.selectedFile) {
+      formData.append('logo', this.selectedFile);
+    }
+
     if (this.selectedJob) {
-      this.jobService.updateJobPosting(this.jobPosting).subscribe(
+      this.jobService.updateJobPosting(this.selectedJob.id, formData).subscribe(
         () => {
           this.loadJobPostings();
           this.resetForm();
@@ -123,7 +243,7 @@ export class JobPostingComponent implements AfterViewInit {
         (error) => console.error('Error updating job:', error)
       );
     } else {
-      this.jobService.createJobPosting(this.jobPosting).subscribe(
+      this.jobService.createJobPosting(formData).subscribe(
         () => {
           this.loadJobPostings();
           this.resetForm();
@@ -154,6 +274,8 @@ export class JobPostingComponent implements AfterViewInit {
       expectedSkillsTools: '',
       additionalSections: [],
     };
+    this.selectedFile = null;
+    this.logoPreview = null;
     this.selectedJob = null;
   }
 
@@ -251,4 +373,31 @@ export class JobPostingComponent implements AfterViewInit {
     console.log('Navigating to applicants for job ID:', job.id); // Debug
     this.router.navigate(['/job-applicants', job.id]);
   }
+
+  hideJob(job: any) {
+    if (confirm(`Hide job posting "${job.jobRole}" from students?`)) {
+      this.jobService.hideJobPosting(job.id).subscribe(
+        () => {
+          job.isHidden = true;
+          this.loadJobPostings();
+        },
+        error => console.error('Error hiding job:', error)
+      );
+    }
+  }
+
+
+  unhideJob(job: any) {
+    if (confirm(`Unhide job posting "${job.jobRole}" for students?`)) {
+      this.jobService.unhideJobPosting(job.id).subscribe(
+        () => {
+          job.isHidden = false;
+          this.loadJobPostings();
+        },
+        error => console.error('Error unhiding job:', error)
+      );
+    }
+  }
+
+
 }

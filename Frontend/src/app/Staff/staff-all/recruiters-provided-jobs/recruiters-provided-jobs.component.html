@@ -41,12 +41,12 @@
         <table class="min-w-full bg-white">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b">Company Name</th>
-              <th class="py-2 px-4 border-b">Job Role</th>
-              <th class="py-2 px-4 border-b">Location</th>
-              <th class="py-2 px-4 border-b">CTC</th>
-              <th class="py-2 px-4 border-b">Status</th>
-              <th class="py-2 px-4 border-b">Actions</th>
+              <p><strong>Company Name</strong></p>
+              <p><strong>Job Role</strong></p>
+              <p><strong>Location</strong></p>
+              <p><strong>CTC</strong></p>
+              <p><strong>Status</strong></p>
+              <p><strong>Actions</strong></p>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +83,7 @@
       <div *ngFor="let company of companies" 
            (click)="selectCompany(company)" 
            class="company-card bg-white p-4 rounded-lg shadow cursor-pointer hover:shadow-lg transition">
-        <img [src]="company.logo" [alt]="company.name + ' logo'" class="w-24 h-24 mx-auto mb-2 object-contain">
+        <img [src]="company.logoUrl" [alt]="company.name + ' logo'" class="w-24 h-24 mx-auto mb-2 object-contain">
         <h2 class="text-xl font-semibold text-center">{{ company.name }}</h2>
       </div>
     </div>
@@ -97,7 +97,22 @@
           <p><strong>Company:</strong> {{ job.companyName }}</p>
           <p><strong>Location:</strong> {{ job.jobLocation }}</p>
           <p><strong>CTC:</strong> {{ job.annualCTC }}</p>
+
+          <p><strong>Website:</strong>{{ job.website }}</p>
+          <p><strong>Company Profile:</strong>{{ job.companyProfile }}</p>
+          <p><strong>Eligible Courses/Streams:</strong>{{ job.eligibleCourses }}</p>
+          <p><strong>Batch Year:</strong>{{job.batchYear}}</p>
+          <p><strong>Roles & Responsibilities:</strong>{{ job.rolesResponsibilities }}</p>
+          <p><strong>Skills and Qualifications:</strong>{{ job.skillsQualifications }}</p>
+          <p><strong>Selection Process:</strong>{{ job.selectionProcess }}</p>
+          <p><strong>Registration Process and Link:</strong>{{ job.registrationProcess }}</p>
+          <p><strong>Last Date to Register:</strong>{{ job.lastDateToRegister }}</p>
+          <p><strong>Benefits and Incentives:</strong>{{ job.benefitsIncentives }}</p>
+          <p><strong>Role Details:</strong>{{ job.roleDetails }}</p>
+          <p><strong>Expected Skills and Tools:</strong>{{ job.expectedSkillsTools }}</p>
           <p><strong>Status:</strong> {{ job.status }}</p>
+          <p><strong>Actions</strong></p>
+
           <div class="mt-2 flex gap-2">
             <button (click)="approveJob(job)" 
                     [disabled]="job.status !== 'PENDING'" 
@@ -133,6 +148,7 @@
               <th class="py-2 px-4 border-b">CTC</th>
               <th class="py-2 px-4 border-b">Status</th>
               <th class="py-2 px-4 border-b">Actions</th>
+
             </tr>
           </thead>
           <tbody>

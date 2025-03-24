@@ -25,20 +25,47 @@ export class RecruiterProvidedComponent implements OnInit {
     this.loadCompaniesAndJobs();
   }
 
+  // loadCompaniesAndJobs() {
+  //   // Fetch all job postings
+  //   this.jobService.getAllJobPostings().subscribe(
+  //     (jobs) => {
+  //       this.allJobs = jobs;
+
+  //       // Group jobs by companyName to simulate companies
+  //       const companyMap = new Map<string, any>();
+  //       jobs.forEach((job) => {
+  //         if (!companyMap.has(job.companyName)) {
+  //           companyMap.set(job.companyName, {
+  //             name: job.companyName,
+  //             logo: `https://via.placeholder.com/150?text=${job.companyName}`, // Placeholder logo
+  //             jobs: [],
+  //           });
+  //         }
+  //         companyMap.get(job.companyName)!.jobs.push(job);
+  //       });
+
+  //       this.companies = Array.from(companyMap.values());
+  //     },
+  //     (error) => console.error('Error loading jobs:', error)
+  //   );
+  // }
+
   loadCompaniesAndJobs() {
-    // Fetch all job postings
     this.jobService.getAllJobPostings().subscribe(
       (jobs) => {
-        this.allJobs = jobs;
+        this.allJobs = jobs.map(job => ({
+          ...job,
+          logoUrl: job.id ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/150' // Format logo
+        }));
 
-        // Group jobs by companyName to simulate companies
+        // Group jobs by companyName
         const companyMap = new Map<string, any>();
-        jobs.forEach((job) => {
+        this.allJobs.forEach((job) => {
           if (!companyMap.has(job.companyName)) {
             companyMap.set(job.companyName, {
               name: job.companyName,
-              logo: `https://via.placeholder.com/150?text=${job.companyName}`, // Placeholder logo
-              jobs: [],
+              logoUrl: job.logoUrl, // Use the formatted logo URL
+              jobs: []
             });
           }
           companyMap.get(job.companyName)!.jobs.push(job);
