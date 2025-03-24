@@ -27,11 +27,19 @@ public class JobPosting {
     private String expectedSkillsTools;
     private String createdBy;
 
+//    private String status; // DRAFT, PENDING, APPROVED, SENT
+    private boolean isHidden; // New field to hide job post
+    private String archiveYear; // New field for archiving (e.g., "Year 2022-26")
+
+
     @Column(nullable = false)
     private String status = "DRAFT"; // Default to "DRAFT"
 
     @ElementCollection
     private List<AdditionalSection> additionalSections;
+
+    @Lob // Large Object for storing image data
+    private byte[] logo; // Stores the image as binary data
 
     @Embeddable
     public static class AdditionalSection {
@@ -213,5 +221,33 @@ public class JobPosting {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
+    }
+
+    public String getArchiveYear() {
+        return archiveYear;
+    }
+
+    public void setArchiveYear(String archiveYear) {
+        this.archiveYear = archiveYear;
+    }
+
+    public JobPosting() {
+        this.isHidden = false; // Default to visible
     }
 }

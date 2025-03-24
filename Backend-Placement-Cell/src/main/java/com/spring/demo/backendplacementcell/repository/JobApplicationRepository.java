@@ -2,9 +2,11 @@ package com.spring.demo.backendplacementcell.repository;
 
 import com.spring.demo.backendplacementcell.entities.JobApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface JobApplicationRepository extends JpaRepository<JobApplication, Long> {
@@ -16,4 +18,10 @@ public interface JobApplicationRepository extends JpaRepository<JobApplication, 
 
     // Optional: Check if a student has already applied to a job post
     boolean existsByStudentEmailAndJobPostId(String studentEmail, Long jobPostId);
+
+    // Add to JobApplicationRepository if not present
+    Optional<JobApplication> findByStudentEmailAndJobPostId(String studentEmail, Long jobPostId);
+
+    @Query("SELECT ja FROM JobApplication ja LEFT JOIN FETCH ja.rounds")
+    List<JobApplication> findAllWithRounds();
 }
