@@ -28,9 +28,15 @@ import { CommunicationComponent } from './recruiter-all/communication/communicat
 import { ResourcesComponent } from './recruiter-all/resources/resources.component';
 import { RecruiterAllComponent } from './recruiter-all/recruiter-all.component';
 import { RecruiterProvidedComponent } from './Staff/staff-all/recruiters-provided-jobs/recruiters-provided-jobs.component';
-// import { JobApplicantsComponent } from './recruiter-all/job-applicants/job-applicants.component';
+import { JobApplicantsComponent } from './recruiter-all/job-applicants/job-applicants.component';
 
 import { InterviewScheduledComponent } from './interview-scheduled/interview-scheduled.component';
+// import { ArchivedJobsComponent } from './recruiter-all/archived-jobs/archived-jobs.component';
+import { JobApplicantsComponent1 } from './Staff/staff-all/job-applicants/job-applicants.component';
+import { StudentEditProfileComponent } from './student-dashboard/student-edit-profile/student-edit-profile.component';
+import { RecruiterEditProfileComponent } from './recruiter-all/recruiter-edit-profile/recruiter-edit-profile.component';
+
+
 
 export const routes: Routes = [
   // {path: 'signup-dasboard', component: SignupComponent}, // Add route for signup
@@ -51,6 +57,8 @@ export const routes: Routes = [
   {path: 'learning', component: LearningComponent},
   {path: 'about', component: AboutComponent },
   {path: 'staff-edit-profile', component: StaffEditProfileComponent },
+  {path: 'student-edit-profile', component: StudentEditProfileComponent },
+  {path: 'recruiter-edit-profile', component: RecruiterEditProfileComponent },
   {path: 'recruiter-jobs-provided', component: RecruiterProvidedComponent },
   {path: 'job-portal',component:JobPortalComponent},
   {path: 'apply-job',component:ApplyJobComponent},
@@ -62,9 +70,11 @@ export const routes: Routes = [
   {path: 'recruiter/communication', component: CommunicationComponent },
   {path: 'recruiter/resources', component: ResourcesComponent },
   {path: 'recruiter-dashboard', component: RecruiterAllComponent},
-  // { path: 'job-applicants/:id', component: JobApplicantsComponent }, // Route with job ID
+  { path: 'job-applicants/:id', component: JobApplicantsComponent }, // Route with job ID
+  { path: 'staff-job-applicants/:id', component: JobApplicantsComponent1 }, 
 
   { path: 'interviewCalander', component: InterviewScheduledComponent },
+  // { path: 'archived-jobs', component: ArchivedJobsComponent },
 
   {path: '', redirectTo: 'about', pathMatch: 'full' }
 ];

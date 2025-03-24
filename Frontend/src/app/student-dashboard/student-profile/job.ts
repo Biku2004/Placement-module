@@ -39,6 +39,7 @@ export interface Job {
   branch: string;              // Derived from JobPosting.eligibleCourses
   location: string;            // Alias for JobPosting.jobLocation
   description: string;         // Derived from JobPosting.roleDetails or rolesResponsibilities
-  logo: string;                // Placeholder (not in JobPosting)
+  logoUrl: string;                // Placeholder (not in JobPosting)
   type: string;                // Placeholder (not in JobPosting)
+  logo?: string;
 }

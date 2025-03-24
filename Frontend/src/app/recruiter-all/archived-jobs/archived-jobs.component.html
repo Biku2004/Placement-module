@@ -1,0 +1,43 @@
+archived-jobs.component.html
+<!-- <div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Archived Job Postings</h2>
+    <select [(ngModel)]="selectedYear" (change)="onYearChange()" class="border p-2 rounded mb-4">
+        <option *ngFor="let year of archiveYears" [value]="year">{{ year }}</option>
+    </select>
+    
+    <div *ngIf="archivedJobs.length === 0" class="text-center text-gray-500">
+        No archived jobs found for {{ selectedYear }}.
+    </div>
+    <div *ngFor="let job of archivedJobs" class="mb-4 border rounded-lg p-4">
+        <h3 class="text-lg font-semibold">{{ job.jobRole }}</h3>
+        <p>{{ job.companyName }}</p>
+        <p>Batch Year: {{ job.batchYear }}</p>
+    </div>
+</div> -->
+
+<!-- 
+<div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Archived Job Postings</h2>
+    <select [(ngModel)]="selectedYear" (change)="onYearChange()" class="border p-2 rounded mb-4">
+      <option *ngFor="let year of archiveYears" [value]="year">{{ year }}</option>
+    </select>
+    <div *ngIf="archivedJobs.length === 0" class="text-center text-gray-500">
+      No archived jobs found for {{ selectedYear }}.
+    </div>
+    <div *ngFor="let job of archivedJobs" class="mb-4 border rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h3 class="text-lg font-semibold">{{ job.jobRole }}</h3>
+        <p>{{ job.companyName }}</p>
+        <p>Batch Year: {{ job.batchYear }}</p>
+        <p>Hidden: {{ job.isHidden ? 'Yes' : 'No' }}</p>
+      </div>
+      <div>
+        <button *ngIf="job.isHidden" (click)="unhideJob(job)" class="bg-green-500 text-white py-1 px-2 rounded mr-2">
+          Unhide
+        </button>
+        <button (click)="unarchiveJob(job)" class="bg-blue-500 text-white py-1 px-2 rounded">
+          Unarchive
+        </button>
+      </div>
+    </div>
+  </div> -->

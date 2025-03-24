@@ -1,7 +1,5 @@
   <div class="flex min-h-screen bg-gray-100">
 
-    
-
     <div class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg">
       
       <app-recruiter-sidebar></app-recruiter-sidebar>
@@ -9,22 +7,13 @@
     </div>
   
     <div class="flex-1 ml-64 p-6">  
+      <app-recruiter-header></app-recruiter-header>
+      <p class="text-gray-500 text-right mt-2">{{ currentDate | date:'fullDate' }} {{ currentDate | date:'shortTime' }}</p>
 
-      <app-header></app-header>
-    
-      <div class="grid grid-cols-3 gap-4 mt-6">
+      <div class="grid grid-cols-2 gap-4 mt-6">
         <div class="col-span-2">
-          <app-job-posting></app-job-posting>
-          <br />
-          <app-student-search></app-student-search>
-          <br />
-          <!-- <app-interview-scheduler></app-interview-scheduler> -->
-          <br />
-          <!-- <app-analytics></app-analytics> -->
-          <br />
-          <!-- <app-communication></app-communication> -->
-          <br />
-          <app-resources></app-resources>
+          <app-job-posting *ngIf="selectedItems.includes('job-posting')"></app-job-posting>
+          <!-- <app-resources></app-resources> -->
         </div>
       </div>
     
