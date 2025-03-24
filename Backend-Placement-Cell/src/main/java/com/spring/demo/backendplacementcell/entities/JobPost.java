@@ -27,6 +27,13 @@ public class JobPost {
     private String benefitsIncentives;
     private String roleDetails;
     private String expectedSkillsTools;
+
+    @Lob // Large Object for storing image data
+    private byte[] logo; // Stores the image as binary data
+
+    @Column(nullable = false)
+    private String status = "DRAFT"; // Default to "DRAFT"
+
     private String createdBy;
 
     @ElementCollection
@@ -216,5 +223,21 @@ public class JobPost {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
