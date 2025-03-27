@@ -345,45 +345,65 @@
       </button>
     </div>
   </div>
-      <tbody>
-        <tr *ngFor="let job of jobPosts; let i = index" (click)="openModal(job)">
-          <td class="py-2 px-4 border-b">
-            <input type="checkbox" [(ngModel)]="job.selected" (click)="$event.stopPropagation()">
-          </td>
-          <td class="py-2 px-4 border-b">{{ job.companyName }}</td>
-          <td class="py-2 px-4 border-b">{{ job.website }}</td>
-          <td class="py-2 px-4 border-b">{{ job.companyProfile }}</td>
-          <td class="py-2 px-4 border-b">{{ job.eligibleCourses }}</td>
-          <td class="py-2 px-4 border-b">{{ job.batchYear }}</td>
-          <td class="py-2 px-4 border-b">{{ job.jobRole }}</td>
-          <td class="py-2 px-4 border-b">{{ job.jobLocation }}</td>
-          <td class="py-2 px-4 border-b">{{ job.annualCTC }}</td>
-          <td class="py-2 px-4 border-b">{{ job.rolesResponsibilities }}</td>
-          <td class="py-2 px-4 border-b">{{ job.skillsQualifications }}</td>
-          <td class="py-2 px-4 border-b">{{ job.selectionProcess }}</td>
-          <td class="py-2 px-4 border-b">{{ job.registrationProcess }}</td>
-          <td class="py-2 px-4 border-b">{{ job.lastDateToRegister }}</td>
-          <td class="py-2 px-4 border-b">{{ job.benefitsIncentives }}</td>
-          <td class="py-2 px-4 border-b">{{ job.roleDetails }}</td>
-          <td class="py-2 px-4 border-b">{{ job.expectedSkillsTools }}</td>
-        <td class="py-2 px-4 border-b">
-          <div *ngFor="let section of job.additionalSections">
-            <strong>{{ section.label }}:</strong> {{ section.value }}
+
+  <div class="overflow-x-auto rounded-xl border border-gray-200">
+    <table class="w-full bg-white divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+      <tr>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <input type="checkbox" (change)="toggleSelectAll($event)" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+        </th>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job Role</th>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CTC</th>
+        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Batch</th>
+      </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      <tr
+        *ngFor="let job of jobPosts; let i = index"
+        (click)="openModal(job)"
+        class="hover:bg-gray-50 transition duration-150 ease-in-out cursor-pointer"
+      >
+        <td class="px-4 py-4">
+          <input
+            type="checkbox"
+            [(ngModel)]="job.selected"
+            (click)="$event.stopPropagation()"
+            class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+          >
+        </td>
+        <td class="px-4 py-4">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+              <span class="text-indigo-600 font-bold">{{ job.companyName.charAt(0) }}</span>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-gray-900">{{ job.companyName }}</div>
+              <div class="text-sm text-gray-500">{{ job.website }}</div>
+            </div>
           </div>
         </td>
-  <!-- <ng-container *ngFor="let section of additionalSectionHeaders">
-    <td class="py-2 px-4 border-b">{{ job.additionalSections[section] }}</td>
-  </ng-container> -->
-</tr>
+        <td class="px-4 py-4">
+          <div class="text-sm text-gray-900">{{ job.jobRole }}</div>
+          <div class="text-sm text-gray-500">{{ job.eligibleCourses }}</div>
+        </td>
+        <td class="px-4 py-4">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              {{ job.jobLocation }}
+            </span>
+        </td>
+        <td class="px-4 py-4 text-sm text-gray-500">{{ job.annualCTC }}</td>
+        <td class="px-4 py-4 text-sm text-gray-500">{{ job.batchYear }}</td>
+      </tr>
       </tbody>
     </table>
-    <br/>
   </div>
 
   <div class="resizer right"></div>
   <div class="resizer bottom"></div>
   <div class="resizer bottom-right"></div>
 </div>
-<br/>
 
 <app-job-modal *ngIf="selectedJob" [jobPost]="selectedJob" (close)="closeModal()"></app-job-modal>
