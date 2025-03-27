@@ -1,94 +1,103 @@
 <link rel="stylesheet" href="create-jobs.component.css">
-<div class="container mx-auto p-4 bg-white p-6 rounded-lg shadow">
-    <h2 class="text-2xl font-bold mb-4">Create Job Post
+<div class="container mx-auto max-w-5xl px-4 py-10">
+  <div class="bg-white shadow-2xl rounded-2xl overflow-hidden">
+    <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 p-8">
+      <h2 class="text-4xl font-bold text-white tracking-tight">Create Job Listing</h2>
       <p class="text-white/80 mt-2">Fill in the comprehensive details for your job opportunity</p>
-    </h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="grid grid-cols-2 gap-4">
-        <!--  Left column - company & job basics-->
-        <div>
-          <label class="block text-gray-700">Company Name</label>
-          <input type="text" [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Website</label>
-          <input type="url" [(ngModel)]="jobPost.website" name="website" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Company Profile</label>
-          <textarea [(ngModel)]="jobPost.companyProfile" name="companyProfile" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Eligible Courses/Streams</label>
-          <input type="text" [(ngModel)]="jobPost.eligibleCourses" name="eligibleCourses" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Batch Year</label>
-          <input type="text" [(ngModel)]="jobPost.batchYear" name="batchYear" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Job Role</label>
-          <input type="text" [(ngModel)]="jobPost.jobRole" name="jobRole" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Job Location</label>
-          <input type="text" [(ngModel)]="jobPost.jobLocation" name="jobLocation" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Annual CTC</label>
-          <input type="text" [(ngModel)]="jobPost.annualCTC" name="annualCTC" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Roles & Responsibilities</label>
-          <textarea [(ngModel)]="jobPost.rolesResponsibilities" name="rolesResponsibilities" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Skills and Qualifications</label>
-          <textarea [(ngModel)]="jobPost.skillsQualifications" name="skillsQualifications" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Selection Process</label>
-          <textarea [(ngModel)]="jobPost.selectionProcess" name="selectionProcess" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Registration Process and Link</label>
-          <input type="url" [(ngModel)]="jobPost.registrationProcess" name="registrationProcess" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Last Date to Register</label>
-          <input type="date" [(ngModel)]="jobPost.lastDateToRegister" name="lastDateToRegister" class="w-full p-2 border border-gray-300 rounded" required />
-        </div>
-        <div>
-          <label class="block text-gray-700">Benefits and Incentives</label>
-          <textarea [(ngModel)]="jobPost.benefitsIncentives" name="benefitsIncentives" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Role Details</label>
-          <textarea [(ngModel)]="jobPost.roleDetails" name="roleDetails" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-700">Expected Skills and Tools</label>
-          <textarea [(ngModel)]="jobPost.expectedSkillsTools" name="expectedSkillsTools" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-        </div>
-      </div>
-      <!-- <div *ngFor="let section of jobPost.additionalSections; let i = index">
-        <label class="block text-gray-700">Section Label</label>
-        <input type="text" [(ngModel)]="section['label']" name="sectionLabel{{i}}" class="w-full p-2 border border-gray-300 rounded" required />
-        <label class="block text-gray-700">Section Value</label>
-        <textarea [(ngModel)]="section['value']" name="sectionValue{{i}}" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-      </div> -->
+    </div>
 
-<!--      Right postion of the part-->
-      <div *ngFor="let section of jobPost.additionalSections; let i = index">
-        <label class="block text-gray-700">Section Label</label>
-        <input type="text" [(ngModel)]="section.label" name="sectionLabel{{i}}" class="w-full p-2 border border-gray-300 rounded" required />
-        <label class="block text-gray-700">Section Value</label>
-        <textarea [(ngModel)]="section.value" name="sectionValue{{i}}" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-      </div>
-      <button type="button" (click)="addSection()" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">Add Section</button>
-      <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Create Job</button>
-    </form>
-  </div>
+    <form (ngSubmit)="onSubmit()" class="p-10 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Left Column - Company & Job Basics -->
+        <div class="space-y-6">
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200/50 transition-all duration-300 hover:shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Company Information
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Company Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="jobPost.companyName"
+                  name="companyName"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="Enter company name"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Website</label>
+                <input
+                  type="url"
+                  [(ngModel)]="jobPost.website"
+                  name="website"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="https://www.company.com"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Company Profile</label>
+                <textarea
+                  [(ngModel)]="jobPost.companyProfile"
+                  name="companyProfile"
+                  rows="4"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="Brief description of the company"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200/50 transition-all duration-300 hover:shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Job Details
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Job Role</label>
+                <input
+                  type="text"
+                  [(ngModel)]="jobPost.jobRole"
+                  name="jobRole"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="Software Engineer, Data Analyst, etc."
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Job Location</label>
+                <input
+                  type="text"
+                  [(ngModel)]="jobPost.jobLocation"
+                  name="jobLocation"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="City, State, or Remote"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Annual CTC</label>
+                <input
+                  type="text"
+                  [(ngModel)]="jobPost.annualCTC"
+                  name="annualCTC"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                  required
+                  placeholder="₹X,XX,XXX per annum"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
   <br/>
 <div class="container mx-auto p-4 bg-white p-6 rounded-lg shadow resizable" #resizableContainer>
