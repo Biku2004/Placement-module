@@ -40,6 +40,8 @@ export class JobModalComponent {
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
   additionalSectionHeaders: string[] = [];
+  selectedFile: File | null = null;
+  logoPreview: string | null = null;
 
   constructor(private jobService: JobService) {}
 
@@ -89,4 +91,17 @@ export class JobModalComponent {
   updateAdditionalSectionHeaders(): void {
     this.additionalSectionHeaders = Object.keys(this.jobPost.additionalSections);
   }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoPreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
 }

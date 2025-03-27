@@ -137,7 +137,7 @@ export class CreateJobsComponent implements OnInit{
     this.jobPost.additionalSections.push({ label: 'New Section', value: '' });
   }
   // addSection(): void {
-  //   const newSectionLabel = New Section ${Object.keys(this.jobPost.additionalSections).length + 1};
+  //   const newSectionLabel = `New Section ${Object.keys(this.jobPost.additionalSections).length + 1}`;
   //   this.jobPost.additionalSections[newSectionLabel] = '';
   //   this.updateAdditionalSectionHeaders();
   // }
@@ -195,7 +195,7 @@ export class CreateJobsComponent implements OnInit{
         this.jobPosts = data.map(job => ({
             ...job,
             selected: false,
-            logoUrl: job.logo ? data:image/jpeg;base64,${job.logo} : 'https://via.placeholder.com/50'
+            logoUrl: job.logo ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/50'
         }));
     });
   }
@@ -207,8 +207,8 @@ export class CreateJobsComponent implements OnInit{
 
   resetSize(): void {
     const div = this.resizableContainer.nativeElement;
-    div.style.width = ${this.defaultWidth}px;
-    div.style.height = ${this.defaultHeight}px;
+    div.style.width = `${this.defaultWidth}px`;
+    div.style.height = `${this.defaultHeight}px`;
   }
 
   makeResizableDiv(div: HTMLElement): void {

@@ -1,39 +1,53 @@
 <div class="container mx-auto p-6 bg-white rounded-lg shadow">
-    <h2 class="text-2xl font-bold mb-6">Applied Jobs</h2>
-  
-    <!-- No Applications Message -->
-    <div *ngIf="appliedJobs.length === 0" class="text-center text-gray-500">
-      You haven't applied to any jobs yet.
-    </div>
-  
-    <!-- Applied Jobs List -->
-    <div *ngFor="let job of appliedJobs" class="mb-6 border rounded-lg shadow-md">
-      <!-- Job Card Header -->
-      <div class="flex items-center p-4 bg-gray-50 rounded-t-lg">
-        <img [src]="job.logo" alt="{{ job.companyName }} Logo" class="w-12 h-12 object-contain rounded-full border border-gray-200 shadow-sm mr-4">
-        <div class="flex-1">
-          <h3 class="text-lg font-semibold">{{ job.jobRole }}</h3>
-          <p class="text-gray-600">{{ job.companyName }}</p>
-          <p class="text-sm text-gray-500">Applied on: {{ job.applicationDate | date }}</p>
-        </div>
-        <div class="text-right">
-          <span [ngClass]="getStatusClass(job.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
-            {{ job.status }}
-          </span>
-        </div>
+  <h2 class="text-2xl font-bold mb-6">Applied Jobs</h2>
+
+  <!-- <select [(ngModel)]="selectedBatchYear" (change)="onBatchYearChange()" class="border p-2 rounded mb-4">
+    <option *ngFor="let year of batchYears" [value]="year">{{ year }}</option>
+  </select> -->
+
+  <!-- No Applications Message -->
+  <div *ngIf="appliedJobs.length === 0" class="text-center text-gray-500">
+    You haven't applied to any jobs yet.
+  </div>
+
+  <!-- Applied Jobs List -->
+  <div *ngFor="let job of appliedJobs" class="mb-6 border rounded-lg shadow-md">
+    <!-- Job Card Header -->
+    <div class="flex items-center p-4 bg-gray-50 rounded-t-lg">
+      <img [src]="job.logo" alt="{{ job.companyName }} Logo" class="w-12 h-12 object-contain rounded-full border border-gray-200 shadow-sm mr-4" />
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold">{{ job.jobRole }}</h3>
+        <p class="text-gray-600">{{ job.companyName }}</p>
+        <p class="text-sm text-gray-500">Applied on: {{ job.applicationDate | date }}</p>
+        <a *ngIf="job.examLink" [href]="job.examLink" target="_blank" class="text-blue-500 underline">
+          Exam Link
+        </a>
       </div>
-  
-      <!-- Progress and Rounds -->
-      <div class="p-4">
-        <h4 class="text-md font-semibold mb-2">Application Progress</h4>
-        <div class="space-y-2">
-          <div *ngFor="let round of job.rounds" class="flex items-center justify-between p-2 border rounded">
-            <span>{{ round.name }}</span>
-            <span [ngClass]="getRoundStatusClass(round.status)" class="px-2 py-1 rounded text-xs">
-              {{ round.status }} {{ round.date ? '(' + (round.date | date) + ')' : '' }}
-            </span>
-          </div>
+      <div class="text-right">
+        <span [ngClass]="getStatusClass(job.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
+          {{ job.status }}
+        </span>
+        <button *ngIf="job.status === 'Applied'" 
+          (click)="deregisterJob(job)" 
+          class="bg-red-500 text-white py-1 px-2 rounded">
+              Deregister
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress and Rounds -->
+    <div class="p-4">
+      <h4 class="text-md font-semibold mb-2">Application Progress</h4>
+      <div class="space-y-2">
+        <div *ngFor="let round of job.rounds" class="flex items-center justify-between p-2 border rounded">
+          <span>{{ round.name }}</span>
+          <span [ngClass]="getRoundStatusClass(round.status)" class="px-2 py-1 rounded text-xs">
+            {{ round.status }} {{ round.date ? '(' + (round.date | date) + ')' : '' }}
+          </span>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Now student can see the exam link and can deregister from applied job -->
