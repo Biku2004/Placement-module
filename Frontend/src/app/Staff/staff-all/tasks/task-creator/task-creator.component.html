@@ -41,7 +41,7 @@
           <th class="py-2 px-4 border-b">Priority</th>
           <th class="py-2 px-4 border-b">Due Date</th>
           <th class="py-2 px-4 border-b">Due Time</th>
-          <th class="py-2 px-4 border-b">Assign Task</th>
+          <!-- <th class="py-2 px-4 border-b">Assign Task</th> -->
           <th class="py-2 px-4 border-b">Task Complete</th>
           <th class="py-2 px-4 border-b">Time Overview</th>
           <th class="py-2 px-4 border-b">Actions</th>
@@ -59,11 +59,11 @@
             <input type="text" [(ngModel)]="task.assignee" placeholder="Assign to" class="w-full p-2 border border-gray-300 rounded" />
           </td> -->
 
-          <td class="py-2 px-4 border-b">
+          <!-- <td class="py-2 px-4 border-b">
             <select [(ngModel)]="task.assignee" (change)="assignTask(task)" class="w-full p-2 border border-gray-300 rounded">
               <option *ngFor="let staff of staffMembers" [value]="staff.name">{{ staff.name }}</option>
             </select>
-          </td>
+          </td> -->
 
 
           <td class="py-2 px-4 border-b text-center">
