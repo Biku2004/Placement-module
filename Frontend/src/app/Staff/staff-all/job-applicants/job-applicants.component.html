@@ -1,0 +1,129 @@
+<div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Applicants for Job Posting</h2>
+
+    <div class="flex justify-between mb-4">
+      <div>
+          <!-- <button (click)="rejec()" class="bg-blue-500 text-white py-1 px-2 rounded mr-2">
+              Bulk Shortlist
+          </button>
+          <button (click)="bulkReject()" class="bg-red-500 text-white py-1 px-2 rounded">
+              Bulk Reject
+          </button> -->
+          <!-- <button (click)="hideJobPosting()" class="bg-gray-500 text-white py-1 px-2 rounded">Hide Job</button> -->
+      </div>
+      <button (click)="exportToExcel()" class="bg-green-500 text-white py-1 px-2 rounded">
+          Export to Excel
+      </button>
+  </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="error" class="text-red-500 mb-4">{{ error }}</div>
+  
+    <!-- Applicants Table -->
+    <div *ngIf="applications.length > 0; else noApplicants" class="overflow-x-auto">
+        <table class="min-w-full bg-white border">
+            <thead>
+                <tr class="bg-gray-100">
+                  <th class="py-2 px-4 border-b text-left">
+                        <input type="checkbox" (change)="toggleAll($event)">
+                    </th>
+                    <th class="py-2 px-4 border-b text-left">Student Email</th>
+                    <th class="py-2 px-4 border-b text-left">Company Name</th>
+                    <th class="py-2 px-4 border-b text-left">Job Role</th>
+                    <th class="py-2 px-4 border-b text-left">Status</th>
+                    <th class="py-2 px-4 border-b text-left">Actions</th>
+                    <th class="py-2 px-4 border-b text-left">Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let application of applications" class="hover:bg-gray-50">
+                  <td class="py-2 px-4 border-b">
+                    <input type="checkbox" [(ngModel)]="application.selected" (change)="toggleSelection(application)">
+                  </td>
+                    <td class="py-2 px-4 border-b">{{ application.studentEmail }}</td>
+                    <td class="py-2 px-4 border-b">{{ application.companyName }}</td>
+                    <td class="py-2 px-4 border-b">{{ application.jobRole }}</td>
+                    <td class="py-2 px-4 border-b">
+                        <span [ngClass]="{
+                            'text-green-600': application.status === 'Applied',
+                            'text-red-600': application.status === 'Rejected',
+                            'text-blue-600': application.status === 'Shortlisted',
+                            'text-green-800': application.status === 'Offer Received'
+                        }">
+                            {{ application.status }}
+                        </span>
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        <button *ngIf="application.status === 'Applied'" 
+                                (click)="shortlistApplication(application)" 
+                                class="bg-blue-500 text-white py-1 px-2 rounded mr-2">
+                            Shortlist
+                        </button>
+                        <button *ngIf="application.status !== 'Rejected'" 
+                                (click)="rejectApplication(application)" 
+                                class="bg-red-500 text-white py-1 px-2 rounded">
+                            Reject
+                        </button>
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        <div class="flex items-center space-x-2">
+                            <ng-container *ngFor="let round of application.rounds; let i = index">
+                                <div class="relative">
+                                    <div [ngClass]="{
+                                        'bg-green-500': round.status === 'Completed',
+                                        'bg-red-500': round.status === 'Failed',
+                                        'bg-blue-500': round.status === 'Opened',
+                                        'bg-gray-300': round.status === 'Pending'
+                                    }" class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs">
+                                        {{ i + 1 }}
+                                    </div>
+                                    <div *ngIf="i < application.rounds.length - 1" 
+                                         class="absolute top-1/2 left-full w-6 h-1 bg-gray-300 transform -translate-y-1/2"></div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="mt-2 text-sm">
+                          <div *ngFor="let round of application.rounds">
+                            {{ round.name }}: {{ round.status }} 
+                            <span *ngIf="round.date">({{ round.date | date }})</span>
+                            <select *ngIf="round.status !== 'Completed' && round.status !== 'Failed'" 
+                                    (change)="updateRoundStatus(application, round.name, $any($event.target).value)">
+                                <option value="Pending" [selected]="round.status === 'Pending'">Pending</option>
+                                <option value="Opened" [selected]="round.status === 'Opened'">Opened</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                          </div>
+                          <!-- Use the new method here -->
+                          <div *ngIf="hasTestRound(application)" class="mt-2">
+                            <label>Exam Link:</label>
+                            <input type="text" [(ngModel)]="examLinkInput" placeholder="e.g., https://example.com/exam" 
+                                    class="border p-1 rounded w-full mb-2">
+                            <label>Test Scheduled Time:</label>
+                            <input type="datetime-local" [(ngModel)]="testScheduledTimeInput" 
+                                    class="border p-1 rounded w-full mb-2">
+                            <button (click)="setExamDetails(application)" 
+                                    class="bg-blue-500 text-white py-1 px-2 rounded">
+                                Set Exam Details
+                            </button>
+                            <div *ngIf="application.examLink" class="mt-2">
+                                Current Exam Link: <a [href]="application.examLink" target="_blank" class="text-blue-500 underline">{{ application.examLink }}</a>
+                            </div>
+                            <div *ngIf="application.testScheduledTime" class="mt-2">
+                                Scheduled Time: {{ application.testScheduledTime | date:'medium' }}
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+    <!-- No Applicants Message -->
+    <ng-template #noApplicants>
+        <div class="text-center text-gray-500 mt-4">
+            No applicants found for this job posting.
+        </div>
+    </ng-template>
+</div>
