@@ -1,4 +1,4 @@
-<div class="grid grid-cols-3 gap-4 mt-6">
+<!-- <div class="grid grid-cols-3 gap-4 mt-6">
     <div class="bg-yellow-500 text-white p-4 rounded-lg">
       <p class="text-lg font-bold">Total Courses</p>
       <p class="text-4xl font-semibold mt-2">15</p>
@@ -11,4 +11,34 @@
       <p class="text-lg font-bold">Offers Received</p>
       <p class="text-4xl font-semibold mt-2">02 <span class="text-lg text-gray-500">3 Rejected</span></p>
     </div>
+  </div> -->
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 px-4">
+  <!-- Total Applications -->
+  <div class="bg-yellow-500 text-white p-4 rounded-lg shadow-md">
+    <p class="text-lg font-bold">Total Applications</p>
+    <p class="text-3xl sm:text-4xl font-semibold mt-2">
+      {{ stats.totalApplications }}
+    </p>
   </div>
+
+  <!-- Interviews Attended -->
+  <div class="bg-red-100 text-red-600 p-4 rounded-lg shadow-md">
+    <p class="text-lg font-bold">Interviews Attended</p>
+    <p class="text-3xl sm:text-4xl font-semibold mt-2">
+      {{ stats.interviewsAttended }}
+      <span class="text-lg">{{ stats.interviewPercentage }}%</span>
+    </p>
+  </div>
+
+  <!-- Offers Received -->
+  <div class="bg-gray-100 text-gray-800 p-4 rounded-lg shadow-md">
+    <p class="text-lg font-bold">Offers Received</p>
+    <p class="text-3xl sm:text-4xl font-semibold mt-2">
+      {{ stats.offersReceived }}
+      <span class="text-lg text-gray-500"
+        >{{ stats.rejectedOffers }} Rejected</span
+      >
+    </p>
+  </div>
+</div>
