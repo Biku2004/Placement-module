@@ -10,12 +10,10 @@ import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-job-applicants-1',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './job-applicants.component.html',
-  styleUrl: './job-applicants.component.css'
+  styleUrl: './job-applicants.component.css',
 })
-
-
 export class JobApplicantsComponent1 implements OnInit {
   jobId: number | null = null;
   applications: JobApplication[] = [];
@@ -27,10 +25,7 @@ export class JobApplicantsComponent1 implements OnInit {
   batchYears: string[] = [];
   selectedBatchYear: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private jobService: JobService
-  ) {}
+  constructor(private route: ActivatedRoute, private jobService: JobService) {}
 
   ngOnInit(): void {
     // Get jobId from route params
@@ -57,38 +52,47 @@ export class JobApplicantsComponent1 implements OnInit {
     }
   }
 
-
   rejectApplication(application: JobApplication) {
-    if (confirm(Reject application from ${application.studentEmail}?)) {
-        this.jobService.rejectApplication(application.id).subscribe(
-            (updatedApp) => {
-                application.status = updatedApp.status;
-                application.rounds = updatedApp.rounds;
-            },
-            (error) => console.error('Error rejecting application:', error)
-        );
+    if (confirm(`Reject application from ${application.studentEmail}?`)) {
+      this.jobService.rejectApplication(application.id).subscribe(
+        (updatedApp) => {
+          application.status = updatedApp.status;
+          application.rounds = updatedApp.rounds;
+        },
+        (error) => console.error('Error rejecting application:', error)
+      );
     }
-}
-
-  shortlistApplication(application: JobApplication) {
-      if (confirm(Shortlist ${application.studentEmail} for ${application.jobRole}?)) {
-          this.jobService.shortlistApplication(application.id).subscribe(
-              (updatedApp) => {
-                  application.status = updatedApp.status;
-                  application.rounds = updatedApp.rounds;
-              },
-              (error) => console.error('Error shortlisting application:', error)
-          );
-      }
   }
 
-  updateRoundStatus(application: JobApplication, roundName: string, status: string) {
-      this.jobService.updateRoundStatus(application.id, roundName, status).subscribe(
-          (updatedApp) => {
-              application.status = updatedApp.status;
-              application.rounds = updatedApp.rounds;
-          },
-          (error) => console.error('Error updating round status:', error)
+  shortlistApplication(application: JobApplication) {
+    if (
+      confirm(
+        `Shortlist ${application.studentEmail} for ${application.jobRole}?`
+      )
+    ) {
+      this.jobService.shortlistApplication(application.id).subscribe(
+        (updatedApp) => {
+          application.status = updatedApp.status;
+          application.rounds = updatedApp.rounds;
+        },
+        (error) => console.error('Error shortlisting application:', error)
+      );
+    }
+  }
+
+  updateRoundStatus(
+    application: JobApplication,
+    roundName: string,
+    status: string
+  ) {
+    this.jobService
+      .updateRoundStatus(application.id, roundName, status)
+      .subscribe(
+        (updatedApp) => {
+          application.status = updatedApp.status;
+          application.rounds = updatedApp.rounds;
+        },
+        (error) => console.error('Error updating round status:', error)
       );
   }
 
@@ -99,14 +103,14 @@ export class JobApplicantsComponent1 implements OnInit {
 
   toggleAll(event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
-    this.applications.forEach(app => app.selected = checked);
+    this.applications.forEach((app) => (app.selected = checked));
     this.updateSelectedApplications();
   }
 
   updateSelectedApplications() {
     this.selectedApplications = this.applications
-        .filter(app => app.selected)
-        .map(app => app.id);
+      .filter((app) => app.selected)
+      .map((app) => app.id);
   }
 
   // bulkReject() {
@@ -114,7 +118,7 @@ export class JobApplicantsComponent1 implements OnInit {
   //       alert('Please select at least one application.');
   //       return;
   //   }
-  //   if (confirm(Reject ${this.selectedApplications.length} selected applications?)) {
+  //   if (confirm(`Reject ${this.selectedApplications.length} selected applications?`)) {
   //       this.jobService.bulkRejectApplications(this.selectedApplications).subscribe(
   //           (updatedApps) => {
   //             updatedApps.forEach((updatedApp: JobApplication) => {
@@ -137,7 +141,7 @@ export class JobApplicantsComponent1 implements OnInit {
   //       alert('Please select at least one application.');
   //       return;
   //   }
-  //   if (confirm(Shortlist ${this.selectedApplications.length} selected applications?)) {
+  //   if (confirm(`Shortlist ${this.selectedApplications.length} selected applications?`)) {
   //       this.jobService.bulkShortlistApplications(this.selectedApplications).subscribe(
   //           (updatedApps) => {
   //             updatedApps.forEach((updatedApp: JobApplication) => {
@@ -157,39 +161,41 @@ export class JobApplicantsComponent1 implements OnInit {
 
   exportToExcel() {
     if (this.jobId) {
-        this.jobService.exportJobApplications(this.jobId).subscribe(
-            (blob) => {
-                saveAs(blob, 'applicants.xlsx');
-            },
-            (error) => console.error('Error exporting to Excel:', error)
-        );
+      this.jobService.exportJobApplications(this.jobId).subscribe(
+        (blob) => {
+          saveAs(blob, 'applicants.xlsx');
+        },
+        (error) => console.error('Error exporting to Excel:', error)
+      );
     }
   }
 
   setExamDetails(application: JobApplication) {
     if (!this.examLinkInput || !this.testScheduledTimeInput) {
-        alert('Please provide both an exam link and a scheduled time.');
-        return;
+      alert('Please provide both an exam link and a scheduled time.');
+      return;
     }
-    this.jobService.setExamDetails(application.id, this.examLinkInput, this.testScheduledTimeInput).subscribe(
+    this.jobService
+      .setExamDetails(
+        application.id,
+        this.examLinkInput,
+        this.testScheduledTimeInput
+      )
+      .subscribe(
         (updatedApp) => {
-            application.examLink = updatedApp.examLink;
-            application.testScheduledTime = updatedApp.testScheduledTime;
-            application.rounds = updatedApp.rounds;
-            this.examLinkInput = '';
-            this.testScheduledTimeInput = '';
-            alert('Exam details set successfully.');
+          application.examLink = updatedApp.examLink;
+          application.testScheduledTime = updatedApp.testScheduledTime;
+          application.rounds = updatedApp.rounds;
+          this.examLinkInput = '';
+          this.testScheduledTimeInput = '';
+          alert('Exam details set successfully.');
         },
         (error) => console.error('Error setting exam details:', error)
-    );
+      );
   }
-  
+
   // New method to check if "Test" round exists
   hasTestRound(application: JobApplication): boolean {
-    return application.rounds.some(r => r.name === 'Test');
+    return application.rounds.some((r) => r.name === 'Test');
   }
-
-  
-
-
 }
