@@ -57,7 +57,7 @@
              class="border p-4 rounded mb-4 shadow-md cursor-pointer hover:bg-blue-50 transition">
           <div class="flex items-center space-x-4">
             <!-- Company Logo -->
-            <img [src]="job.logo" alt="{{ job.companyName }} Logo" 
+            <img [src]="job.logoUrl" alt="{{ job.companyName }} Logo" 
                  class="w-12 h-12 object-contain rounded-full border border-gray-200 shadow-sm">
             <div>
               <h2 class="text-lg font-semibold">{{ job.jobRole }}</h2>
@@ -75,6 +75,20 @@
           <p><strong>Description:</strong> {{ job.description }}</p>
           <p><strong>Eligible Courses:</strong> {{ job.eligibleCourses }}</p>
           <p><strong>Last Date to Register:</strong> {{ job.lastDateToRegister }}</p>
+          <p><strong>Location:</strong> {{ job.jobLocation }}</p>
+          <p><strong>CTC:</strong> {{ job.annualCTC }}</p>
+          <p><strong>Website: </strong>{{ job.website }}</p>
+          <p><strong>Company Profile: </strong>{{ job.companyProfile }}</p>
+          <p><strong>Eligible Courses/Streams:</strong>{{ job.eligibleCourses }}</p>
+          <p><strong>Batch Year:</strong>{{job.batchYear}}</p>
+          <p><strong>Roles & Responsibilities:</strong>{{ job.rolesResponsibilities }}</p>
+          <p><strong>Skills and Qualifications:</strong>{{ job.skillsQualifications }}</p>
+          <p><strong>Selection Process:</strong>{{ job.selectionProcess }}</p>
+          <p><strong>Registration Process and Link:</strong>{{ job.registrationProcess }}</p>
+          <p><strong>Last Date to Register:</strong>{{ job.lastDateToRegister }}</p>
+          <p><strong>Benefits and Incentives:</strong>{{ job.benefitsIncentives }}</p>
+          <p><strong>Role Details:</strong>{{ job.roleDetails }}</p>
+          <p><strong>Expected Skills and Tools:</strong>{{ job.expectedSkillsTools }}</p>
           <button (click)="applyToJob(job)" class="mt-2 bg-green-500 text-white py-2 px-4 rounded">Apply Now</button>
         </div>
       </div>

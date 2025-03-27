@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../student.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+// import { Application } from '../../student-profile/application';
 
 @Component({
   selector: 'app-apply-job',
@@ -44,11 +45,25 @@ export class ApplyJobComponent implements OnInit {
     private studentService: StudentService
   ) {}
 
+  // ngOnInit() {
+  //   const jobId = this.route.snapshot.paramMap.get('id');
+  //   if (jobId) {
+  //     this.studentService.getJobById(+jobId).subscribe(job => {
+  //       this.job = job;
+  //       this.application.jobPostId = job.id;
+  //     });
+  //   }
+  // }
+
   ngOnInit() {
     const jobId = this.route.snapshot.paramMap.get('id');
     if (jobId) {
       this.studentService.getJobById(+jobId).subscribe(job => {
-        this.job = job;
+        this.job = {
+          ...job,
+          logo: job.logo, // Raw Base64 from backend
+          logoUrl: job.logo ? `data:image/jpeg;base64,${job.logo}` : 'https://via.placeholder.com/50' // Formatted
+        };
         this.application.jobPostId = job.id;
       });
     }

@@ -5,17 +5,23 @@
     </div>
   
     <div class="flex-1 ml-64 p-6">
+      <!-- <app-header></app-header> -->
   
       <app-student-header></app-student-header>
+      
   
       <p class="text-gray-500 text-right mt-2">{{ currentDate | date:'fullDate' }} {{ currentDate | date:'shortTime' }}</p>
     
+      <app-cards></app-cards>
     
       <div class="grid  gap-4 mt-6">
         <div class="">
-          <app-job-portal class=""></app-job-portal>
+          <app-job-portal *ngIf="selectedItems.includes('job-portal')" class="mt-4"></app-job-portal>
+          <br/>
+          <app-applied-jobs *ngIf="selectedItems.includes('applied-jobs')" class="mt-4"></app-applied-jobs>
           <!-- <app-progress-dashboard></app-progress-dashboard> -->
            <!-- <app-applied-jobs></app-applied-jobs> -->
+            
         </div>
       </div>
     

@@ -8,6 +8,8 @@ import { ProgressDashboardComponent } from './progress-dashboard/progress-dashbo
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AppliedJobsComponent } from "./job-portal/applied-jobs/applied-jobs.component";
 import { ApplyJobComponent } from "./job-portal/apply-job/apply-job.component";
+import { HeaderComponent } from "../Staff/staff-all/header/header.component";
+import { CardsComponent } from "../Staff/staff-all/cards/cards.component";
 
 @Component({
   selector: 'app-student-dashboard',
@@ -17,7 +19,7 @@ import { ApplyJobComponent } from "./job-portal/apply-job/apply-job.component";
     CommonModule,
     JobPortalComponent,
     ProgressDashboardComponent,
-    NotificationsComponent, AppliedJobsComponent, ApplyJobComponent],
+    NotificationsComponent, AppliedJobsComponent, ApplyJobComponent, HeaderComponent, CardsComponent],
   templateUrl: './student-dashboard.component.html',
   styleUrl: './student-dashboard.component.css'
 })
