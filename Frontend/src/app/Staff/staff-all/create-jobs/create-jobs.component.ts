@@ -9,6 +9,7 @@ import { Company } from './models/company';
 import { JobPost } from './models/job-post';
 // import { CompanyService } from '../create-company/company.service';
 import { CompanyDropService } from './companyDrop.service';
+import { Router } from '@angular/router';
 
 interface AdditionalSection {
   label: string;
@@ -52,6 +53,9 @@ export class CreateJobsComponent implements OnInit{
   companies: Company[] = [];
   selectedJob: any = null;
   additionalSectionHeaders: string[] = [];
+  selectedFile: File | null = null;
+  logoPreview: string | null = null;
+
   @ViewChild('resizableContainer') resizableContainer!: ElementRef;
   private defaultWidth = 800;
   private defaultHeight = 400;
@@ -59,7 +63,8 @@ export class CreateJobsComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private jobService: JobService,
-    private companyService: CompanyDropService
+    private companyService: CompanyDropService,
+    private router: Router
   ) {}
 
 
@@ -77,37 +82,54 @@ export class CreateJobsComponent implements OnInit{
   //     });
   // }
 
+  // onSubmit(): void {
+  //   this.jobService.createJobPost(this.jobPost).subscribe(
+  //     response => {
+  //       console.log('Job post created:', response);
+  //       this.loadJobPosts(); // Reload job posts after creating a new one
+  //       this.resetForm();
+  //       this.jobPost = {
+  //         companyName: '',
+  //         website: '',
+  //         companyProfile: '',
+  //         eligibleCourses: '',
+  //         batchYear: '',
+  //         jobRole: '',
+  //         jobLocation: '',
+  //         annualCTC: '',
+  //         rolesResponsibilities: '',
+  //         skillsQualifications: '',
+  //         selectionProcess: '',
+  //         registrationProcess: '',
+  //         lastDateToRegister: '',
+  //         benefitsIncentives: '',
+  //         roleDetails: '',
+  //         expectedSkillsTools: '',
+  //         additionalSections: [] as AdditionalSection[]
+  //       }; 
+  //     },
+  //     error => {
+  //       console.error('Error creating job post:', error);
+  //     }
+  //   );
+  // }
+
   onSubmit(): void {
-    this.jobService.createJobPost(this.jobPost).subscribe(
-      response => {
-        console.log('Job post created:', response);
-        this.loadJobPosts(); // Reload job posts after creating a new one
-        this.resetForm();
-        this.jobPost = {
-          companyName: '',
-          website: '',
-          companyProfile: '',
-          eligibleCourses: '',
-          batchYear: '',
-          jobRole: '',
-          jobLocation: '',
-          annualCTC: '',
-          rolesResponsibilities: '',
-          skillsQualifications: '',
-          selectionProcess: '',
-          registrationProcess: '',
-          lastDateToRegister: '',
-          benefitsIncentives: '',
-          roleDetails: '',
-          expectedSkillsTools: '',
-          // additionalSections: {} as { [key: string]: string }
-          additionalSections: [] as AdditionalSection[]
-          // additionalSections: [] as AdditionalSection[]
-        }; // Reset the form
-      },
-      error => {
-        console.error('Error creating job post:', error);
-      }
+    const formData = new FormData();
+    formData.append('jobPost', new Blob([JSON.stringify(this.jobPost)], { type: 'application/json' }));
+    if (this.selectedFile) {
+        formData.append('logo', this.selectedFile);
+    }
+
+    this.jobService.createJobPost(formData).subscribe(
+        response => {
+            console.log('Job post created:', response);
+            this.loadJobPosts();
+            this.resetForm();
+        },
+        error => {
+            console.error('Error creating job post:', error);
+        }
     );
   }
 
@@ -115,7 +137,7 @@ export class CreateJobsComponent implements OnInit{
     this.jobPost.additionalSections.push({ label: 'New Section', value: '' });
   }
   // addSection(): void {
-  //   const newSectionLabel = `New Section ${Object.keys(this.jobPost.additionalSections).length + 1}`;
+  //   const newSectionLabel = New Section ${Object.keys(this.jobPost.additionalSections).length + 1};
   //   this.jobPost.additionalSections[newSectionLabel] = '';
   //   this.updateAdditionalSectionHeaders();
   // }
@@ -150,9 +172,31 @@ export class CreateJobsComponent implements OnInit{
     }
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoPreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  // loadJobPosts(): void {
+  //   this.jobService.getJobPosts().subscribe(data => {
+  //     this.jobPosts = data;
+  //   });
+  // }
+
   loadJobPosts(): void {
     this.jobService.getJobPosts().subscribe(data => {
-      this.jobPosts = data;
+        this.jobPosts = data.map(job => ({
+            ...job,
+            selected: false,
+            logoUrl: job.logo ? data:image/jpeg;base64,${job.logo} : 'https://via.placeholder.com/50'
+        }));
     });
   }
 
@@ -163,8 +207,8 @@ export class CreateJobsComponent implements OnInit{
 
   resetSize(): void {
     const div = this.resizableContainer.nativeElement;
-    div.style.width = `${this.defaultWidth}px`;
-    div.style.height = `${this.defaultHeight}px`;
+    div.style.width = ${this.defaultWidth}px;
+    div.style.height = ${this.defaultHeight}px;
   }
 
   makeResizableDiv(div: HTMLElement): void {
@@ -225,10 +269,20 @@ export class CreateJobsComponent implements OnInit{
     selectedJobs.forEach(job => {
       this.jobService.sendJobPostToStudents(job.id).subscribe(() => {
         console.log('Job post sent to students:', job.id);
+        alert('Job post sent to students:');
       }, error => {
         console.error('Error sending job post to students:', error);
       });
     });
+  }
+
+  viewApplications(): void {
+    const selectedJobs = this.jobPosts.filter(job => job.selected);
+    if (selectedJobs.length === 1) {
+        this.router.navigate(['/staff-job-applicants', selectedJobs[0].id]);
+    } else {
+        alert('Please select exactly one job to view applications.');
+    }
   }
 
   openModal(job: any): void {
@@ -261,6 +315,8 @@ export class CreateJobsComponent implements OnInit{
       expectedSkillsTools: '',
       additionalSections: []
     };
+    this.selectedFile = null;
+    this.logoPreview = null;
   }
 
 

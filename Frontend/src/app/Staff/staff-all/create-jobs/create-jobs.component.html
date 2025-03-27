@@ -3,10 +3,11 @@
     <h2 class="text-2xl font-bold mb-4">Create Job Post</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="grid grid-cols-2 gap-4">
-        <!-- <div>
-          <label class="block text-gray-700">Company Name</label>
-          <input type="text" [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required />
-        </div> -->
+        <div>
+          <img [src]="logoPreview || 'https://via.placeholder.com/150'" alt="Logo Preview"
+              class="h-32 w-32 rounded-full object-cover border-4 border-gray-200" />
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" name="logo" />
+      </div>
         <div>
           <label class="block text-gray-700">Company Name</label>
           <select [(ngModel)]="jobPost.companyName" name="companyName" class="w-full p-2 border border-gray-300 rounded" required (change)="onCompanySelect($event)">
@@ -108,6 +109,9 @@
     <button (click)="sendToStudents()" class="text-green-500">
       <i class="fas fa-paper-plane">Send to Students</i>
     </button>
+    <button (click)="viewApplications()" class="text-blue-500">
+      <i class="fas fa-users">View Applications</i>
+    </button>
   </div>
   <div class="overflow-x-auto">
     <table class="min-w-full bg-white">
@@ -116,6 +120,7 @@
           <th class="py-2 px-4 border-b">
             <input type="checkbox" (change)="toggleSelectAll($event)">
           </th>
+          <th class="py-2 px-4 border-b">Logo</th>
           <th class="py-2 px-4 border-b">Company Name</th>
           <th class="py-2 px-4 border-b">Website</th>
           <th class="py-2 px-4 border-b">Company Profile</th>
@@ -138,6 +143,9 @@
         <tr *ngFor="let job of jobPosts; let i = index" (click)="openModal(job)">
           <td class="py-2 px-4 border-b">
             <input type="checkbox" [(ngModel)]="job.selected" (click)="$event.stopPropagation()">
+          </td>
+          <td class="py-2 px-4 border-b">
+            <img [src]="job.logoUrl" alt="{{ job.companyName }} Logo" class="h-12 w-12 object-contain" />
           </td>
           <td class="py-2 px-4 border-b">{{ job.companyName }}</td>
           <td class="py-2 px-4 border-b">{{ job.website }}</td>
