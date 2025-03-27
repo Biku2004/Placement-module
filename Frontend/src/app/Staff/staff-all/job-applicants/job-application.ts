@@ -6,7 +6,6 @@
 //     companyName: string;
 //     jobRole: string;
 // }
-
 // job-application.ts
 export interface JobApplication {
     id: number;
