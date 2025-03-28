@@ -7,7 +7,7 @@ import { saveAs } from 'file-saver'; // Add file-saver dependency
   providedIn: 'root'
 })
 export class JobPostingService {
-  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/recruiter/jobs';
+  private apiUrl = 'http://localhost:8080/api/recruiter/jobs';
 
   constructor(private http: HttpClient) { }
 

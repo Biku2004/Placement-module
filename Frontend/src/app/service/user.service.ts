@@ -12,7 +12,7 @@ interface UserDetails {
 })
 export class UserService {
 
-  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/login';
+  private apiUrl = 'http://localhost:8080/login';
 
   constructor(private http: HttpClient) { }
 

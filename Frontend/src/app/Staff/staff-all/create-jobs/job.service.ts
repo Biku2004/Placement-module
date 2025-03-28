@@ -8,7 +8,7 @@ import { Company } from './models/company';
   providedIn: 'root'
 })
 // export class JobService {
-//   private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/jobs';
+//   private apiUrl = 'http://localhost:8080/api/jobs';
 
 //   constructor(private http: HttpClient) { }
 
@@ -57,7 +57,7 @@ import { Company } from './models/company';
 // }
 
 export class JobService {
-  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/jobs';
+  private apiUrl = 'http://localhost:8080/api/jobs';
 
   constructor(private http: HttpClient) { }
 
