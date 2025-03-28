@@ -13,9 +13,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StudentService1 {
-  private apiUrl = 'http://localhost:8080/api/jobs';
-  // private recruiterApiUrl = 'http://localhost:8080/api/recruiter/jobs';
-  // private staffApiUrl = 'http://localhost:8080/api/jobs';
+  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/jobs';
+  // private recruiterApiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/recruiter/jobs';
+  // private staffApiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/jobs';
 
 
   constructor(private http: HttpClient) {}

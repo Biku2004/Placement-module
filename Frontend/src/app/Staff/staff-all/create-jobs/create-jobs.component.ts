@@ -74,7 +74,7 @@ export class CreateJobsComponent implements OnInit{
   }
 
   // onSubmit() {
-  //   this.http.post('http://localhost:8080/api/jobs', this.jobPosts)
+  //   this.http.post('http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/jobs', this.jobPosts)
   //     .subscribe(response => {
   //       console.log('Job post created:', response);
   //     }, error => {

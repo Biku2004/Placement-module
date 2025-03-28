@@ -14,7 +14,7 @@ export interface JobApplicationStatsService {
   providedIn: 'root' // Singleton service available app-wide
 })
 export class JobApplicationStatsService {
-  private apiUrl = 'http://localhost:8080/api/data/stats'; // Direct backend URL
+  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/data/stats'; // Direct backend URL
 
   constructor(private http: HttpClient) {}
 

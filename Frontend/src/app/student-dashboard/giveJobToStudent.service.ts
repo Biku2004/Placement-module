@@ -9,7 +9,7 @@
 //   providedIn: 'root'
 // })
 // export class GiveJobsToStudentService {
-//   private apiUrl = 'http://localhost:8080/api/student/jobs'; // Updated to student-specific endpoint
+//   private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/student/jobs'; // Updated to student-specific endpoint
 
 //   constructor(private http: HttpClient) {}
 

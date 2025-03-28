@@ -7,7 +7,7 @@ import { Company } from './models/company';
   providedIn: 'root'
 })
 export class CompanyDropService {
-  private apiUrl = 'http://localhost:8080/api/companies';
+  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/companies';
 
   constructor(private http: HttpClient) {}
 
