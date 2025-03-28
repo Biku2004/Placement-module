@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StaffService {
-  private apiUrl = 'http://localhost:8080/api/staff';
+  private apiUrl = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/staff';
 
   constructor(private http: HttpClient) { }
 

@@ -30,7 +30,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const BASE_URL = 'http://localhost:8080/api/recruiter';
+const BASE_URL = 'http://final-env.eba-gkf934kn.ap-south-1.elasticbeanstalk.com/api/recruiter';
 
 @Injectable({
   providedIn: 'root',
